@@ -3,7 +3,7 @@
 
 # sfo
 
-<img src="man/figures/total.png" width="80%" /> <!-- badges: start -->
+<img src="man/figures/total.svg" width="90%" /> <!-- badges: start -->
 
 <!-- badges: end -->
 
@@ -96,7 +96,10 @@ sfo_passengers %>%
   summarise(total = sum(passenger_count), .groups = "drop") %>%
   arrange(-total) %>%
   mutate(published_airline = factor(published_airline,levels = published_airline)) %>%
-  plot_ly(x = ~ published_airline, y = ~ total, type = "bar")
+  plot_ly(x = ~ published_airline, y = ~ total, type = "bar") %>%
+  layout(title = "Monthly Air Traffic Passengers in SFO By Airline",
+         yaxis = list(title = "Number of Passengers"),
+         xaxis = list(title = ""))
 ```
 
-<img src="man/figures/by_airline.png" width="100%" />
+<img src="man/figures/by_airline.svg" width="100%" />

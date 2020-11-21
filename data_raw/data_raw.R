@@ -10,5 +10,10 @@ sfo_passengers <- data.table::fread(cmd = cmd,
                                                  "published_airline_iata_code", "geo_summary",
                                                  "geo_region", "activity_type_code",
                                                  "price_category_code", "terminal",
-                                                 "boarding_area", "passenger_count"))
-usethis::use_data(sfo_passengers)
+                                                 "boarding_area", "passenger_count")) %>%
+  as.data.frame()
+
+head(sfo_passengers)
+
+write.csv(sfo_passengers, "csv/sfo_passengers.csv", row.names = FALSE)
+usethis::use_data(sfo_passengers, overwrite = TRUE)

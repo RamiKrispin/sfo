@@ -6,3 +6,4 @@
 ^data_raw$
 ^.github$
 ^CODE_OF_CONDUCT\.md$
+^README\.Rmd$

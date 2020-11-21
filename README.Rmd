@@ -1,0 +1,110 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  fig.height=5, fig.width=8, 
+  message=FALSE, warning=FALSE,
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# sfo
+
+```{r, include=FALSE}
+library(plotly)
+library(dplyr)
+library(sfo)
+p <- sfo_passengers %>%
+  group_by(activity_period) %>%
+  summarise(total = sum(passenger_count), .groups = "drop") %>%
+  mutate(date = as.Date(paste(substr(activity_period, 1, 4), 
+                              substr(activity_period, 5, 6), "01", sep = "/"))) %>%
+  plot_ly(x = ~ date, y = ~ total,
+          type = "scatter", 
+          mode = "lines") %>%
+  layout(title = "Monthly Air Traffic Passengers in SFO",
+         yaxis = list(title = "Number of Passengers"),
+         xaxis = list(title = "San Francisco data portal (DataSF)"))
+
+orca(p, "man/figures/total.png") 
+```
+
+<img src="man/figures/total.png" width="80%" />
+<!-- badges: start -->
+<!-- badges: end -->
+
+The **sfo** package provides summary of the monthly passengers in San Francisco International Airport (SFO).
+
+**Note:** WIP...
+
+## Installation
+
+WIP still not available in CRAN but can be install from Github:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("RamiKrispin/sfo")
+```
+## Usage
+
+The `sfo_passengers` dataset provides a monthly summary of the number of passengers in SFO airport by different categories (such as terminal, geo, type, etc.):
+
+```{r example}
+library(sfo)
+
+data("sfo_passengers")
+
+head(sfo_passengers)
+```
+
+Below are some use cases of the package.
+
+### Total number of passngers
+
+The total number of passengers in most recent month by `activity_type_code` and `geo_region`:
+
+```{r }
+library(dplyr)
+
+sfo_passengers %>%
+  filter(activity_period == max(activity_period)) %>%
+  group_by(activity_type_code, geo_region) %>%
+  summarise(total = sum(passenger_count), .groups = "drop")
+```
+
+Likewise, we can summarize the total number of passengers in most recent month by airline:
+
+``` r
+library(plotly)
+
+sfo_passengers %>%
+  filter(activity_period == max(activity_period)) %>%
+  group_by(published_airline) %>%
+  summarise(total = sum(passenger_count), .groups = "drop") %>%
+  arrange(-total) %>%
+  mutate(published_airline = factor(published_airline,levels = published_airline)) %>%
+  plot_ly(x = ~ published_airline, y = ~ total, type = "bar")
+
+```
+
+
+```{r, include=FALSE}
+library(plotly)
+p <- sfo_passengers %>%
+  filter(activity_period == max(activity_period)) %>%
+  group_by(published_airline) %>%
+  summarise(total = sum(passenger_count), .groups = "drop") %>%
+  arrange(-total) %>%
+  mutate(published_airline = factor(published_airline,levels = published_airline)) %>%
+  plot_ly(x = ~ published_airline, y = ~ total, type = "bar")
+ orca(p, "man/figures/by_airline.png") 
+```
+
+<img src="man/figures/by_airline.png" width="100%" />

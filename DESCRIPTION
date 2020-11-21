@@ -1,14 +1,20 @@
 Package: sfo
 Type: Package
-Title: What the Package Does (Title Case)
-Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Title: San Francisco International Airport Monthly Air Passengers
+Version: 0.0.0.9000
+Authors@R: person(given = "Rami", 
+                    family ="Krispin", 
+                    email = "rami.krispin@gmail.com",
+                    role = c("aut", "cre"))
+Maintainer: Rami Krispin <rami.krispin@gmail.com>
+Description: Provides monthly statistics on the number of monthly air passengers at SFO airport such as operating airline, terminal, geo, etc.
+             Data source: San Francisco data portal (DataSF) <https://data.sfgov.org/Transportation/Air-Traffic-Passenger-Statistics/rkru-6vcg>.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Depends: 
     R (>= 2.10)
+Suggests:
+    dplyr,
+    plotly
 RoxygenNote: 7.1.1

@@ -1,2 +1,8 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^docs$
+^csv$
+^docker$
+^data_raw$
+^.github$
+^CODE_OF_CONDUCT\.md$

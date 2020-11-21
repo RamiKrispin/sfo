@@ -11,14 +11,14 @@
 MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![GitHub
 commit](https://img.shields.io/github/last-commit/RamiKrispin/sfo)](https://github.com/RamiKrispin/sfo/commit/master)
-<!-- badges: end --> <img src="man/figures/total.svg" width="90%" />
+<!-- badges: end -->
 
 The **sfo** package provides summary of the monthly passengers in San
 Francisco International Airport (SFO).
 
 **Note:** WIP…
 
-## Installation
+<img src="man/figures/total.svg" width="90%" /> \#\# Installation
 
 WIP still not available in CRAN but can be install from Github:
 

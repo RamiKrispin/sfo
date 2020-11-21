@@ -4,6 +4,7 @@
 # sfo
 
 <img src="man/figures/total.png" width="80%" /> <!-- badges: start -->
+
 <!-- badges: end -->
 
 The **sfo** package provides summary of the monthly passengers in San

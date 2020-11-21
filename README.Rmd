@@ -31,13 +31,14 @@ p <- sfo_passengers %>%
           mode = "lines") %>%
   layout(title = "Monthly Air Traffic Passengers in SFO",
          yaxis = list(title = "Number of Passengers"),
-         xaxis = list(title = "San Francisco data portal (DataSF)"))
+         xaxis = list(title = "Source: San Francisco data portal (DataSF)"))
 
-orca(p, "man/figures/total.png") 
+orca(p, "man/figures/total.png")  
 ```
 
 <img src="man/figures/total.png" width="80%" />
 <!-- badges: start -->
+
 <!-- badges: end -->
 
 The **sfo** package provides summary of the monthly passengers in San Francisco International Airport (SFO).

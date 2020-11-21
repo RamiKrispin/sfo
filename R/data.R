@@ -20,23 +20,14 @@
 #' @keywords datasets timeseries airline SFO passengers
 #' @details The dataset contains the monthly summary of number of passengers in San Francisco International Airport (SFO) by variety of categories
 #' @examples
-#' data(coronavirus)
+#' data(sfo_passengers)
 #'
 #' require(dplyr)
 #'
-#' # Get top confirmed cases by state
-#' coronavirus %>%
-#'   filter(type == "confirmed") %>%
-#'   group_by(country) %>%
-#'   summarise(total = sum(cases)) %>%
-#'   arrange(-total) %>%
-#'   head(20)
+#' # Get summary of total number of passengers by activity type
+#' sfo_passengers %>%
+#'   filter(activity_period == max(activity_period)) %>%
+#'   group_by(activity_type_code) %>%
+#'   summarise(total = sum(passenger_count), .groups = "drop")
 #'
-#' # Get the number of recovered cases in China by province
-#' coronavirus %>%
-#'   filter(type == "recovered", country == "China") %>%
-#'   group_by(province) %>%
-#'   summarise(total = sum(cases)) %>%
-#'   arrange(-total)
-#'
-"coronavirus"
+"sfo_passengers"

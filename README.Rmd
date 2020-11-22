@@ -51,9 +51,10 @@ The **sfo** package provides summary of the monthly passengers in San Francisco 
 **Note:** WIP...
 
 <img src="man/figures/total.svg" width="90%" />
+
 ## Installation
 
-WIP still not available in CRAN but can be install from Github:
+WIP still not available in CRAN but can be installed from Github:
 
 ``` r
 # install.packages("devtools")

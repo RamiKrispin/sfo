@@ -18,9 +18,11 @@ Francisco International Airport (SFO).
 
 **Note:** WIP…
 
-<img src="man/figures/total.svg" width="90%" /> \#\# Installation
+<img src="man/figures/total.svg" width="90%" />
 
-WIP still not available in CRAN but can be install from Github:
+## Installation
+
+WIP still not available in CRAN but can be installed from Github:
 
 ``` r
 # install.packages("devtools")

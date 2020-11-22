@@ -24,7 +24,7 @@ WIP still not available in CRAN but can be install from Github:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("RamiKrispin/sfo")
+devtools::install_github("RamiKrispin/sfo", ref = "main")
 ```
 
 ## Usage

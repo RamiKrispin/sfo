@@ -16,5 +16,8 @@ Depends:
     R (>= 2.10)
 Suggests:
     dplyr,
-    plotly
+    plotly,
+    knitr,
+    rmarkdown
 RoxygenNote: 7.1.1
+VignetteBuilder: knitr

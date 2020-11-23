@@ -40,9 +40,17 @@ data(sfo_passengers)
 require(dplyr)
 
 # Get summary of total number of passengers by activity type
+# in most recent month
 sfo_passengers \%>\%
   filter(activity_period == max(activity_period)) \%>\%
   group_by(activity_type_code) \%>\%
+  summarise(total = sum(passenger_count), .groups = "drop")
+
+# Get summary of total number of passengers by
+# activity type and geo region in most recent month
+sfo_passengers \%>\%
+filter(activity_period == max(activity_period)) \%>\%
+  group_by(activity_type_code, geo_region) \%>\%
   summarise(total = sum(passenger_count), .groups = "drop")
 
 }

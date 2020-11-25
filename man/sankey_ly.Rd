@@ -4,18 +4,20 @@
 \alias{sankey_ly}
 \title{Sankey Plot with Plotly}
 \usage{
-sankey_ly(x, cols, num_col)
+sankey_ly(x, cat_cols, num_col, title = NULL)
 }
 \arguments{
-\item{x}{A data.frame input}
+\item{x}{A data.frame input, must have at least two categorical columns and one numeric column}
 
-\item{cols}{A vector of columns names}
+\item{cat_cols}{A  vector of at least two categorical columns names}
 
-\item{num_col}{The numeric column name}
+\item{num_col}{A single numeric column name}
+
+\item{title}{Optional, string to pass to plotly layout title function}
 }
 \description{
 Sankey Plot with Plotly
 }
 \details{
-A customized function for plotting sankey plots with Plotly
+A customized function for data transformation and plotting sankey plot with Plotly
 }

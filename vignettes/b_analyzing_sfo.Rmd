@@ -236,9 +236,9 @@ sfo_passengers %>%
   group_by(operating_airline, geo_summary, geo_region, activity_type_code, 
            price_category_code, terminal) %>%
   summarise(total = sum(passenger_count), .groups = "drop") %>%
-  sankey_ly(cols = c("operating_airline","geo_summary",
+  sankey_ly(cat_cols = c("operating_airline","geo_summary",
                       "geo_region", "activity_type_code",
                       "price_category_code"),
-          num_col = "total") %>%
-  layout(title = "SFO Air Traffic Passenger Dist. During 2019")
+          num_col = "total",
+          title = "SFO Air Traffic Passenger Dist. During 2019")
 ```

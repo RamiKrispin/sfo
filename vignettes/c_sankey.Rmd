@@ -1,0 +1,104 @@
+---
+title: "Create Sankey Diagram"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{c_sankey}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  fig.height=5, fig.width=8, 
+  message=FALSE, warning=FALSE,
+  comment = "#>"
+)
+```
+
+
+A Sankey diagram is a common method for visualizing a numeric variable's distribution across multiple categorical variables. The `sankey_ly` function is a wrapper for the [plotly Sankey](https://plotly.com/r/sankey-diagram/) functionality, enables fast plotting with no need for any data transformation.
+
+The function has the following arguments:
+
+* `x` - an aggregate data.frame object, must have at least two categorical variables and one numeric variable
+* `cat_cols` - a  vector of at least two categorical columns names
+* `num_col` - a single numeric column name
+* `title` - optiona, enables to set title for the plot
+
+### Usage
+
+Let's see some use case of the function with the `sfo_passengers` dataset:
+
+```{r setup}
+library(sfo)
+
+data("sfo_passengers")
+
+str(sfo_passengers)
+```
+
+In the case of the `sfo_passengers` dataset, ignoring the date indicator, we have one numeric variable - `passenger_count` and 10 categorical variables. For the following examples we will focus on total number of passengers during 2019, last full year in the dataset:
+
+```{r}
+library(dplyr)
+
+d <- sfo_passengers %>% filter(activity_period >= 201901 & activity_period < 202001)
+```
+
+Now, we can start explore the distribution of the passengers by different categorical variables combination. Let's start with a simplistic example, plotting the distribution of passengers by `geo_sumary` and `geo_region`. The `sunkey_ly` function required that the data will be aggregated by the categorical variables:
+
+```{r }
+d1 <- d %>% group_by(geo_summary, geo_region) %>%
+  summarise(total = sum(passenger_count), .groups = "drop")
+
+head(d1)
+```
+
+Now, as the data is ready, we visualize the data:
+
+```{r}
+sankey_ly(x = d1, 
+          cat_cols = c("geo_summary", "geo_region"), 
+          num_col = "total", 
+          title = "Distribution of Passengers by Geo Type and Region")
+```
+
+In a similar manner we can add additional variables.
+```{r}
+d %>% 
+  filter(operating_airline == "United Airlines") %>%
+  group_by(operating_airline,activity_type_code, geo_summary, geo_region) %>%
+  summarise(total = sum(passenger_count), .groups = "drop") %>%
+  sankey_ly(cat_cols = c("operating_airline", "geo_summary", "geo_region", "activity_type_code"), 
+            num_col = "total",
+            title = "Distribution of United Airlines Passengers at SFO During 2019")
+```
+
+
+### Failure!
+
+Here is some pitful you should be aware of, the function is sensitive for the categorical variables name. It will fail to map the different categories correctly if two variables share the same unique label. The following example, where both the `geo_summary` and `terminal` variables share the label `international`, demonstrates this issue:
+
+```{r}
+d %>% 
+  filter(operating_airline == "United Airlines") %>%
+  group_by(operating_airline,activity_type_code, geo_summary, geo_region,  terminal) %>%
+  summarise(total = sum(passenger_count), .groups = "drop") %>%
+  sankey_ly(cat_cols = c("operating_airline", "geo_summary", "geo_region", "activity_type_code", "terminal"), 
+            num_col = "total",
+            title = "Distribution of United Airlines Passengers at SFO During 2019")
+``` 
+
+To overcome this issue, you will have to make sure that there is no overlapping between the variables label. Let's modify the cases where `terminal` variable is set as `International` to `international` (`I` -> `i`):
+
+```{r}
+d %>% 
+  filter(operating_airline == "United Airlines") %>%
+  mutate(terminal = ifelse(terminal == "International", "international", terminal)) %>%
+  group_by(operating_airline,activity_type_code, geo_summary, geo_region,  terminal) %>%
+  summarise(total = sum(passenger_count), .groups = "drop") %>%
+  sankey_ly(cat_cols = c("operating_airline", "terminal","geo_summary", "geo_region", "activity_type_code"), 
+            num_col = "total",
+            title = "Distribution of United Airlines Passengers at SFO During 2019")
+``` 

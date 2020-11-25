@@ -36,21 +36,17 @@ p <- sfo_passengers %>%
 orca(p, "man/figures/total.svg")  
 ```
 
-
 <!-- badges: start -->
-[![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/sfo)](https://cran.r-project.org/package=sfo)
-[![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![GitHub commit](https://img.shields.io/github/last-commit/RamiKrispin/sfo)](https://github.com/RamiKrispin/sfo/commit/master)
+
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/sfo)](https://cran.r-project.org/package=sfo) [![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT) [![GitHub commit](https://img.shields.io/github/last-commit/RamiKrispin/sfo)](https://github.com/RamiKrispin/sfo/commit/master)
+
 <!-- badges: end -->
-
-
 
 The **sfo** package provides summary of the monthly passengers in San Francisco International Airport (SFO).
 
 Data source: San Francisco data portal (DataSF) [API](https://data.sfgov.org/Transportation/Air-Traffic-Passenger-Statistics/rkru-6vcg)
 
-<img src="man/figures/total.svg" width="90%" />
+<img src="man/figures/total.svg" width="90%"/>
 
 ## Installation
 
@@ -60,6 +56,7 @@ WIP still not available in CRAN but can be installed from Github:
 # install.packages("devtools")
 devtools::install_github("RamiKrispin/sfo", ref = "main")
 ```
+
 ## Usage
 
 The `sfo_passengers` dataset provides a monthly summary of the number of passengers in SFO airport by different categories (such as terminal, geo, type, etc.):
@@ -102,9 +99,7 @@ sfo_passengers %>%
   layout(title = "Monthly Air Traffic Passengers in SFO By Airline",
          yaxis = list(title = "Number of Passengers"),
          xaxis = list(title = ""))
-
 ```
-
 
 ```{r, include=FALSE}
 library(plotly)
@@ -121,4 +116,4 @@ p <- sfo_passengers %>%
  orca(p, "man/figures/by_airline.svg") 
 ```
 
-<img src="man/figures/by_airline.svg" width="100%" />
+<img src="man/figures/by_airline.svg" width="100%"/>

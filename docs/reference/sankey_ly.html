@@ -95,10 +95,13 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/01_intro.html">Introduction</a>
+      <a href="../articles/a_intro.html">Introduction</a>
     </li>
     <li>
-      <a href="../articles/02_analyzing_sfo.html">Analyzing SFO Passengers</a>
+      <a href="../articles/b_analyzing_sfo.html">Analyzing SFO Passengers</a>
+    </li>
+    <li>
+      <a href="../articles/c_sankey.html">Create Sankey Diagram</a>
     </li>
   </ul>
 </li>
@@ -127,28 +130,32 @@
     <p>Sankey Plot with Plotly</p>
     </div>
 
-    <pre class="usage"><span class='fu'>sankey_ly</span>(<span class='kw'>x</span>, <span class='kw'>cols</span>, <span class='kw'>num_col</span>)</pre>
+    <pre class="usage"><span class='fu'>sankey_ly</span>(<span class='kw'>x</span>, <span class='kw'>cat_cols</span>, <span class='kw'>num_col</span>, title = <span class='kw'>NULL</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>A data.frame input</p></td>
+      <td><p>A data.frame input, must have at least two categorical columns and one numeric column</p></td>
     </tr>
     <tr>
-      <th>cols</th>
-      <td><p>A vector of columns names</p></td>
+      <th>cat_cols</th>
+      <td><p>A  vector of at least two categorical columns names</p></td>
     </tr>
     <tr>
       <th>num_col</th>
-      <td><p>The numeric column name</p></td>
+      <td><p>A single numeric column name</p></td>
+    </tr>
+    <tr>
+      <th>title</th>
+      <td><p>Optional, string to pass to plotly layout title function</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>A customized function for plotting sankey plots with Plotly</p>
+    <p>A customized function for data transformation and plotting sankey plot with Plotly</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

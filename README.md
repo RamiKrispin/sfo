@@ -16,7 +16,8 @@ commit](https://img.shields.io/github/last-commit/RamiKrispin/sfo)](https://gith
 The **sfo** package provides summary of the monthly passengers in San
 Francisco International Airport (SFO).
 
-**Note:** WIP…
+Data source: San Francisco data portal (DataSF)
+[API](https://data.sfgov.org/Transportation/Air-Traffic-Passenger-Statistics/rkru-6vcg)
 
 <img src="man/figures/total.svg" width="90%" />
 

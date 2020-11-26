@@ -1,7 +1,7 @@
 Package: sfo
 Type: Package
 Title: San Francisco International Airport Monthly Air Passengers
-Version: 0.0.0.9000
+Version: 0.1.0
 Authors@R: person(given = "Rami", 
                     family ="Krispin", 
                     email = "rami.krispin@gmail.com",
@@ -15,11 +15,11 @@ LazyData: true
 Depends: 
     R (>= 2.10)
 Suggests:
-    dplyr,
-    magrittr,
-    plotly,
+    dplyr (>= 1.0.0),
+    magrittr (>= 1.5),
+    plotly (>= 4.9.2.1),
     knitr,
     rmarkdown,
-    tidyr
+    tidyr (>= 1.0.0)
 RoxygenNote: 7.1.1
 VignetteBuilder: knitr

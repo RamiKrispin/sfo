@@ -32,7 +32,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">sfo</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
       </span>
     </div>
 
@@ -64,6 +64,9 @@
       <a href="articles/c_sankey.html">Create Sankey Diagram</a>
     </li>
   </ul>
+</li>
+<li>
+  <a href="news/index.html">Changelog</a>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right"></ul>
@@ -169,6 +172,19 @@
          xaxis = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(title = <span class="st">""</span>))
 </pre></div>
 <p><img src="reference/figures/by_airline.svg" width="100%"></p>
+<p>The <code>sankey_ly</code> function enables to plot a distribution of a numeric variable by multiple categorical variables. The following example show the distribution of the total United Airlines passengers during 2019 by termina, travel type (domestic and international), geo, and travel direction (deplaned, enpland, and transit):</p>
+<div class="sourceCode" id="cb5"><pre class="downlit">
+<span class="kw">sfo_passengers</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="kw">operating_airline</span> <span class="op">==</span> <span class="st">"United Airlines"</span>,
+         <span class="kw">activity_period</span> <span class="op">&gt;=</span> <span class="fl">201901</span> <span class="op">&amp;</span> <span class="kw">activity_period</span> <span class="op">&lt;</span> <span class="fl">202001</span>) <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(terminal = <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span>(<span class="kw">terminal</span> <span class="op">==</span> <span class="st">"International"</span>, <span class="st">"international"</span>, <span class="kw">terminal</span>)) <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(<span class="kw">operating_airline</span>,<span class="kw">activity_type_code</span>, <span class="kw">geo_summary</span>, <span class="kw">geo_region</span>,  <span class="kw">terminal</span>) <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span>(total = <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="kw">passenger_count</span>), .groups = <span class="st">"drop"</span>) <span class="op">%&gt;%</span>
+  <span class="fu"><a href="reference/sankey_ly.html">sankey_ly</a></span>(cat_cols = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"operating_airline"</span>, <span class="st">"terminal"</span>,<span class="st">"geo_summary"</span>, <span class="st">"geo_region"</span>, <span class="st">"activity_type_code"</span>), 
+            num_col = <span class="st">"total"</span>,
+            title = <span class="st">"Dist. of United Airlines Passengers at SFO During 2019"</span>)
+</pre></div>
+<p><img src="reference/figures/sankey.svg" width="100%"></p>
 </div>
 </div>
 </div>

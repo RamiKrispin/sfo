@@ -8,3 +8,4 @@
 ^CODE_OF_CONDUCT\.md$
 ^README\.Rmd$
 ^LICENSE\.md$
+^vignettes/c_sankey.Rmd$

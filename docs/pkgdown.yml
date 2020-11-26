@@ -2,8 +2,8 @@ pandoc: 2.11.1
 pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
-  a_intro: a_intro.html
-  b_analyzing_sfo: b_analyzing_sfo.html
-  c_sankey: c_sankey.html
-last_built: 2020-11-26T07:20Z
+  v1_intro: v1_intro.html
+  v2_analyzing_sfo: v2_analyzing_sfo.html
+  v3_sankey: v3_sankey.html
+last_built: 2020-11-26T07:35Z
 

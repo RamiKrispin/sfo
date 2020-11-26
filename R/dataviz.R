@@ -55,7 +55,6 @@ sankey_ly <- function(x, cat_cols, num_col, title = NULL){
     type = "sankey",
     orientation = "h",
     valueformat = ".0f",
-    valuesuffix = "TWh",
     node = list(
       label = map$cat,
       # color = c("blue", "green", "red", "purple", "yellow", "black"),

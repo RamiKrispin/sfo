@@ -10,7 +10,7 @@
 [![License:
 MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![GitHub
-commit](https://img.shields.io/github/last-commit/RamiKrispin/sfo)](https://github.com/RamiKrispin/sfo/commit/master)
+commit](https://img.shields.io/github/last-commit/RamiKrispin/sfo)](https://github.com/RamiKrispin/sfo/commit/main)
 
 <!-- badges: end -->
 

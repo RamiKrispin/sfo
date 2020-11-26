@@ -117,3 +117,34 @@ p <- sfo_passengers %>%
 ```
 
 <img src="man/figures/by_airline.svg" width="100%"/>
+
+
+The `sankey_ly` function enables to plot a distribution of a numeric variable by multiple categorical variables. The following example show the distribution of the total United Airlines passengers during 2019 by termina, travel type (domestic and international), geo, and travel direction (deplaned, enpland, and transit):
+
+``` r
+sfo_passengers %>% 
+  filter(operating_airline == "United Airlines",
+         activity_period >= 201901 & activity_period < 202001) %>%
+  mutate(terminal = ifelse(terminal == "International", "international", terminal)) %>%
+  group_by(operating_airline,activity_type_code, geo_summary, geo_region,  terminal) %>%
+  summarise(total = sum(passenger_count), .groups = "drop") %>%
+  sankey_ly(cat_cols = c("operating_airline", "terminal","geo_summary", "geo_region", "activity_type_code"), 
+            num_col = "total",
+            title = "Dist. of United Airlines Passengers at SFO During 2019")
+```
+
+```{r, include=FALSE}
+p <- sfo_passengers %>% 
+  filter(operating_airline == "United Airlines",
+         activity_period >= 201901 & activity_period < 202001) %>%
+  mutate(terminal = ifelse(terminal == "International", "international", terminal)) %>%
+  group_by(operating_airline,activity_type_code, geo_summary, geo_region,  terminal) %>%
+  summarise(total = sum(passenger_count), .groups = "drop") %>%
+  sankey_ly(cat_cols = c("operating_airline", "terminal","geo_summary", "geo_region", "activity_type_code"), 
+            num_col = "total",
+            title = "Dist. of United Airlines Passengers at SFO During 2019")
+
+orca(p, "man/figures/sankey.svg") 
+```
+
+<img src="man/figures/sankey.svg" width="100%"/>

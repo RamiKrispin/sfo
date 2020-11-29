@@ -14,9 +14,14 @@ knitr::opts_chunk$set(
 )
 ```
 
-The **sfo** package provides a monthly summary of San Francisco International (SFO) Airport air traffic passengers.
+The **sfo** package provides a monthly statistics of San Francisco International (SFO) airport air traffic. That includes the following two datasets:
 
-The `sfo_passengers` dataset contains the following fields:
+* `sfo_passengers` - air traffic passengers statistics
+* `sfo_stats` - air traffic landing statistics
+
+### sfo_passengers
+
+The `sfo_passengers` dataset focusing on monthly air passengers statistics, and it contains the following fields:
 
 -   `activity_period` - Activity year and month in YYYYMM format
 -   `operating_airline` -Airline name for the operator of aircraft
@@ -41,5 +46,39 @@ data("sfo_passengers")
 str(sfo_passengers)
 
 head(sfo_passengers)
+
+```
+
+
+### sfo_stats
+
+The `sfo_stats` dataset focusing on monthly landing statistics, and it contains the following fields:
+
+-   `activity_period` - Activity year and month in YYYYMM format
+-   `operating_airline` -Airline name for the operator of aircraft
+-   `operating_airline_iata_code` -The International Air Transport Association (IATA) two-letter designation for the Operating Airline
+-   `published_airline` -Airline name that issues the ticket and books revenue for passenger activity
+-   `published_airline_iata_code` -The International Air Transport Association (IATA) two-letter designation for the Published Airline
+-   `geo_summary` -Designates whether the passenger activity in relation to SFO arrived from or departed to a location within the United States ("domestic"), or outside the United States ("international") without stops
+-   `geo_region` -Provides a more detailed breakdown of the GEO Summary field to designate the region in the world where activity in relation to SFO arrived from or departed to without stops
+- `landing_aircraft_type` - A designation for three types of aircraft that landed at SFO, which includes passenger aircraft, cargo only aircraft (“freighters”) or combination aircraft (“combi”)
+- `aircraft_body_type` - A designation that is independent from Landing Aircraft Type, which determines whether commercial aircraft landed at SFO is a wide body jet, narrow body jet, regional jet or a propeller operated aircraft
+- `aircraft_manufacturer` - Manufacturer name for the aircraft that landed at SFO
+- `aircraft_model` - Model designation of aircraft by the manufacturer
+- `aircraft_version` - Variations of the Aircraft Model, also known as the “dash number”, designated by the manufacturer to segregate unique versions of the same model
+- `landing_count` - The number of aircraft landings associated with General and Landings Statistics attribute fields
+- `total_landed_weight` - The aircraft landed weight (in pounds) associated with General and Landings Statistics attribute fields
+
+
+Data source: San Francisco data portal (DataSF) [API](https://data.sfgov.org/Transportation/Air-Traffic-Landings-Statistics/fpux-q53t)
+
+```{r}
+library(sfo)
+
+data("sfo_stats")
+
+str(sfo_stats)
+
+head(sfo_stats)
 
 ```

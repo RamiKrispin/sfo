@@ -14,11 +14,11 @@ commit](https://img.shields.io/github/last-commit/RamiKrispin/sfo)](https://gith
 
 <!-- badges: end -->
 
-The **sfo** package provides summary of the monthly passengers in San
-Francisco International Airport (SFO).
+The **sfo** package provides summary statistics of the monthly
+passengers and landing in San Francisco International Airport (SFO).
 
-Data source: San Francisco data portal (DataSF)
-[API](https://data.sfgov.org/Transportation/Air-Traffic-Passenger-Statistics/rkru-6vcg)
+Data source: San Francisco data portal - [DataSF
+API](https://data.sfgov.org)
 
 <img src="man/figures/total.svg" width="90%"/>
 
@@ -31,7 +31,17 @@ WIP still not available in CRAN but can be installed from Github:
 devtools::install_github("RamiKrispin/sfo", ref = "main")
 ```
 
-## Usage
+### Datasets
+
+The **sfo** package provides the following two datasets:
+
+-   `sfo_passengers` - air traffic passengers statistics
+-   `sfo_stats` - air traffic landing statistics
+
+More information about the datasets available on the following
+[vignette](https://ramikrispin.github.io/sfo/articles/v1_intro.html).
+
+### Examples
 
 The `sfo_passengers` dataset provides a monthly summary of the number of
 passengers in SFO airport by different categories (such as terminal,
@@ -59,9 +69,30 @@ head(sfo_passengers)
 #> 6             G            3700
 ```
 
-Below are some use cases of the package.
+The `sfo_stats` dataset provides a monthly statistics on the air traffic
+landing at SFO airport:
 
-### Total number of passngers
+``` r
+data("sfo_stats")
+
+head(sfo_stats)
+#>   activity_period operating_airline operating_airline_iata_code published_airline published_airline_iata_code   geo_summary geo_region landing_aircraft_type aircraft_body_type aircraft_manufacturer
+#> 1          202009   United Airlines                          UA   United Airlines                          UA International     Mexico             Passenger        Narrow Body                Airbus
+#> 2          202009   United Airlines                          UA   United Airlines                          UA      Domestic         US             Passenger        Narrow Body                Boeing
+#> 3          202009   United Airlines                          UA   United Airlines                          UA International     Canada             Passenger        Narrow Body                Boeing
+#> 4          202009   United Airlines                          UA   United Airlines                          UA      Domestic         US             Passenger        Narrow Body                Boeing
+#> 5          202009   United Airlines                          UA   United Airlines                          UA International     Mexico             Passenger        Narrow Body                Boeing
+#> 6          202009   United Airlines                          UA   United Airlines                          UA      Domestic         US             Passenger        Narrow Body                Boeing
+#>   aircraft_model aircraft_version landing_count total_landed_weight
+#> 1           A320                -            37             5261326
+#> 2           B738                -            14             2048200
+#> 3           B738                -             1              146300
+#> 4           B738                -           251            36721300
+#> 5           B738                -             3              438900
+#> 6           B739                -           553            86986900
+```
+
+#### Total number of passngers
 
 The total number of passengers in most recent month by
 `activity_type_code` and `geo_region`:
@@ -94,30 +125,10 @@ sfo_passengers %>%
 #> 16 Enplaned           US                  409584
 ```
 
-Likewise, we can summarize the total number of passengers in most recent
-month by airline:
-
-``` r
-library(plotly)
-
-sfo_passengers %>%
-  filter(activity_period == max(activity_period)) %>%
-  group_by(published_airline) %>%
-  summarise(total = sum(passenger_count), .groups = "drop") %>%
-  arrange(-total) %>%
-  mutate(published_airline = factor(published_airline,levels = published_airline)) %>%
-  plot_ly(x = ~ published_airline, y = ~ total, type = "bar") %>%
-  layout(title = "Monthly Air Traffic Passengers in SFO By Airline",
-         yaxis = list(title = "Number of Passengers"),
-         xaxis = list(title = ""))
-```
-
-<img src="man/figures/by_airline.svg" width="100%"/>
-
 The `sankey_ly` function enables to plot a distribution of a numeric
 variable by multiple categorical variables. The following example show
 the distribution of the total United Airlines passengers during 2019 by
-termina, travel type (domestic and international), geo, and travel
+terminal, travel type (domestic and international), geo, and travel
 direction (deplaned, enpland, and transit):
 
 ``` r
@@ -133,3 +144,44 @@ sfo_passengers %>%
 ```
 
 <img src="man/figures/sankey.svg" width="100%"/>
+
+#### Total number of landing
+
+The total number of landing in most recent month by `activity_type_code`
+and `aircraft_manufacturer`:
+
+``` r
+sfo_stats %>% 
+  filter(activity_period == max(activity_period),
+         aircraft_manufacturer != "") %>%
+  group_by(aircraft_manufacturer) %>%
+  summarise(total_landing = sum(landing_count),
+            `.groups` = "drop") %>%
+  arrange(-total_landing) %>%
+  plot_ly(labels = ~ aircraft_manufacturer,
+          values = ~ total_landing) %>%
+  add_pie(hole = 0.6) %>%
+  layout(title = "Landing Distribution by Aircraft Manufacturer during Sep 2020")
+```
+
+<img src="man/figures/manufacturer.svg" width="100%"/>
+
+The following Sankey plot demonstrate the distribution of number of
+landing in SFO by region and aircraft type, manufacturer, and body type
+during Sep 2020:
+
+``` r
+sfo_stats %>%
+  filter(activity_period == max(activity_period)) %>%
+  group_by(geo_summary, geo_region, landing_aircraft_type, aircraft_manufacturer, aircraft_body_type) %>%
+  summarise(total_landing = sum(landing_count),
+  groups = "drop") %>%
+  sankey_ly(cat_cols = c("geo_summary", "geo_region", 
+                         "landing_aircraft_type", 
+                         "aircraft_manufacturer",
+                         "aircraft_body_type"),
+            num_col = "total_landing",
+            title = "Landing Summary by Geo Region and Aircraft Type During Sep 2020")
+```
+
+<img src="man/figures/landing_sankey.svg" width="100%"/>

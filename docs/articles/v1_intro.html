@@ -92,8 +92,17 @@
 
     
     
-<p>The <strong>sfo</strong> package provides a monthly summary of San Francisco International (SFO) Airport air traffic passengers.</p>
-<p>The <code>sfo_passengers</code> dataset contains the following fields:</p>
+<p>The <strong>sfo</strong> package provides a monthly statistics of San Francisco International (SFO) airport air traffic. That includes the following two datasets:</p>
+<ul>
+<li>
+<code>sfo_passengers</code> - air traffic passengers statistics</li>
+<li>
+<code>sfo_stats</code> - air traffic landing statistics</li>
+</ul>
+<div id="sfo_passengers" class="section level3">
+<h3 class="hasAnchor">
+<a href="#sfo_passengers" class="anchor"></a>sfo_passengers</h3>
+<p>The <code>sfo_passengers</code> dataset focusing on monthly air passengers statistics, and it contains the following fields:</p>
 <ul>
 <li>
 <code>activity_period</code> - Activity year and month in YYYYMM format</li>
@@ -171,6 +180,95 @@
 <span class="co">#&gt; 5            3851</span>
 <span class="co">#&gt; 6            3700</span>
 </pre></div>
+</div>
+<div id="sfo_stats" class="section level3">
+<h3 class="hasAnchor">
+<a href="#sfo_stats" class="anchor"></a>sfo_stats</h3>
+<p>The <code>sfo_stats</code> dataset focusing on monthly landing statistics, and it contains the following fields:</p>
+<ul>
+<li>
+<code>activity_period</code> - Activity year and month in YYYYMM format</li>
+<li>
+<code>operating_airline</code> -Airline name for the operator of aircraft</li>
+<li>
+<code>operating_airline_iata_code</code> -The International Air Transport Association (IATA) two-letter designation for the Operating Airline</li>
+<li>
+<code>published_airline</code> -Airline name that issues the ticket and books revenue for passenger activity</li>
+<li>
+<code>published_airline_iata_code</code> -The International Air Transport Association (IATA) two-letter designation for the Published Airline</li>
+<li>
+<code>geo_summary</code> -Designates whether the passenger activity in relation to SFO arrived from or departed to a location within the United States (“domestic”), or outside the United States (“international”) without stops</li>
+<li>
+<code>geo_region</code> -Provides a more detailed breakdown of the GEO Summary field to designate the region in the world where activity in relation to SFO arrived from or departed to without stops</li>
+<li>
+<code>landing_aircraft_type</code> - A designation for three types of aircraft that landed at SFO, which includes passenger aircraft, cargo only aircraft (“freighters”) or combination aircraft (“combi”)</li>
+<li>
+<code>aircraft_body_type</code> - A designation that is independent from Landing Aircraft Type, which determines whether commercial aircraft landed at SFO is a wide body jet, narrow body jet, regional jet or a propeller operated aircraft</li>
+<li>
+<code>aircraft_manufacturer</code> - Manufacturer name for the aircraft that landed at SFO</li>
+<li>
+<code>aircraft_model</code> - Model designation of aircraft by the manufacturer</li>
+<li>
+<code>aircraft_version</code> - Variations of the Aircraft Model, also known as the “dash number”, designated by the manufacturer to segregate unique versions of the same model</li>
+<li>
+<code>landing_count</code> - The number of aircraft landings associated with General and Landings Statistics attribute fields</li>
+<li>
+<code>total_landed_weight</code> - The aircraft landed weight (in pounds) associated with General and Landings Statistics attribute fields</li>
+</ul>
+<p>Data source: San Francisco data portal (DataSF) <a href="https://data.sfgov.org/Transportation/Air-Traffic-Landings-Statistics/fpux-q53t">API</a></p>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw">sfo</span>)
+
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"sfo_stats"</span>)
+
+<span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(<span class="kw">sfo_stats</span>)
+<span class="co">#&gt; 'data.frame':    25429 obs. of  14 variables:</span>
+<span class="co">#&gt;  $ activity_period            : int  202009 202009 202009 202009 202009 202009 202009 202009 202009 202009 ...</span>
+<span class="co">#&gt;  $ operating_airline          : chr  "United Airlines" "United Airlines" "United Airlines" "United Airlines" ...</span>
+<span class="co">#&gt;  $ operating_airline_iata_code: chr  "UA" "UA" "UA" "UA" ...</span>
+<span class="co">#&gt;  $ published_airline          : chr  "United Airlines" "United Airlines" "United Airlines" "United Airlines" ...</span>
+<span class="co">#&gt;  $ published_airline_iata_code: chr  "UA" "UA" "UA" "UA" ...</span>
+<span class="co">#&gt;  $ geo_summary                : chr  "International" "Domestic" "International" "Domestic" ...</span>
+<span class="co">#&gt;  $ geo_region                 : chr  "Mexico" "US" "Canada" "US" ...</span>
+<span class="co">#&gt;  $ landing_aircraft_type      : chr  "Passenger" "Passenger" "Passenger" "Passenger" ...</span>
+<span class="co">#&gt;  $ aircraft_body_type         : chr  "Narrow Body" "Narrow Body" "Narrow Body" "Narrow Body" ...</span>
+<span class="co">#&gt;  $ aircraft_manufacturer      : chr  "Airbus" "Boeing" "Boeing" "Boeing" ...</span>
+<span class="co">#&gt;  $ aircraft_model             : chr  "A320" "B738" "B738" "B738" ...</span>
+<span class="co">#&gt;  $ aircraft_version           : chr  "-" "-" "-" "-" ...</span>
+<span class="co">#&gt;  $ landing_count              : int  37 14 1 251 3 553 1 13 52 102 ...</span>
+<span class="co">#&gt;  $ total_landed_weight        : int  5261326 2048200 146300 36721300 438900 86986900 157300 2044900 10296000 22848000 ...</span>
+
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="kw">sfo_stats</span>)
+<span class="co">#&gt;   activity_period operating_airline operating_airline_iata_code</span>
+<span class="co">#&gt; 1          202009   United Airlines                          UA</span>
+<span class="co">#&gt; 2          202009   United Airlines                          UA</span>
+<span class="co">#&gt; 3          202009   United Airlines                          UA</span>
+<span class="co">#&gt; 4          202009   United Airlines                          UA</span>
+<span class="co">#&gt; 5          202009   United Airlines                          UA</span>
+<span class="co">#&gt; 6          202009   United Airlines                          UA</span>
+<span class="co">#&gt;   published_airline published_airline_iata_code   geo_summary geo_region</span>
+<span class="co">#&gt; 1   United Airlines                          UA International     Mexico</span>
+<span class="co">#&gt; 2   United Airlines                          UA      Domestic         US</span>
+<span class="co">#&gt; 3   United Airlines                          UA International     Canada</span>
+<span class="co">#&gt; 4   United Airlines                          UA      Domestic         US</span>
+<span class="co">#&gt; 5   United Airlines                          UA International     Mexico</span>
+<span class="co">#&gt; 6   United Airlines                          UA      Domestic         US</span>
+<span class="co">#&gt;   landing_aircraft_type aircraft_body_type aircraft_manufacturer aircraft_model</span>
+<span class="co">#&gt; 1             Passenger        Narrow Body                Airbus           A320</span>
+<span class="co">#&gt; 2             Passenger        Narrow Body                Boeing           B738</span>
+<span class="co">#&gt; 3             Passenger        Narrow Body                Boeing           B738</span>
+<span class="co">#&gt; 4             Passenger        Narrow Body                Boeing           B738</span>
+<span class="co">#&gt; 5             Passenger        Narrow Body                Boeing           B738</span>
+<span class="co">#&gt; 6             Passenger        Narrow Body                Boeing           B739</span>
+<span class="co">#&gt;   aircraft_version landing_count total_landed_weight</span>
+<span class="co">#&gt; 1                -            37             5261326</span>
+<span class="co">#&gt; 2                -            14             2048200</span>
+<span class="co">#&gt; 3                -             1              146300</span>
+<span class="co">#&gt; 4                -           251            36721300</span>
+<span class="co">#&gt; 5                -             3              438900</span>
+<span class="co">#&gt; 6                -           553            86986900</span>
+</pre></div>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

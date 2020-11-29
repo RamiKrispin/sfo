@@ -32,7 +32,7 @@ sfo_passengers
 Monthly summary of number of passengers in San Francisco International Airport (SFO)
 }
 \details{
-The dataset contains the monthly summary of number of passengers in San Francisco International Airport (SFO) by variety of categories
+The dataset contains the monthly summary of number of passengers in San Francisco International Airport (SFO)
 }
 \examples{
 data(sfo_passengers)

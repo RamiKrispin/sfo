@@ -24,7 +24,13 @@ API](https://data.sfgov.org)
 
 ## Installation
 
-WIP still not available in CRAN but can be installed from Github:
+Install the stable version from CRAN:
+
+``` r
+install.packages("sfo")
+```
+
+or install the development version from Github:
 
 ``` r
 # install.packages("devtools")
@@ -125,11 +131,11 @@ sfo_passengers %>%
 #> 16 Enplaned           US                  409584
 ```
 
-The `sankey_ly` function enables to plot a distribution of a numeric
-variable by multiple categorical variables. The following example show
-the distribution of the total United Airlines passengers during 2019 by
-terminal, travel type (domestic and international), geo, and travel
-direction (deplaned, enpland, and transit):
+The `sankey_ly` function enables us to plot the distribution of a
+numeric variable by multiple categorical variables. The following
+example shows the distribution of the total United Airlines passengers
+during 2019 by terminal, travel type (domestic and international), geo,
+and travel direction (deplaned, enplaned, and transit):
 
 ``` r
 sfo_passengers %>% 

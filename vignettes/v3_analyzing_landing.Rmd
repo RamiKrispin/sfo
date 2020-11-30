@@ -95,5 +95,51 @@ plot_ly(x = ~ date,
 
 As expected, we can notice the change in geo's landing distribution since March 2020 due to the Covid19 pandemic. 
 
+The `aircraft_manufacturer` column, as the name implies, provides the the aircraft manufacture. Let's summarize the total landing during 2019, the most recent full calendar year, by the manufacturer type:
 
+```{r}
+d %>% 
+      filter(activity_period >= 201901 & activity_period < 202001,
+             aircraft_manufacturer != "") %>%
+      group_by(aircraft_manufacturer) %>%
+      summarise(total_landing = sum(landing_count),
+                `.groups` = "drop") %>%
+      arrange(-total_landing) %>%
+      plot_ly(labels = ~ aircraft_manufacturer,
+              values = ~ total_landing) %>%
+      add_pie(hole = 0.6) %>%
+      layout(title = "Landing Distribution by Aircraft Manufacturer During 2019")
+```
+
+Similarly, we can add the `aircract_body_type` and get the distribution of landing airplans during 2019 by manufacturer and body type (e.g., wide, narrow, etc.):
+
+```{r}
+d %>% 
+      filter(activity_period >= 201901 & activity_period < 202001,
+             aircraft_manufacturer != "") %>%
+      group_by(aircraft_manufacturer, aircraft_body_type) %>%
+      summarise(total_landing = sum(landing_count),
+                `.groups` = "drop") %>%
+      arrange(-total_landing)
+```
+
+A Sankey plot enables us to get a distribution flow of some numeric value by multiple categorical variables. In the following example, we will use the `sankey_ly` function to plot the distribution of landing during 2019 by geo, flight type, and aircraft details:
+
+```{r}
+d %>%
+  filter(activity_period >= 201901 & activity_period < 202001,
+             aircraft_manufacturer != "") %>%
+  group_by(geo_region, landing_aircraft_type, 
+           aircraft_manufacturer, aircraft_model, 
+           aircraft_body_type) %>%
+  summarise(total_landing = sum(landing_count),
+            groups = "drop") %>%
+  sankey_ly(cat_cols = c("geo_region", 
+                         "landing_aircraft_type", 
+                         "aircraft_manufacturer",
+                         "aircraft_model",
+                         "aircraft_body_type"),
+            num_col = "total_landing",
+            title = "SFO Landing Summary by Geo Region and Aircraft Type During 2019")  
+```
 

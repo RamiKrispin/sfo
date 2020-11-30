@@ -1,0 +1,99 @@
+---
+title: "Analyzing SFO Landing"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{v3_analyzing_landing}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  fig.height=5, fig.width=8, 
+  message=FALSE, warning=FALSE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+
+```
+
+The `sfo_stats` dataset provides monthly statistics on San Francisco International Airport's air traffic landing between July 2005 and September 2020. The following vignette demonstrate some approaches for exploring the dataset. As the structure  of the `sfo_stats` is similar to the `sfo_passengers` dataset, we will repeat the same data prep steps as shown on the previous vignette. We will use the **dplyr** and **plotly** packages for data manipulation and visualization, respectively.
+
+### Data prep
+
+For simplicity, let's use a shorter name , `d`, for the dataset:
+
+```{r }
+library(sfo)
+library(dplyr)
+library(plotly)
+
+d <- sfo_stats
+
+head(d)
+```
+
+Next, let's reformat the period indicator, `activity_period` to a `Date` object, setting the first day of the month as the default day:
+
+```{r}
+d$date <- as.Date(paste(substr(d$activity_period, 1,4), 
+                        substr(d$activity_period, 5,6), 
+                        "01", sep ="/"))
+```
+
+We can see, with the `str` command, the stucture of the dataset:
+
+```{r}
+str(d)
+```
+
+The data set has 11 categorical variables and two numeric variables - `landing_count` and `total_landed_weight`.
+
+
+### Exploratory analysis
+
+Let's start with viewing the total monthly number of landing in SFO:
+
+```{r}
+d %>% 
+  group_by(date) %>%
+  summarise(landing_count = sum(landing_count)) %>%
+  plot_ly(x = ~ date, y = ~ landing_count,
+          type = "scatter", mode = "lines") %>% 
+  layout(title = "Montly Landing in SFO Airport",
+         yaxis = list(title = "Number of Landing"),
+         xaxis = list(title = "Source: San Francisco data portal (DataSF)"))
+
+```
+
+As can seen in the aggregate plot above, the data has:
+
+* Strong seasonality, high activity during the summer mounts and low during winter time. 
+* A significant drop in the number of landing since March 2020 due to the Covid19 pandemic
+ 
+We can use plotly's fill plot to review the distribution of landing at SFO by geo region:
+
+```{r}
+d %>% 
+  group_by(date, geo_region) %>%
+  summarise(landing_count = sum(landing_count)) %>%
+  as.data.frame() %>%
+plot_ly(x = ~ date, 
+        y = ~ landing_count,
+        # name = 'Food and Tobacco', 
+        type = 'scatter', 
+        mode = 'none', 
+        stackgroup = 'one', 
+        groupnorm = 'percent', fillcolor = ~ geo_region) %>%
+  layout(title = "Dist. of Landing at SFO by Region",
+         yaxis = list(title = "Percentage",
+                      ticksuffix = "%"))
+```
+
+As expected, we can notice the change in geo's landing distribution since March 2020 due to the Covid19 pandemic. 
+
+
+

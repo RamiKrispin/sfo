@@ -61,6 +61,9 @@
       <a href="articles/v2_analyzing_sfo.html">Analyzing SFO Passengers</a>
     </li>
     <li>
+      <a href="articles/v3_analyzing_landing.html">Analyzing SFO Landing</a>
+    </li>
+    <li>
       <a href="articles/v3_sankey.html">Create Sankey Diagram</a>
     </li>
   </ul>
@@ -93,8 +96,12 @@
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<p>WIP still not available in CRAN but can be installed from Github:</p>
+<p>Install the stable version from CRAN:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"sfo"</span>)
+</pre></div>
+<p>or install the development version from Github:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit">
 <span class="co"># install.packages("devtools")</span>
 <span class="kw">devtools</span>::<span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"RamiKrispin/sfo"</span>, ref = <span class="st">"main"</span>)
 </pre></div>
@@ -114,7 +121,7 @@
 <h3 class="hasAnchor">
 <a href="#examples" class="anchor"></a>Examples</h3>
 <p>The <code>sfo_passengers</code> dataset provides a monthly summary of the number of passengers in SFO airport by different categories (such as terminal, geo, type, etc.):</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
+<div class="sourceCode" id="cb3"><pre class="downlit">
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw">sfo</span>)
 
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"sfo_passengers"</span>)
@@ -136,7 +143,7 @@
 <span class="co">#&gt; 6             G            3700</span>
 </pre></div>
 <p>The <code>sfo_stats</code> dataset provides a monthly statistics on the air traffic landing at SFO airport:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit">
+<div class="sourceCode" id="cb4"><pre class="downlit">
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"sfo_stats"</span>)
 
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="kw">sfo_stats</span>)
@@ -159,7 +166,7 @@
 <h4 class="hasAnchor">
 <a href="#total-number-of-passngers" class="anchor"></a>Total number of passngers</h4>
 <p>The total number of passengers in most recent month by <code>activity_type_code</code> and <code>geo_region</code>:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit">
+<div class="sourceCode" id="cb5"><pre class="downlit">
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://dplyr.tidyverse.org">dplyr</a></span>)
 
 <span class="kw">sfo_passengers</span> <span class="op">%&gt;%</span>
@@ -186,8 +193,8 @@
 <span class="co">#&gt; 15 Enplaned           Middle East           1176</span>
 <span class="co">#&gt; 16 Enplaned           US                  409584</span>
 </pre></div>
-<p>The <code>sankey_ly</code> function enables to plot a distribution of a numeric variable by multiple categorical variables. The following example show the distribution of the total United Airlines passengers during 2019 by terminal, travel type (domestic and international), geo, and travel direction (deplaned, enpland, and transit):</p>
-<div class="sourceCode" id="cb5"><pre class="downlit">
+<p>The <code>sankey_ly</code> function enables us to plot the distribution of a numeric variable by multiple categorical variables. The following example shows the distribution of the total United Airlines passengers during 2019 by terminal, travel type (domestic and international), geo, and travel direction (deplaned, enplaned, and transit):</p>
+<div class="sourceCode" id="cb6"><pre class="downlit">
 <span class="kw">sfo_passengers</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="kw">operating_airline</span> <span class="op">==</span> <span class="st">"United Airlines"</span>,
          <span class="kw">activity_period</span> <span class="op">&gt;=</span> <span class="fl">201901</span> <span class="op">&amp;</span> <span class="kw">activity_period</span> <span class="op">&lt;</span> <span class="fl">202001</span>) <span class="op">%&gt;%</span>
@@ -204,7 +211,7 @@
 <h4 class="hasAnchor">
 <a href="#total-number-of-landing" class="anchor"></a>Total number of landing</h4>
 <p>The total number of landing in most recent month by <code>activity_type_code</code> and <code>aircraft_manufacturer</code>:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit">
+<div class="sourceCode" id="cb7"><pre class="downlit">
 <span class="kw">sfo_stats</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="kw">activity_period</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span>(<span class="kw">activity_period</span>),
          <span class="kw">aircraft_manufacturer</span> != <span class="st">""</span>) <span class="op">%&gt;%</span>
@@ -219,7 +226,7 @@
 </pre></div>
 <p><img src="reference/figures/manufacturer.svg" width="100%"></p>
 <p>The following Sankey plot demonstrate the distribution of number of landing in SFO by region and aircraft type, manufacturer, and body type during Sep 2020:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit">
+<div class="sourceCode" id="cb8"><pre class="downlit">
 <span class="kw">sfo_stats</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="kw">activity_period</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span>(<span class="kw">activity_period</span>)) <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(<span class="kw">geo_summary</span>, <span class="kw">geo_region</span>, <span class="kw">landing_aircraft_type</span>, <span class="kw">aircraft_manufacturer</span>, <span class="kw">aircraft_body_type</span>) <span class="op">%&gt;%</span>

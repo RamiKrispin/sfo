@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-The `sfo_passengers` dataset provides granular information about the air traffic passengers in San Francisco International Airport between July 2005 and September 2020. The following vignette demonstrate some examples of transforming the raw data into a tidy format and analyzing it.
+The `sfo_passengers` dataset provides monthly statistics about the air traffic passengers in San Francisco International Airport between July 2005 and September 2020. The focus of this vignette is on an exploratory analysis approaches for this dataset.
 
 ### Data prep
 
@@ -46,7 +46,7 @@ str(d)
 
 ```
 
-The `activity_period` variable provides the year-month of the observation using integer format. That is convenient if we want to filter by year, but less convenient if we want to plot the data as time series. Therefore, we will reformat the variable from YYYYMM to YYYYMMDD, setting the day of the month as 1 with the `as.Date` function:
+The `activity_period` variable provides the year-month of the observation using integer format. That is convenient if we want to filter by year and month, but less convenient if we want to plot the data as time series. Therefore, we will reformat the variable from YYYYMM to YYYYMMDD, setting the month's day as 1st with the `as.Date` function:
 
 ```{r}
 d$date <- as.Date(paste(substr(d$activity_period, 1,4), substr(d$activity_period, 5,6), "01", sep ="/"))
@@ -60,7 +60,7 @@ max(d$date)
 
 ### Exploratory analysis
 
-Now, after we reviewed and reformat the data, we can start explore the data and answer some questions such as:
+After we reviewed and reformat the data, we can start explore the data and answer some questions such as:
 
 -   The monthly number of passengers at SFO
 
@@ -70,7 +70,8 @@ Now, after we reviewed and reformat the data, we can start explore the data and 
 
 #### Monthly number of passengers
 
-There multiple ways to view and aggregate the number of monthly passengers such as the `activity_type_code` (arrival vs. departure), `geo_summary` (international vs. domestic) etc. We will start with the total number of passengers aggregation:
+There are multiple ways to aggregate the datasets for monthly time-series data, such as the passengers' travel type (arrival vs. departure), geo type, and their combination. Let's start with the total aggregation of the data:
+
 
 ```{r}
 library(dplyr)
@@ -92,6 +93,8 @@ plot_ly(data = d_total,
          xaxis = list(title = "Source: San Francisco data portal (DataSF)"))
 
 ```
+
+The covid19 pandemic effect can be seen in the series above, as the number of passengers had a sharp drop in March 2020.
 
 Likewise, we can aggregate the data by the activity type (arrival, departure, transit):
 
@@ -116,7 +119,7 @@ plot_ly(data = d_activity_type,
 
 ```
 
-In the following plot provides the distribution of passengers by the flight geo type (international vs. domestic). We will use the `pivot_wider` function from the **tidyr** package to transform the `data.frame` into a wide format:
+The following plot provides the distribution of passengers by the flight geo type (international vs. domestic). We will use the `pivot_wider` function from the **tidyr** package to transform the `data.frame` into a wide format:
 
 ```{r}
 library(tidyr)
@@ -150,6 +153,8 @@ plot_ly(data = d_geo,
 
 ```
 
+As expected, the distribution of passengers by geo type changed since the start of the covid19 pandemic, increasing domestic flights' proportion.
+
 #### Airlines Analysis
 
 The dataset provides two indicator about the airline company:
@@ -166,14 +171,14 @@ length(unique(d$operating_airline))
 length(unique(d$published_airline))
 ```
 
-You can noticed that there are less published airlines compared to operating airlines. This potentially mean that some operating airlines have lines with code sharing. For simplicity, we will focus on the `operating_airline` variable. Let's review the unique combination of this variable:
+You can notice that there are fewer published airlines compared to operating airlines. This potentially means that some operating airlines have lines with code sharing. For simplicity, we will focus on the `operating_airline` variable. Let's review the unique combination of this variable:
 
 ```{r}
 sort(unique(d$operating_airline))
 
 ```
 
-The main thing that immediately pop out of this list that United Airlines, the main carrier at SFO, listed twice as `United Airlines` and `United Airlines - Pre 07/01/2013`. I could not find any reference that explain the second label. If analyzing data prior to July 2013, I would relabel those cases as `United Airlines`. For this analysis we will focus on 2019, the most recent full year. Let's start by filtering the data for 2019 flights:
+The main thing that immediately pops out of this list that United Airlines, the main carrier at SFO, listed twice as `United Airlines` and `United Airlines - Pre 07/01/2013`. I could not find any reference that explains the second label. If analyzing data before July 2013, I would relabel those cases as `United Airlines`. For this analysis we will focus on 2019, the most recent full year. Let's start by filtering the data for 2019 flights:
 
 ```{r}
 
@@ -183,7 +188,7 @@ d19 <- d %>% filter(activity_period >= 201901 & activity_period < 202001) %>%
 
 ```
 
-Before we will summarize the data by airlines, let's see the distribution of flights by geo type (domestic vs. international):
+Before we summarize the data by airlines, let's see the distribution of flights by geo type (domestic vs. international):
 
 ```{r}
 
@@ -194,7 +199,7 @@ d19 %>% group_by(geo_summary) %>%
   add_pie(hole = 0.6)
 ```
 
-Close 75% of the air passengers traffic in SFO during 2019 were domestic. That is 42M passengers out of 57.4M passengers. Let's use tree map plot to see the distribution of passengers by airline and geo:
+Close 75% of the air passenger traffic in SFO during 2019 were domestic. That is 42M passengers out of 57.4M passengers. Let’s use a treemap plot to see the distribution of passengers by airline and geo:
 
 ```{r}
   plot_ly(data = d19 %>% filter(geo_summary == "Domestic"),
@@ -219,7 +224,7 @@ Close 75% of the air passengers traffic in SFO during 2019 were domestic. That i
 
 ### Air Traffic Summary
 
-Last but not least, it would be interesting to leverage the different categorical variables to create a summary plot with sankey. We will use the `sankey_ly` function, a **plotly** wrapper that create automatically the data transformation and sankey plot with **plotly**. We will rank the top 20 airlines during 2019 and plot the passengers distribution by airline, travel type (domestic or international), travel geo, activity type (deplaned, enplaned and transit) and fare type (low or other):
+Last but not least, it would be interesting to leverage the different categorical variables to create a summary plot with Sankey. We will use the `sankey_ly` function, a **plotly** wrapper that automatically creates the data transformation and a Sankey plot with **plotly**. We will rank the top 20 airlines during 2019 and plot the passengers' distribution by the airline, travel type (domestic or international), travel geo, activity type (deplaned, enplaned, and transit), and fare type (low or other):
 
 ```{r}
 rank <- sfo_passengers %>%

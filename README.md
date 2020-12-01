@@ -18,7 +18,7 @@ The **sfo** package provides summary statistics of the monthly
 passengers and landing in San Francisco International Airport (SFO).
 
 Data source: San Francisco data portal - [DataSF
-API](https://data.sfgov.org)
+API](https://datasf.org/opendata/)
 
 <img src="man/figures/total.svg" width="90%"/>
 

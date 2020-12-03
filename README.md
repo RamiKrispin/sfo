@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# sfo
+# sfo <a href='https://ramikrispin.github.io/sfo/'><img src='man/figures/sfo.png' align="right" width="130" height="130" /></a>
 
 <!-- badges: start -->
 

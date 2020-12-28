@@ -157,13 +157,13 @@ As expected, the distribution of passengers by geo type changed since the start 
 
 #### Airlines Analysis
 
-The dataset provides two indicator about the airline company:
+The dataset provides two indicators about the airline company:
 
--   `operating_airline` filed describe the aircraft operator name, and
+-   `operating_airline` filed describes the aircraft operator name, and
 
--   `published_airline` filed describe the name of the airline that issues the ticket and books revenue
+-   `published_airline` filed describes the name of the airline that issues the ticket and books revenue
 
-In most of the cases it is the same company, in other cases, such as code-sharing operator it may two different companies. Let's review the characteristics of those variables:
+In most of the cases it is the same company, in other cases, such as code-sharing operator it may two different companies. Let’s review the characteristics of those variables:
 
 ```{r}
 
@@ -247,3 +247,4 @@ sfo_passengers %>%
           num_col = "total",
           title = "SFO Air Traffic Passenger Dist. During 2019")
 ```
+

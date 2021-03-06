@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-The `sfo_passengers` dataset provides monthly statistics about the air traffic passengers in San Francisco International Airport between July 2005 and September 2020. The focus of this vignette is on an exploratory analysis approaches for this dataset.
+The `sfo_passengers` dataset provides monthly statistics about the air traffic passengers in San Francisco International Airport between July 2005 and December 2020. The focus of this vignette is on an exploratory analysis approaches for this dataset.
 
 ### Data prep
 

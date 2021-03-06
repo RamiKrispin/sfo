@@ -20,7 +20,7 @@ knitr::opts_chunk$set(
 
 ```
 
-The `sfo_stats` dataset provides monthly statistics on San Francisco International Airport's air traffic landing between July 2005 and September 2020. The following vignette demonstrate some approaches for exploring the dataset. As the structure  of the `sfo_stats` is similar to the `sfo_passengers` dataset, we will repeat the same data prep steps as shown on the previous vignette. We will use the **dplyr** and **plotly** packages for data manipulation and visualization, respectively.
+The `sfo_stats` dataset provides monthly statistics on San Francisco International Airport's air traffic landing between July 2005 and December 2020. The following vignette demonstrate some approaches for exploring the dataset. As the structure  of the `sfo_stats` is similar to the `sfo_passengers` dataset, we will repeat the same data prep steps as shown on the previous vignette. We will use the **dplyr** and **plotly** packages for data manipulation and visualization, respectively.
 
 ### Data prep
 
@@ -83,7 +83,6 @@ d %>%
   as.data.frame() %>%
 plot_ly(x = ~ date, 
         y = ~ landing_count,
-        # name = 'Food and Tobacco', 
         type = 'scatter', 
         mode = 'none', 
         stackgroup = 'one', 

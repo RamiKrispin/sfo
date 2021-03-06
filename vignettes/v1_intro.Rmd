@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-The **sfo** package provides a monthly statistics of San Francisco International (SFO) airport air traffic. That includes the following two datasets:
+The **sfo** package provides a monthly statistics of San Francisco International (SFO) airport air traffic between July 2005 and December 2020. That includes the following two datasets:
 
 * `sfo_passengers` - air traffic passengers statistics
 * `sfo_stats` - air traffic landing statistics

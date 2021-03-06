@@ -38,12 +38,12 @@ data("sfo_passengers")
 str(sfo_passengers)
 ```
 
-In the case of the `sfo_passengers` dataset, ignoring the date indicator, we have one numeric variable - `passenger_count` and 10 categorical variables. For the following examples we will focus on total number of passengers during 2019, last full year in the dataset:
+In the case of the `sfo_passengers` dataset, ignoring the date indicator, we have one numeric variable - `passenger_count` and 10 categorical variables. For the following examples we will focus on total number of passengers during 2020, last full year in the dataset:
 
 ```{r}
 library(dplyr)
 
-d <- sfo_passengers %>% filter(activity_period >= 201901 & activity_period < 202001)
+d <- sfo_passengers %>% filter(activity_period >= 202001 & activity_period < 202101)
 ```
 
 Now, we can start explore the distribution of the passengers by different categorical variables combination. Let's start with a simplistic example, plotting the distribution of passengers by `geo_sumary` and `geo_region`. The `sunkey_ly` function required that the data will be aggregated by the categorical variables:
@@ -72,7 +72,7 @@ d %>%
   summarise(total = sum(passenger_count), .groups = "drop") %>%
   sankey_ly(cat_cols = c("operating_airline", "geo_summary", "geo_region", "activity_type_code"), 
             num_col = "total",
-            title = "Distribution of United Airlines Passengers at SFO During 2019")
+            title = "Distribution of United Airlines Passengers at SFO During 2020")
 ```
 
 
@@ -87,7 +87,7 @@ d %>%
   summarise(total = sum(passenger_count), .groups = "drop") %>%
   sankey_ly(cat_cols = c("operating_airline", "geo_summary", "geo_region", "activity_type_code", "terminal"), 
             num_col = "total",
-            title = "Distribution of United Airlines Passengers at SFO During 2019")
+            title = "Distribution of United Airlines Passengers at SFO During 2020")
 ``` 
 
 To overcome this issue, you will have to make sure that there is no overlapping between the variables label. Let's modify the cases where `terminal` variable is set as `International` to `international` (`I` -> `i`):
@@ -100,5 +100,5 @@ d %>%
   summarise(total = sum(passenger_count), .groups = "drop") %>%
   sankey_ly(cat_cols = c("operating_airline", "terminal","geo_summary", "geo_region", "activity_type_code"), 
             num_col = "total",
-            title = "Distribution of United Airlines Passengers at SFO During 2019")
+            title = "Distribution of United Airlines Passengers at SFO During 2020")
 ``` 

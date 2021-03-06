@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sfo</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
       </span>
     </div>
 
@@ -181,36 +181,38 @@
   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='kw'>activity_period</span> <span class='op'>==</span> <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>max</a></span>(<span class='kw'>activity_period</span>)) <span class='op'>%&gt;%</span>
   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(<span class='kw'>activity_type_code</span>) <span class='op'>%&gt;%</span>
   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarise</a></span>(total = <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span>(<span class='kw'>passenger_count</span>), .groups = <span class='st'>"drop"</span>)
-</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 2 x 2</span><span>
+</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 3 x 2</span><span>
 #&gt;   activity_type_code  total
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>               </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> Deplaned           </span><span style='text-decoration: underline;'>442</span><span>442
-#&gt; </span><span style='color: #555555;'>2</span><span> Enplaned           </span><span style='text-decoration: underline;'>463</span><span>550</div><div class='input'>
+#&gt; </span><span style='color: #555555;'>*</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>               </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> Deplaned           </span><span style='text-decoration: underline;'>436</span><span>216
+#&gt; </span><span style='color: #555555;'>2</span><span> Enplaned           </span><span style='text-decoration: underline;'>482</span><span>446
+#&gt; </span><span style='color: #555555;'>3</span><span> Thru / Transit         61</div><div class='input'>
 <span class='co'># Get summary of total number of passengers by</span>
 <span class='co'># activity type and geo region in most recent month</span>
 <span class='kw'>sfo_passengers</span> <span class='op'>%&gt;%</span>
 <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='kw'>activity_period</span> <span class='op'>==</span> <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>max</a></span>(<span class='kw'>activity_period</span>)) <span class='op'>%&gt;%</span>
   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(<span class='kw'>activity_type_code</span>, <span class='kw'>geo_region</span>) <span class='op'>%&gt;%</span>
   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarise</a></span>(total = <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span>(<span class='kw'>passenger_count</span>), .groups = <span class='st'>"drop"</span>)
-</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 16 x 3</span><span>
+</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 17 x 3</span><span>
 #&gt;    activity_type_code geo_region           total
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>              </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> Deplaned           Asia                 </span><span style='text-decoration: underline;'>15</span><span>775
-#&gt; </span><span style='color: #555555;'> 2</span><span> Deplaned           Australia / Oceania   </span><span style='text-decoration: underline;'>2</span><span>942
-#&gt; </span><span style='color: #555555;'> 3</span><span> Deplaned           Canada                </span><span style='text-decoration: underline;'>4</span><span>021
-#&gt; </span><span style='color: #555555;'> 4</span><span> Deplaned           Central America        505
-#&gt; </span><span style='color: #555555;'> 5</span><span> Deplaned           Europe               </span><span style='text-decoration: underline;'>12</span><span>031
-#&gt; </span><span style='color: #555555;'> 6</span><span> Deplaned           Mexico               </span><span style='text-decoration: underline;'>11</span><span>642
-#&gt; </span><span style='color: #555555;'> 7</span><span> Deplaned           Middle East           </span><span style='text-decoration: underline;'>1</span><span>490
-#&gt; </span><span style='color: #555555;'> 8</span><span> Deplaned           US                  </span><span style='text-decoration: underline;'>394</span><span>036
-#&gt; </span><span style='color: #555555;'> 9</span><span> Enplaned           Asia                 </span><span style='text-decoration: underline;'>20</span><span>123
-#&gt; </span><span style='color: #555555;'>10</span><span> Enplaned           Australia / Oceania   </span><span style='text-decoration: underline;'>3</span><span>347
-#&gt; </span><span style='color: #555555;'>11</span><span> Enplaned           Canada                </span><span style='text-decoration: underline;'>4</span><span>291
-#&gt; </span><span style='color: #555555;'>12</span><span> Enplaned           Central America        328
-#&gt; </span><span style='color: #555555;'>13</span><span> Enplaned           Europe               </span><span style='text-decoration: underline;'>12</span><span>271
-#&gt; </span><span style='color: #555555;'>14</span><span> Enplaned           Mexico               </span><span style='text-decoration: underline;'>12</span><span>430
-#&gt; </span><span style='color: #555555;'>15</span><span> Enplaned           Middle East           </span><span style='text-decoration: underline;'>1</span><span>176
-#&gt; </span><span style='color: #555555;'>16</span><span> Enplaned           US                  </span><span style='text-decoration: underline;'>409</span><span>584</div><div class='input'>
+#&gt;  </span><span style='color: #555555;'>*</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>              </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> Deplaned           Asia                 </span><span style='text-decoration: underline;'>24</span><span>631
+#&gt; </span><span style='color: #555555;'> 2</span><span> Deplaned           Australia / Oceania   </span><span style='text-decoration: underline;'>2</span><span>733
+#&gt; </span><span style='color: #555555;'> 3</span><span> Deplaned           Canada                </span><span style='text-decoration: underline;'>4</span><span>688
+#&gt; </span><span style='color: #555555;'> 4</span><span> Deplaned           Central America       </span><span style='text-decoration: underline;'>4</span><span>240
+#&gt; </span><span style='color: #555555;'> 5</span><span> Deplaned           Europe               </span><span style='text-decoration: underline;'>12</span><span>385
+#&gt; </span><span style='color: #555555;'> 6</span><span> Deplaned           Mexico               </span><span style='text-decoration: underline;'>20</span><span>789
+#&gt; </span><span style='color: #555555;'> 7</span><span> Deplaned           Middle East           </span><span style='text-decoration: underline;'>2</span><span>179
+#&gt; </span><span style='color: #555555;'> 8</span><span> Deplaned           US                  </span><span style='text-decoration: underline;'>364</span><span>571
+#&gt; </span><span style='color: #555555;'> 9</span><span> Enplaned           Asia                 </span><span style='text-decoration: underline;'>30</span><span>418
+#&gt; </span><span style='color: #555555;'>10</span><span> Enplaned           Australia / Oceania   </span><span style='text-decoration: underline;'>2</span><span>878
+#&gt; </span><span style='color: #555555;'>11</span><span> Enplaned           Canada                </span><span style='text-decoration: underline;'>4</span><span>257
+#&gt; </span><span style='color: #555555;'>12</span><span> Enplaned           Central America       </span><span style='text-decoration: underline;'>3</span><span>684
+#&gt; </span><span style='color: #555555;'>13</span><span> Enplaned           Europe               </span><span style='text-decoration: underline;'>13</span><span>661
+#&gt; </span><span style='color: #555555;'>14</span><span> Enplaned           Mexico               </span><span style='text-decoration: underline;'>29</span><span>537
+#&gt; </span><span style='color: #555555;'>15</span><span> Enplaned           Middle East           </span><span style='text-decoration: underline;'>2</span><span>463
+#&gt; </span><span style='color: #555555;'>16</span><span> Enplaned           US                  </span><span style='text-decoration: underline;'>395</span><span>548
+#&gt; </span><span style='color: #555555;'>17</span><span> Thru / Transit     US                      61</div><div class='input'>
 </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

@@ -1,7 +1,7 @@
 Package: sfo
 Type: Package
 Title: San Francisco International Airport Monthly Air Passengers
-Version: 0.1.0
+Version: 0.1.1
 Authors@R: person(given = "Rami", 
                     family ="Krispin", 
                     email = "rami.krispin@gmail.com",

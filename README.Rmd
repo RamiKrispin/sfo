@@ -43,7 +43,7 @@ orca(p, "man/figures/total.svg")
 
 <!-- badges: end -->
 
-The **sfo** package provides summary statistics of the monthly passengers and landing in San Francisco International Airport (SFO).
+The **sfo** package provides summary statistics of the monthly passengers and landing in San Francisco International Airport (SFO) between 2005 and 2020.
 
 Data source: San Francisco data portal - [DataSF API](https://datasf.org/opendata/)
 

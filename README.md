@@ -15,7 +15,8 @@ commit](https://img.shields.io/github/last-commit/RamiKrispin/sfo)](https://gith
 <!-- badges: end -->
 
 The **sfo** package provides summary statistics of the monthly
-passengers and landing in San Francisco International Airport (SFO).
+passengers and landing in San Francisco International Airport (SFO)
+between 2005 and 2020.
 
 Data source: San Francisco data portal - [DataSF
 API](https://datasf.org/opendata/)
@@ -59,20 +60,20 @@ library(sfo)
 data("sfo_passengers")
 
 head(sfo_passengers)
-#>   activity_period operating_airline operating_airline_iata_code published_airline published_airline_iata_code   geo_summary geo_region activity_type_code price_category_code      terminal
-#> 1          202009   United Airlines                          UA   United Airlines                          UA International     Mexico           Enplaned               Other    Terminal 3
-#> 2          202009   United Airlines                          UA   United Airlines                          UA International     Mexico           Enplaned               Other    Terminal 3
-#> 3          202009   United Airlines                          UA   United Airlines                          UA International     Mexico           Enplaned               Other International
-#> 4          202009   United Airlines                          UA   United Airlines                          UA International     Mexico           Deplaned               Other International
-#> 5          202009   United Airlines                          UA   United Airlines                          UA International     Europe           Enplaned               Other International
-#> 6          202009   United Airlines                          UA   United Airlines                          UA International     Europe           Deplaned               Other International
+#>   activity_period operating_airline operating_airline_iata_code published_airline published_airline_iata_code   geo_summary          geo_region activity_type_code price_category_code      terminal
+#> 1          202012   United Airlines                          UA   United Airlines                          UA      Domestic                  US           Enplaned               Other    Terminal 3
+#> 2          202012   United Airlines                          UA   United Airlines                          UA      Domestic                  US     Thru / Transit               Other    Terminal 3
+#> 3          202012   United Airlines                          UA   United Airlines                          UA International                Asia           Deplaned               Other International
+#> 4          202012   United Airlines                          UA   United Airlines                          UA International                Asia           Enplaned               Other International
+#> 5          202012   United Airlines                          UA   United Airlines                          UA International Australia / Oceania           Deplaned               Other International
+#> 6          202012   United Airlines                          UA   United Airlines                          UA International Australia / Oceania           Enplaned               Other International
 #>   boarding_area passenger_count
-#> 1             F            6712
-#> 2             E             396
-#> 3             G             376
-#> 4             G            6817
-#> 5             G            3851
-#> 6             G            3700
+#> 1             F          117260
+#> 2             F              61
+#> 3             G           12763
+#> 4             G           16050
+#> 5             G            2733
+#> 6             G            2878
 ```
 
 The `sfo_stats` dataset provides a monthly statistics on the air traffic
@@ -83,19 +84,19 @@ data("sfo_stats")
 
 head(sfo_stats)
 #>   activity_period operating_airline operating_airline_iata_code published_airline published_airline_iata_code   geo_summary geo_region landing_aircraft_type aircraft_body_type aircraft_manufacturer
-#> 1          202009   United Airlines                          UA   United Airlines                          UA International     Mexico             Passenger        Narrow Body                Airbus
-#> 2          202009   United Airlines                          UA   United Airlines                          UA      Domestic         US             Passenger        Narrow Body                Boeing
-#> 3          202009   United Airlines                          UA   United Airlines                          UA International     Canada             Passenger        Narrow Body                Boeing
-#> 4          202009   United Airlines                          UA   United Airlines                          UA      Domestic         US             Passenger        Narrow Body                Boeing
-#> 5          202009   United Airlines                          UA   United Airlines                          UA International     Mexico             Passenger        Narrow Body                Boeing
-#> 6          202009   United Airlines                          UA   United Airlines                          UA      Domestic         US             Passenger        Narrow Body                Boeing
+#> 1          202012   United Airlines                          UA   United Airlines                          UA      Domestic         US             Passenger        Narrow Body                Boeing
+#> 2          202012   United Airlines                          UA   United Airlines                          UA      Domestic         US             Passenger          Wide Body                Boeing
+#> 3          202012   United Airlines                          UA   United Airlines                          UA      Domestic         US             Passenger          Wide Body                Boeing
+#> 4          202012   United Airlines                          UA   United Airlines                          UA International       Asia             Passenger          Wide Body                Boeing
+#> 5          202012   United Airlines                          UA   United Airlines                          UA International         US             Passenger          Wide Body                Boeing
+#> 6          202012   United Airlines                          UA   United Airlines                          UA      Domestic         US             Passenger          Wide Body                Boeing
 #>   aircraft_model aircraft_version landing_count total_landed_weight
-#> 1           A320                -            37             5261326
-#> 2           B738                -            14             2048200
-#> 3           B738                -             1              146300
-#> 4           B738                -           251            36721300
-#> 5           B738                -             3              438900
-#> 6           B739                -           553            86986900
+#> 1           B753                -            78            17472000
+#> 2           B763                -            19             6080000
+#> 3           B772                -            96            43500000
+#> 4           B772                -             1              460000
+#> 5           B772                -             8             3680000
+#> 6           B773                -            35            19390000
 ```
 
 #### Total number of passngers
@@ -110,25 +111,26 @@ sfo_passengers %>%
   filter(activity_period == max(activity_period)) %>%
   group_by(activity_type_code, geo_region) %>%
   summarise(total = sum(passenger_count), .groups = "drop")
-#> # A tibble: 16 x 3
+#> # A tibble: 17 x 3
 #>    activity_type_code geo_region           total
-#>    <chr>              <chr>                <int>
-#>  1 Deplaned           Asia                 15775
-#>  2 Deplaned           Australia / Oceania   2942
-#>  3 Deplaned           Canada                4021
-#>  4 Deplaned           Central America        505
-#>  5 Deplaned           Europe               12031
-#>  6 Deplaned           Mexico               11642
-#>  7 Deplaned           Middle East           1490
-#>  8 Deplaned           US                  394036
-#>  9 Enplaned           Asia                 20123
-#> 10 Enplaned           Australia / Oceania   3347
-#> 11 Enplaned           Canada                4291
-#> 12 Enplaned           Central America        328
-#> 13 Enplaned           Europe               12271
-#> 14 Enplaned           Mexico               12430
-#> 15 Enplaned           Middle East           1176
-#> 16 Enplaned           US                  409584
+#>  * <chr>              <chr>                <int>
+#>  1 Deplaned           Asia                 24631
+#>  2 Deplaned           Australia / Oceania   2733
+#>  3 Deplaned           Canada                4688
+#>  4 Deplaned           Central America       4240
+#>  5 Deplaned           Europe               12385
+#>  6 Deplaned           Mexico               20789
+#>  7 Deplaned           Middle East           2179
+#>  8 Deplaned           US                  364571
+#>  9 Enplaned           Asia                 30418
+#> 10 Enplaned           Australia / Oceania   2878
+#> 11 Enplaned           Canada                4257
+#> 12 Enplaned           Central America       3684
+#> 13 Enplaned           Europe               13661
+#> 14 Enplaned           Mexico               29537
+#> 15 Enplaned           Middle East           2463
+#> 16 Enplaned           US                  395548
+#> 17 Thru / Transit     US                      61
 ```
 
 The `sankey_ly` function enables us to plot the distribution of a

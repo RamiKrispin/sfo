@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sfo</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1.9000</span>
       </span>
     </div>
 
@@ -139,49 +139,49 @@
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"sfo_passengers"</span>)
 
 <span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(<span class="kw">sfo_passengers</span>)
-<span class="co">#&gt; 'data.frame':    22869 obs. of  12 variables:</span>
-<span class="co">#&gt;  $ activity_period            : int  202012 202012 202012 202012 202012 202012 202012 202012 202012 202012 ...</span>
+<span class="co">#&gt; 'data.frame':    46670 obs. of  12 variables:</span>
+<span class="co">#&gt;  $ activity_period            : int  202106 202106 202106 202106 202106 202106 202106 202106 202106 202106 ...</span>
 <span class="co">#&gt;  $ operating_airline          : chr  "United Airlines" "United Airlines" "United Airlines" "United Airlines" ...</span>
 <span class="co">#&gt;  $ operating_airline_iata_code: chr  "UA" "UA" "UA" "UA" ...</span>
 <span class="co">#&gt;  $ published_airline          : chr  "United Airlines" "United Airlines" "United Airlines" "United Airlines" ...</span>
 <span class="co">#&gt;  $ published_airline_iata_code: chr  "UA" "UA" "UA" "UA" ...</span>
-<span class="co">#&gt;  $ geo_summary                : chr  "Domestic" "Domestic" "International" "International" ...</span>
-<span class="co">#&gt;  $ geo_region                 : chr  "US" "US" "Asia" "Asia" ...</span>
-<span class="co">#&gt;  $ activity_type_code         : chr  "Enplaned" "Thru / Transit" "Deplaned" "Enplaned" ...</span>
+<span class="co">#&gt;  $ geo_summary                : chr  "International" "International" "International" "International" ...</span>
+<span class="co">#&gt;  $ geo_region                 : chr  "Asia" "Australia / Oceania" "Australia / Oceania" "Central America" ...</span>
+<span class="co">#&gt;  $ activity_type_code         : chr  "Enplaned" "Deplaned" "Enplaned" "Deplaned" ...</span>
 <span class="co">#&gt;  $ price_category_code        : chr  "Other" "Other" "Other" "Other" ...</span>
-<span class="co">#&gt;  $ terminal                   : chr  "Terminal 3" "Terminal 3" "International" "International" ...</span>
-<span class="co">#&gt;  $ boarding_area              : chr  "F" "F" "G" "G" ...</span>
-<span class="co">#&gt;  $ passenger_count            : int  117260 61 12763 16050 2733 2878 3913 3587 11735 585 ...</span>
+<span class="co">#&gt;  $ terminal                   : chr  "International" "International" "International" "International" ...</span>
+<span class="co">#&gt;  $ boarding_area              : chr  "G" "G" "G" "G" ...</span>
+<span class="co">#&gt;  $ passenger_count            : int  14909 2935 3292 555 515 4987 10090 67568 10351 630 ...</span>
 
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="kw">sfo_passengers</span>)
 <span class="co">#&gt;   activity_period operating_airline operating_airline_iata_code</span>
-<span class="co">#&gt; 1          202012   United Airlines                          UA</span>
-<span class="co">#&gt; 2          202012   United Airlines                          UA</span>
-<span class="co">#&gt; 3          202012   United Airlines                          UA</span>
-<span class="co">#&gt; 4          202012   United Airlines                          UA</span>
-<span class="co">#&gt; 5          202012   United Airlines                          UA</span>
-<span class="co">#&gt; 6          202012   United Airlines                          UA</span>
+<span class="co">#&gt; 1          202106   United Airlines                          UA</span>
+<span class="co">#&gt; 2          202106   United Airlines                          UA</span>
+<span class="co">#&gt; 3          202106   United Airlines                          UA</span>
+<span class="co">#&gt; 4          202106   United Airlines                          UA</span>
+<span class="co">#&gt; 5          202106   United Airlines                          UA</span>
+<span class="co">#&gt; 6          202106   United Airlines                          UA</span>
 <span class="co">#&gt;   published_airline published_airline_iata_code   geo_summary</span>
-<span class="co">#&gt; 1   United Airlines                          UA      Domestic</span>
-<span class="co">#&gt; 2   United Airlines                          UA      Domestic</span>
+<span class="co">#&gt; 1   United Airlines                          UA International</span>
+<span class="co">#&gt; 2   United Airlines                          UA International</span>
 <span class="co">#&gt; 3   United Airlines                          UA International</span>
 <span class="co">#&gt; 4   United Airlines                          UA International</span>
 <span class="co">#&gt; 5   United Airlines                          UA International</span>
 <span class="co">#&gt; 6   United Airlines                          UA International</span>
 <span class="co">#&gt;            geo_region activity_type_code price_category_code      terminal</span>
-<span class="co">#&gt; 1                  US           Enplaned               Other    Terminal 3</span>
-<span class="co">#&gt; 2                  US     Thru / Transit               Other    Terminal 3</span>
-<span class="co">#&gt; 3                Asia           Deplaned               Other International</span>
-<span class="co">#&gt; 4                Asia           Enplaned               Other International</span>
-<span class="co">#&gt; 5 Australia / Oceania           Deplaned               Other International</span>
-<span class="co">#&gt; 6 Australia / Oceania           Enplaned               Other International</span>
+<span class="co">#&gt; 1                Asia           Enplaned               Other International</span>
+<span class="co">#&gt; 2 Australia / Oceania           Deplaned               Other International</span>
+<span class="co">#&gt; 3 Australia / Oceania           Enplaned               Other International</span>
+<span class="co">#&gt; 4     Central America           Deplaned               Other International</span>
+<span class="co">#&gt; 5     Central America           Enplaned               Other International</span>
+<span class="co">#&gt; 6              Europe           Deplaned               Other International</span>
 <span class="co">#&gt;   boarding_area passenger_count</span>
-<span class="co">#&gt; 1             F          117260</span>
-<span class="co">#&gt; 2             F              61</span>
-<span class="co">#&gt; 3             G           12763</span>
-<span class="co">#&gt; 4             G           16050</span>
-<span class="co">#&gt; 5             G            2733</span>
-<span class="co">#&gt; 6             G            2878</span>
+<span class="co">#&gt; 1             G           14909</span>
+<span class="co">#&gt; 2             G            2935</span>
+<span class="co">#&gt; 3             G            3292</span>
+<span class="co">#&gt; 4             G             555</span>
+<span class="co">#&gt; 5             G             515</span>
+<span class="co">#&gt; 6             G            4987</span>
 </pre></div>
 </div>
 <div id="sfo_stats" class="section level3">
@@ -225,51 +225,58 @@
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"sfo_stats"</span>)
 
 <span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(<span class="kw">sfo_stats</span>)
-<span class="co">#&gt; 'data.frame':    25765 obs. of  14 variables:</span>
-<span class="co">#&gt;  $ activity_period            : int  202012 202012 202012 202012 202012 202012 202012 202012 202012 202012 ...</span>
-<span class="co">#&gt;  $ operating_airline          : chr  "United Airlines" "United Airlines" "United Airlines" "United Airlines" ...</span>
-<span class="co">#&gt;  $ operating_airline_iata_code: chr  "UA" "UA" "UA" "UA" ...</span>
-<span class="co">#&gt;  $ published_airline          : chr  "United Airlines" "United Airlines" "United Airlines" "United Airlines" ...</span>
-<span class="co">#&gt;  $ published_airline_iata_code: chr  "UA" "UA" "UA" "UA" ...</span>
-<span class="co">#&gt;  $ geo_summary                : chr  "Domestic" "Domestic" "Domestic" "International" ...</span>
-<span class="co">#&gt;  $ geo_region                 : chr  "US" "US" "US" "Asia" ...</span>
+<span class="co">#&gt; 'data.frame':    26457 obs. of  14 variables:</span>
+<span class="co">#&gt;  $ activity_period            : int  202106 202106 202106 202106 202106 202106 202106 202106 202106 202106 ...</span>
+<span class="co">#&gt;  $ operating_airline          : chr  "JetBlue Airways" "United Airlines" "United Airlines" "United Airlines" ...</span>
+<span class="co">#&gt;  $ operating_airline_iata_code: chr  "B6" "UA" "UA" "UA" ...</span>
+<span class="co">#&gt;  $ published_airline          : chr  "JetBlue Airways" "United Airlines" "United Airlines" "United Airlines" ...</span>
+<span class="co">#&gt;  $ published_airline_iata_code: chr  "B6" "UA" "UA" "UA" ...</span>
+<span class="co">#&gt;  $ geo_summary                : chr  "International" "Domestic" "International" "International" ...</span>
+<span class="co">#&gt;  $ geo_region                 : chr  "Mexico" "US" "Middle East" "Europe" ...</span>
 <span class="co">#&gt;  $ landing_aircraft_type      : chr  "Passenger" "Passenger" "Passenger" "Passenger" ...</span>
 <span class="co">#&gt;  $ aircraft_body_type         : chr  "Narrow Body" "Wide Body" "Wide Body" "Wide Body" ...</span>
-<span class="co">#&gt;  $ aircraft_manufacturer      : chr  "Boeing" "Boeing" "Boeing" "Boeing" ...</span>
-<span class="co">#&gt;  $ aircraft_model             : chr  "B753" "B763" "B772" "B772" ...</span>
+<span class="co">#&gt;  $ aircraft_manufacturer      : chr  "Airbus" "Boeing" "Boeing" "Boeing" ...</span>
+<span class="co">#&gt;  $ aircraft_model             : chr  "A320" "B78X" "B789" "B789" ...</span>
 <span class="co">#&gt;  $ aircraft_version           : chr  "-" "-" "-" "-" ...</span>
-<span class="co">#&gt;  $ landing_count              : int  78 19 96 1 8 35 44 43 33 1 ...</span>
-<span class="co">#&gt;  $ total_landed_weight        : int  17472000 6080000 43500000 460000 3680000 19390000 24376000 16340000 12540000 380000 ...</span>
+<span class="co">#&gt;  $ landing_count              : int  28 1 28 56 41 82 72 1 21 47 ...</span>
+<span class="co">#&gt;  $ total_landed_weight        : int  3994772 445000 11900000 23800000 17425000 34850000 30600000 380000 7980000 26038000 ...</span>
 
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="kw">sfo_stats</span>)
 <span class="co">#&gt;   activity_period operating_airline operating_airline_iata_code</span>
-<span class="co">#&gt; 1          202012   United Airlines                          UA</span>
-<span class="co">#&gt; 2          202012   United Airlines                          UA</span>
-<span class="co">#&gt; 3          202012   United Airlines                          UA</span>
-<span class="co">#&gt; 4          202012   United Airlines                          UA</span>
-<span class="co">#&gt; 5          202012   United Airlines                          UA</span>
-<span class="co">#&gt; 6          202012   United Airlines                          UA</span>
-<span class="co">#&gt;   published_airline published_airline_iata_code   geo_summary geo_region</span>
-<span class="co">#&gt; 1   United Airlines                          UA      Domestic         US</span>
-<span class="co">#&gt; 2   United Airlines                          UA      Domestic         US</span>
-<span class="co">#&gt; 3   United Airlines                          UA      Domestic         US</span>
-<span class="co">#&gt; 4   United Airlines                          UA International       Asia</span>
-<span class="co">#&gt; 5   United Airlines                          UA International         US</span>
-<span class="co">#&gt; 6   United Airlines                          UA      Domestic         US</span>
-<span class="co">#&gt;   landing_aircraft_type aircraft_body_type aircraft_manufacturer aircraft_model</span>
-<span class="co">#&gt; 1             Passenger        Narrow Body                Boeing           B753</span>
-<span class="co">#&gt; 2             Passenger          Wide Body                Boeing           B763</span>
-<span class="co">#&gt; 3             Passenger          Wide Body                Boeing           B772</span>
-<span class="co">#&gt; 4             Passenger          Wide Body                Boeing           B772</span>
-<span class="co">#&gt; 5             Passenger          Wide Body                Boeing           B772</span>
-<span class="co">#&gt; 6             Passenger          Wide Body                Boeing           B773</span>
-<span class="co">#&gt;   aircraft_version landing_count total_landed_weight</span>
-<span class="co">#&gt; 1                -            78            17472000</span>
-<span class="co">#&gt; 2                -            19             6080000</span>
-<span class="co">#&gt; 3                -            96            43500000</span>
-<span class="co">#&gt; 4                -             1              460000</span>
-<span class="co">#&gt; 5                -             8             3680000</span>
-<span class="co">#&gt; 6                -            35            19390000</span>
+<span class="co">#&gt; 1          202106   JetBlue Airways                          B6</span>
+<span class="co">#&gt; 2          202106   United Airlines                          UA</span>
+<span class="co">#&gt; 3          202106   United Airlines                          UA</span>
+<span class="co">#&gt; 4          202106   United Airlines                          UA</span>
+<span class="co">#&gt; 5          202106   United Airlines                          UA</span>
+<span class="co">#&gt; 6          202106   United Airlines                          UA</span>
+<span class="co">#&gt;   published_airline published_airline_iata_code   geo_summary</span>
+<span class="co">#&gt; 1   JetBlue Airways                          B6 International</span>
+<span class="co">#&gt; 2   United Airlines                          UA      Domestic</span>
+<span class="co">#&gt; 3   United Airlines                          UA International</span>
+<span class="co">#&gt; 4   United Airlines                          UA International</span>
+<span class="co">#&gt; 5   United Airlines                          UA International</span>
+<span class="co">#&gt; 6   United Airlines                          UA International</span>
+<span class="co">#&gt;            geo_region landing_aircraft_type aircraft_body_type</span>
+<span class="co">#&gt; 1              Mexico             Passenger        Narrow Body</span>
+<span class="co">#&gt; 2                  US             Passenger          Wide Body</span>
+<span class="co">#&gt; 3         Middle East             Passenger          Wide Body</span>
+<span class="co">#&gt; 4              Europe             Passenger          Wide Body</span>
+<span class="co">#&gt; 5 Australia / Oceania             Passenger          Wide Body</span>
+<span class="co">#&gt; 6                Asia             Passenger          Wide Body</span>
+<span class="co">#&gt;   aircraft_manufacturer aircraft_model aircraft_version landing_count</span>
+<span class="co">#&gt; 1                Airbus           A320                -            28</span>
+<span class="co">#&gt; 2                Boeing           B78X                -             1</span>
+<span class="co">#&gt; 3                Boeing           B789                -            28</span>
+<span class="co">#&gt; 4                Boeing           B789                -            56</span>
+<span class="co">#&gt; 5                Boeing           B789                -            41</span>
+<span class="co">#&gt; 6                Boeing           B789                -            82</span>
+<span class="co">#&gt;   total_landed_weight</span>
+<span class="co">#&gt; 1             3994772</span>
+<span class="co">#&gt; 2              445000</span>
+<span class="co">#&gt; 3            11900000</span>
+<span class="co">#&gt; 4            23800000</span>
+<span class="co">#&gt; 5            17425000</span>
+<span class="co">#&gt; 6            34850000</span>
 </pre></div>
 </div>
   </div>

@@ -16,7 +16,7 @@ commit](https://img.shields.io/github/last-commit/RamiKrispin/sfo)](https://gith
 
 The **sfo** package provides summary statistics of the monthly
 passengers and landing in San Francisco International Airport (SFO)
-between 2005 and 2020.
+between 2005 and 2021.
 
 Data source: San Francisco data portal - [DataSF
 API](https://datasf.org/opendata/)

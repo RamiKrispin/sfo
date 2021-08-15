@@ -18,7 +18,6 @@ knitr::opts_chunk$set(
 # sfo <a href='https://ramikrispin.github.io/sfo/'><img src='man/figures/sfo.png' align="right" width="150" height="150" /></a>
 
 
-
 ```{r, include=FALSE}
 library(plotly)
 library(dplyr)
@@ -44,7 +43,7 @@ orca(p, "man/figures/total.svg")
 
 <!-- badges: end -->
 
-The **sfo** package provides summary statistics of the monthly passengers and landing in San Francisco International Airport (SFO) between 2005 and 2020.
+The **sfo** package provides summary statistics of the monthly passengers and landing in San Francisco International Airport (SFO) between 2005 and 2021.
 
 Data source: San Francisco data portal - [DataSF API](https://datasf.org/opendata/)
 

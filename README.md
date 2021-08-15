@@ -61,19 +61,19 @@ data("sfo_passengers")
 
 head(sfo_passengers)
 #>   activity_period operating_airline operating_airline_iata_code published_airline published_airline_iata_code   geo_summary          geo_region activity_type_code price_category_code      terminal
-#> 1          202012   United Airlines                          UA   United Airlines                          UA      Domestic                  US           Enplaned               Other    Terminal 3
-#> 2          202012   United Airlines                          UA   United Airlines                          UA      Domestic                  US     Thru / Transit               Other    Terminal 3
-#> 3          202012   United Airlines                          UA   United Airlines                          UA International                Asia           Deplaned               Other International
-#> 4          202012   United Airlines                          UA   United Airlines                          UA International                Asia           Enplaned               Other International
-#> 5          202012   United Airlines                          UA   United Airlines                          UA International Australia / Oceania           Deplaned               Other International
-#> 6          202012   United Airlines                          UA   United Airlines                          UA International Australia / Oceania           Enplaned               Other International
+#> 1          202106   United Airlines                          UA   United Airlines                          UA International                Asia           Enplaned               Other International
+#> 2          202106   United Airlines                          UA   United Airlines                          UA International Australia / Oceania           Deplaned               Other International
+#> 3          202106   United Airlines                          UA   United Airlines                          UA International Australia / Oceania           Enplaned               Other International
+#> 4          202106   United Airlines                          UA   United Airlines                          UA International     Central America           Deplaned               Other International
+#> 5          202106   United Airlines                          UA   United Airlines                          UA International     Central America           Enplaned               Other International
+#> 6          202106   United Airlines                          UA   United Airlines                          UA International              Europe           Deplaned               Other International
 #>   boarding_area passenger_count
-#> 1             F          117260
-#> 2             F              61
-#> 3             G           12763
-#> 4             G           16050
-#> 5             G            2733
-#> 6             G            2878
+#> 1             G           14909
+#> 2             G            2935
+#> 3             G            3292
+#> 4             G             555
+#> 5             G             515
+#> 6             G            4987
 ```
 
 The `sfo_stats` dataset provides a monthly statistics on the air traffic
@@ -83,20 +83,20 @@ landing at SFO airport:
 data("sfo_stats")
 
 head(sfo_stats)
-#>   activity_period operating_airline operating_airline_iata_code published_airline published_airline_iata_code   geo_summary geo_region landing_aircraft_type aircraft_body_type aircraft_manufacturer
-#> 1          202012   United Airlines                          UA   United Airlines                          UA      Domestic         US             Passenger        Narrow Body                Boeing
-#> 2          202012   United Airlines                          UA   United Airlines                          UA      Domestic         US             Passenger          Wide Body                Boeing
-#> 3          202012   United Airlines                          UA   United Airlines                          UA      Domestic         US             Passenger          Wide Body                Boeing
-#> 4          202012   United Airlines                          UA   United Airlines                          UA International       Asia             Passenger          Wide Body                Boeing
-#> 5          202012   United Airlines                          UA   United Airlines                          UA International         US             Passenger          Wide Body                Boeing
-#> 6          202012   United Airlines                          UA   United Airlines                          UA      Domestic         US             Passenger          Wide Body                Boeing
-#>   aircraft_model aircraft_version landing_count total_landed_weight
-#> 1           B753                -            78            17472000
-#> 2           B763                -            19             6080000
-#> 3           B772                -            96            43500000
-#> 4           B772                -             1              460000
-#> 5           B772                -             8             3680000
-#> 6           B773                -            35            19390000
+#>   activity_period operating_airline operating_airline_iata_code published_airline published_airline_iata_code   geo_summary          geo_region landing_aircraft_type aircraft_body_type
+#> 1          202106   JetBlue Airways                          B6   JetBlue Airways                          B6 International              Mexico             Passenger        Narrow Body
+#> 2          202106   United Airlines                          UA   United Airlines                          UA      Domestic                  US             Passenger          Wide Body
+#> 3          202106   United Airlines                          UA   United Airlines                          UA International         Middle East             Passenger          Wide Body
+#> 4          202106   United Airlines                          UA   United Airlines                          UA International              Europe             Passenger          Wide Body
+#> 5          202106   United Airlines                          UA   United Airlines                          UA International Australia / Oceania             Passenger          Wide Body
+#> 6          202106   United Airlines                          UA   United Airlines                          UA International                Asia             Passenger          Wide Body
+#>   aircraft_manufacturer aircraft_model aircraft_version landing_count total_landed_weight
+#> 1                Airbus           A320                -            28             3994772
+#> 2                Boeing           B78X                -             1              445000
+#> 3                Boeing           B789                -            28            11900000
+#> 4                Boeing           B789                -            56            23800000
+#> 5                Boeing           B789                -            41            17425000
+#> 6                Boeing           B789                -            82            34850000
 ```
 
 #### Total number of passngers
@@ -112,25 +112,25 @@ sfo_passengers %>%
   group_by(activity_type_code, geo_region) %>%
   summarise(total = sum(passenger_count), .groups = "drop")
 #> # A tibble: 17 x 3
-#>    activity_type_code geo_region           total
-#>  * <chr>              <chr>                <int>
-#>  1 Deplaned           Asia                 24631
-#>  2 Deplaned           Australia / Oceania   2733
-#>  3 Deplaned           Canada                4688
-#>  4 Deplaned           Central America       4240
-#>  5 Deplaned           Europe               12385
-#>  6 Deplaned           Mexico               20789
-#>  7 Deplaned           Middle East           2179
-#>  8 Deplaned           US                  364571
-#>  9 Enplaned           Asia                 30418
-#> 10 Enplaned           Australia / Oceania   2878
-#> 11 Enplaned           Canada                4257
-#> 12 Enplaned           Central America       3684
-#> 13 Enplaned           Europe               13661
-#> 14 Enplaned           Mexico               29537
-#> 15 Enplaned           Middle East           2463
-#> 16 Enplaned           US                  395548
-#> 17 Thru / Transit     US                      61
+#>    activity_type_code geo_region            total
+#>  * <chr>              <chr>                 <int>
+#>  1 Deplaned           Asia                  30126
+#>  2 Deplaned           Australia / Oceania    2935
+#>  3 Deplaned           Canada                 4486
+#>  4 Deplaned           Central America        5506
+#>  5 Deplaned           Europe                23496
+#>  6 Deplaned           Mexico                48004
+#>  7 Deplaned           Middle East           11295
+#>  8 Deplaned           US                   970205
+#>  9 Enplaned           Asia                  26881
+#> 10 Enplaned           Australia / Oceania    3292
+#> 11 Enplaned           Canada                 2446
+#> 12 Enplaned           Central America        6345
+#> 13 Enplaned           Europe                43194
+#> 14 Enplaned           Mexico                46158
+#> 15 Enplaned           Middle East           14654
+#> 16 Enplaned           US                  1006372
+#> 17 Thru / Transit     US                      144
 ```
 
 The `sankey_ly` function enables us to plot the distribution of a

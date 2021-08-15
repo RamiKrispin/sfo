@@ -18,6 +18,7 @@ knitr::opts_chunk$set(
 # sfo <a href='https://ramikrispin.github.io/sfo/'><img src='man/figures/sfo.png' align="right" width="150" height="150" /></a>
 
 
+
 ```{r, include=FALSE}
 library(plotly)
 library(dplyr)

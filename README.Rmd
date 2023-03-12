@@ -42,9 +42,7 @@ orca(p, "man/figures/total.svg")
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/sfo)](https://cran.r-project.org/package=sfo) [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/license/mit/) [![GitHub commit](https://img.shields.io/github/last-commit/RamiKrispin/sfo)](https://github.com/RamiKrispin/sfo/commit/main)
 
 <!-- badges: end -->
-
-The **sfo** package provides summary statistics of the monthly passengers and landing in San Francisco International Airport (SFO) between 2005 and 2020.
-
+The **sfo** package summarizes the monthly air passengers and landings at San Francisco International Airport (SFO) between 2005 and 2022.
 Data source: San Francisco data portal - [DataSF API](https://datasf.org/opendata/)
 
 <img src="man/figures/total.svg" width="90%"/>
@@ -69,13 +67,13 @@ devtools::install_github("RamiKrispin/sfo", ref = "main")
 The **sfo** package provides the following two datasets:
 
 * `sfo_passengers` - air traffic passengers statistics
-* `sfo_stats` - air traffic landing statistics
+* `sfo_stats` - air traffic landings statistics
 
-More information about the datasets available on the following [vignette](https://ramikrispin.github.io/sfo/articles/v1_intro.html).
+More information about the datasets is available in the following [vignette](https://ramikrispin.github.io/sfo/articles/v1_intro.html).
 
 ### Examples
 
-The `sfo_passengers` dataset provides a monthly summary of the number of passengers in SFO airport by different categories (such as terminal, geo, type, etc.):
+The `sfo_passengers` dataset provides monthly summary of the number of passengers in SFO airport by different categories (such as terminal, geo, type, etc.):
 
 ```{r }
 library(sfo)
@@ -85,7 +83,7 @@ data("sfo_passengers")
 head(sfo_passengers)
 ```
 
-The `sfo_stats` dataset provides a monthly statistics on the air traffic landing at SFO airport:
+The `sfo_stats` dataset provides monthly statistics on the air traffic landing at SFO airport:
 
 ```{r }
 data("sfo_stats")
@@ -107,7 +105,7 @@ sfo_passengers %>%
 ```
 
 
-The `sankey_ly` function enables us to plot the distribution of a numeric variable by multiple categorical variables. The following example shows the distribution of the total United Airlines passengers during 2019 by terminal, travel type (domestic and international), geo, and travel direction (deplaned, enplaned, and transit):
+The `sankey_ly` function enables us to plot the distribution of a numeric variable by multiple categorical variables. The following example shows the distribution of the total United Airlines passengers during 2019 by a terminal, travel type (domestic and international), geo, and travel direction (deplaned, enplaned, and transit):
 
 ``` r
 sfo_passengers %>% 
@@ -140,11 +138,11 @@ orca(p, "man/figures/sankey.svg")
 
 #### Total number of landing
 
-The total number of landing in most recent month by `activity_type_code` and `aircraft_manufacturer`:
+The total number of landings during the most recent month by `activity_type_code` and `aircraft_manufacturer`:
 
 ``` r
 sfo_stats %>% 
-  filter(activity_period == max(activity_period),
+  filter(activity_period == 202212,
          aircraft_manufacturer != "") %>%
   group_by(aircraft_manufacturer) %>%
   summarise(total_landing = sum(landing_count),
@@ -153,13 +151,13 @@ sfo_stats %>%
   plot_ly(labels = ~ aircraft_manufacturer,
           values = ~ total_landing) %>%
   add_pie(hole = 0.6) %>%
-  layout(title = "Landing Distribution by Aircraft Manufacturer during Sep 2020")
+  layout(title = "Landing Distribution by Aircraft Manufacturer during Dec 2022")
 ```
 
 
 ```{r, include=FALSE}
 p <- sfo_stats %>% 
-  filter(activity_period == max(activity_period),
+  filter(activity_period == 202212,
          aircraft_manufacturer != "") %>%
   group_by(aircraft_manufacturer) %>%
   summarise(total_landing = sum(landing_count),
@@ -168,18 +166,18 @@ p <- sfo_stats %>%
   plot_ly(labels = ~ aircraft_manufacturer,
           values = ~ total_landing) %>%
   add_pie(hole = 0.6) %>%
-  layout(title = "Landing Distribution by Aircraft Manufacturer During Sep 2020")
+  layout(title = "Landing Distribution by Aircraft Manufacturer During Dec 2022")
 
 orca(p, "man/figures/manufacturer.svg") 
 ```
 
 <img src="man/figures/manufacturer.svg" width="100%"/>
 
-The following Sankey plot demonstrate the distribution of number of landing in SFO by region and aircraft type, manufacturer, and body type during Sep 2020:
+The following Sankey plot demonstrates the distribution of the number of landing in SFO by region and aircraft type, manufacturer, and body type during Dec 2022:
 
 ``` r
 sfo_stats %>%
-  filter(activity_period == max(activity_period)) %>%
+  filter(activity_period == 202212) %>%
   group_by(geo_summary, geo_region, landing_aircraft_type, aircraft_manufacturer, aircraft_body_type) %>%
   summarise(total_landing = sum(landing_count),
   groups = "drop") %>%
@@ -188,14 +186,14 @@ sfo_stats %>%
                          "aircraft_manufacturer",
                          "aircraft_body_type"),
             num_col = "total_landing",
-            title = "Landing Summary by Geo Region and Aircraft Type During Sep 2020")
+            title = "Landing Summary by Geo Region and Aircraft Type During Dec 2022")
 
 ```
 
 
 ```{r, include=FALSE}
 p <- sfo_stats %>%
-  filter(activity_period == max(activity_period)) %>%
+  filter(activity_period == 202212) %>%
   group_by(geo_region, landing_aircraft_type, aircraft_manufacturer, aircraft_body_type) %>%
   summarise(total_landing = sum(landing_count),
             groups = "drop") %>%
@@ -204,7 +202,7 @@ p <- sfo_stats %>%
                          "aircraft_manufacturer",
                          "aircraft_body_type"),
             num_col = "total_landing",
-            title = "Landing Summary by Geo Region and Aircraft Type During Sep 2020")
+            title = "Landing Summary by Geo Region and Aircraft Type During Dec 2022")
 
 orca(p, "man/figures/landing_sankey.svg") 
 ```

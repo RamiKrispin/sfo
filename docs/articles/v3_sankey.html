@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,18 +33,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sfo</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.2</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
@@ -81,10 +77,9 @@
 
       
 
-      </header><script src="v3_sankey_files/header-attrs-2.5/header-attrs.js"></script><link href="v3_sankey_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
-<script src="v3_sankey_files/anchor-sections-1.0/anchor-sections.js"></script><script src="v3_sankey_files/htmlwidgets-1.5.3/htmlwidgets.js"></script><script src="v3_sankey_files/plotly-binding-4.9.3/plotly.js"></script><script src="v3_sankey_files/typedarray-0.1/typedarray.min.js"></script><script src="v3_sankey_files/jquery-1.11.3/jquery.min.js"></script><link href="v3_sankey_files/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet">
-<script src="v3_sankey_files/crosstalk-1.1.0.1/js/crosstalk.min.js"></script><link href="v3_sankey_files/plotly-htmlwidgets-css-1.57.1/plotly-htmlwidgets.css" rel="stylesheet">
-<script src="v3_sankey_files/plotly-main-1.57.1/plotly-latest.min.js"></script><div class="row">
+      </header><script src="v3_sankey_files/htmlwidgets-1.5.4/htmlwidgets.js"></script><script src="v3_sankey_files/plotly-binding-4.10.1/plotly.js"></script><script src="v3_sankey_files/typedarray-0.1/typedarray.min.js"></script><script src="v3_sankey_files/jquery-3.5.1/jquery.min.js"></script><link href="v3_sankey_files/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+<script src="v3_sankey_files/crosstalk-1.2.0/js/crosstalk.min.js"></script><link href="v3_sankey_files/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="v3_sankey_files/plotly-main-2.11.1/plotly-latest.min.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Create Sankey Diagram</h1>
@@ -97,7 +92,7 @@
 
     
     
-<p>A Sankey diagram is a common method for visualizing a numeric variable’s distribution across multiple categorical variables. The <code>sankey_ly</code> function is a wrapper for the <a href="https://plotly.com/r/sankey-diagram/">plotly Sankey</a> functionality, enables fast plotting with no need for any data transformation.</p>
+<p>A Sankey diagram is a common method for visualizing a numeric variable’s distribution across multiple categorical variables. The <code>sankey_ly</code> function is a wrapper for the <a href="https://plotly.com/r/sankey-diagram/" class="external-link">plotly Sankey</a> functionality, enables fast plotting with no need for any data transformation.</p>
 <p>The function has the following arguments:</p>
 <ul>
 <li>
@@ -109,100 +104,93 @@
 <li>
 <code>title</code> - optiona, enables to set title for the plot</li>
 </ul>
-<div id="usage" class="section level3">
-<h3 class="hasAnchor">
-<a href="#usage" class="anchor"></a>Usage</h3>
+<div class="section level3">
+<h3 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
+</h3>
 <p>Let’s see some use case of the function with the <code>sfo_passengers</code> dataset:</p>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw">sfo</span>)
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">sfo</span><span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"sfo_passengers"</span>)
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"sfo_passengers"</span><span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(<span class="kw">sfo_passengers</span>)
-<span class="co">#&gt; 'data.frame':    22869 obs. of  12 variables:</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">sfo_passengers</span><span class="op">)</span>
+<span class="co">#&gt; 'data.frame':    45738 obs. of  12 variables:</span>
 <span class="co">#&gt;  $ activity_period            : int  202012 202012 202012 202012 202012 202012 202012 202012 202012 202012 ...</span>
-<span class="co">#&gt;  $ operating_airline          : chr  "United Airlines" "United Airlines" "United Airlines" "United Airlines" ...</span>
-<span class="co">#&gt;  $ operating_airline_iata_code: chr  "UA" "UA" "UA" "UA" ...</span>
-<span class="co">#&gt;  $ published_airline          : chr  "United Airlines" "United Airlines" "United Airlines" "United Airlines" ...</span>
-<span class="co">#&gt;  $ published_airline_iata_code: chr  "UA" "UA" "UA" "UA" ...</span>
-<span class="co">#&gt;  $ geo_summary                : chr  "Domestic" "Domestic" "International" "International" ...</span>
-<span class="co">#&gt;  $ geo_region                 : chr  "US" "US" "Asia" "Asia" ...</span>
-<span class="co">#&gt;  $ activity_type_code         : chr  "Enplaned" "Thru / Transit" "Deplaned" "Enplaned" ...</span>
+<span class="co">#&gt;  $ operating_airline          : chr  "Air Canada" "Air Canada" "Air France" "Air France" ...</span>
+<span class="co">#&gt;  $ operating_airline_iata_code: chr  "AC" "AC" "AF" "AF" ...</span>
+<span class="co">#&gt;  $ published_airline          : chr  "Air Canada" "Air Canada" "Air France" "Air France" ...</span>
+<span class="co">#&gt;  $ published_airline_iata_code: chr  "AC" "AC" "AF" "AF" ...</span>
+<span class="co">#&gt;  $ geo_summary                : chr  "International" "International" "International" "International" ...</span>
+<span class="co">#&gt;  $ geo_region                 : chr  "Canada" "Canada" "Europe" "Europe" ...</span>
+<span class="co">#&gt;  $ activity_type_code         : chr  "Deplaned" "Enplaned" "Deplaned" "Enplaned" ...</span>
 <span class="co">#&gt;  $ price_category_code        : chr  "Other" "Other" "Other" "Other" ...</span>
-<span class="co">#&gt;  $ terminal                   : chr  "Terminal 3" "Terminal 3" "International" "International" ...</span>
-<span class="co">#&gt;  $ boarding_area              : chr  "F" "F" "G" "G" ...</span>
-<span class="co">#&gt;  $ passenger_count            : int  117260 61 12763 16050 2733 2878 3913 3587 11735 585 ...</span>
-</pre></div>
+<span class="co">#&gt;  $ terminal                   : chr  "International" "International" "International" "International" ...</span>
+<span class="co">#&gt;  $ boarding_area              : chr  "G" "G" "A" "A" ...</span>
+<span class="co">#&gt;  $ passenger_count            : int  2602 2099 759 1214 4544 4830 10830 11896 4157 4993 ...</span></code></pre></div>
 <p>In the case of the <code>sfo_passengers</code> dataset, ignoring the date indicator, we have one numeric variable - <code>passenger_count</code> and 10 categorical variables. For the following examples we will focus on total number of passengers during 2020, last full year in the dataset:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://dplyr.tidyverse.org">dplyr</a></span>)
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span>
 
-<span class="kw">d</span> <span class="op">&lt;-</span> <span class="kw">sfo_passengers</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="kw">activity_period</span> <span class="op">&gt;=</span> <span class="fl">202001</span> <span class="op">&amp;</span> <span class="kw">activity_period</span> <span class="op">&lt;</span> <span class="fl">202101</span>)
-</pre></div>
+<span class="va">d</span> <span class="op">&lt;-</span> <span class="va">sfo_passengers</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">activity_period</span> <span class="op">&gt;=</span> <span class="fl">202001</span> <span class="op">&amp;</span> <span class="va">activity_period</span> <span class="op">&lt;</span> <span class="fl">202101</span><span class="op">)</span></code></pre></div>
 <p>Now, we can start explore the distribution of the passengers by different categorical variables combination. Let’s start with a simplistic example, plotting the distribution of passengers by <code>geo_sumary</code> and <code>geo_region</code>. The <code>sunkey_ly</code> function required that the data will be aggregated by the categorical variables:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="kw">d1</span> <span class="op">&lt;-</span> <span class="kw">d</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(<span class="kw">geo_summary</span>, <span class="kw">geo_region</span>) <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span>(total = <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="kw">passenger_count</span>), .groups = <span class="st">"drop"</span>)
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">d1</span> <span class="op">&lt;-</span> <span class="va">d</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">geo_summary</span>, <span class="va">geo_region</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span>total <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">passenger_count</span><span class="op">)</span>, .groups <span class="op">=</span> <span class="st">"drop"</span><span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="kw">d1</span>)
-<span class="co">#&gt; # A tibble: 6 x 3</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">d1</span><span class="op">)</span>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 3</span></span>
 <span class="co">#&gt;   geo_summary   geo_region             total</span>
-<span class="co">#&gt;   &lt;chr&gt;         &lt;chr&gt;                  &lt;int&gt;</span>
-<span class="co">#&gt; 1 Domestic      US                  13118345</span>
-<span class="co">#&gt; 2 International Asia                 1272103</span>
-<span class="co">#&gt; 3 International Australia / Oceania   273555</span>
-<span class="co">#&gt; 4 International Canada                334501</span>
-<span class="co">#&gt; 5 International Central America        94164</span>
-<span class="co">#&gt; 6 International Europe                784108</span>
-</pre></div>
+<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Domestic      US                  26<span style="text-decoration: underline;">236</span>690</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> International Asia                 2<span style="text-decoration: underline;">544</span>206</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> International Australia / Oceania   <span style="text-decoration: underline;">547</span>110</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">4</span> International Canada                <span style="text-decoration: underline;">669</span>002</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">5</span> International Central America       <span style="text-decoration: underline;">188</span>328</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">6</span> International Europe               1<span style="text-decoration: underline;">568</span>216</span></code></pre></div>
 <p>Now, as the data is ready, we visualize the data:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="fu"><a href="../reference/sankey_ly.html">sankey_ly</a></span>(x = <span class="kw">d1</span>, 
-          cat_cols = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"geo_summary"</span>, <span class="st">"geo_region"</span>), 
-          num_col = <span class="st">"total"</span>, 
-          title = <span class="st">"Distribution of Passengers by Geo Type and Region"</span>)
-</pre></div>
-<div id="htmlwidget-2215f928cdc024eaa97e" style="width:768px;height:480px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-2215f928cdc024eaa97e">{"x":{"visdat":{"38f42fd5ac3b":["function () ","plotlyVisDat"]},"cur_data":"38f42fd5ac3b","attrs":{"38f42fd5ac3b":{"orientation":"h","valueformat":".0f","node":{"label":["Domestic","International","US","Asia","Australia / Oceania","Canada","Central America","Europe","Mexico","Middle East"],"pad":15,"thickness":30,"line":{"color":"black","width":0.5}},"link":{"source":[0,1,1,1,1,1,1,1],"target":[2,3,4,5,6,7,8,9],"value":[13118345,1272103,273555,334501,94164,784108,421301,120636]},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"sankey"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Distribution of Passengers by Geo Type and Region","hovermode":"closest","showlegend":false},"source":"A","config":{"showSendToCloud":false},"data":[{"orientation":"h","valueformat":".0f","node":{"label":["Domestic","International","US","Asia","Australia / Oceania","Canada","Central America","Europe","Mexico","Middle East"],"pad":15,"thickness":30,"line":{"color":"black","width":0.5}},"link":{"source":[0,1,1,1,1,1,1,1],"target":[2,3,4,5,6,7,8,9],"value":[13118345,1272103,273555,334501,94164,784108,421301,120636]},"type":"sankey","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script><p>In a similar manner we can add additional variables.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="kw">d</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="kw">operating_airline</span> <span class="op">==</span> <span class="st">"United Airlines"</span>) <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(<span class="kw">operating_airline</span>,<span class="kw">activity_type_code</span>, <span class="kw">geo_summary</span>, <span class="kw">geo_region</span>) <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span>(total = <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="kw">passenger_count</span>), .groups = <span class="st">"drop"</span>) <span class="op">%&gt;%</span>
-  <span class="fu"><a href="../reference/sankey_ly.html">sankey_ly</a></span>(cat_cols = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"operating_airline"</span>, <span class="st">"geo_summary"</span>, <span class="st">"geo_region"</span>, <span class="st">"activity_type_code"</span>), 
-            num_col = <span class="st">"total"</span>,
-            title = <span class="st">"Distribution of United Airlines Passengers at SFO During 2020"</span>)
-</pre></div>
-<div id="htmlwidget-9310eaa6e34d9b077569" style="width:768px;height:480px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-9310eaa6e34d9b077569">{"x":{"visdat":{"38f420c94655":["function () ","plotlyVisDat"]},"cur_data":"38f420c94655","attrs":{"38f420c94655":{"orientation":"h","valueformat":".0f","node":{"label":["United Airlines","Domestic","International","US","Asia","Australia / Oceania","Canada","Europe","Mexico","Middle East","Deplaned","Enplaned","Thru / Transit"],"pad":15,"thickness":30,"line":{"color":"black","width":0.5}},"link":{"source":[0,0,1,2,2,2,2,2,2,4,4,5,5,6,6,6,7,7,8,8,9,9,3,3,3],"target":[1,2,3,4,5,6,7,8,9,10,11,10,11,10,11,12,10,11,10,11,10,11,10,11,12],"value":[5010091,1170132,5010091,453316,157935,95575,206963,209267,47076,236491,216825,84838,73097,45891,49681,3,106049,100914,104872,104395,25468,21608,2499226,2510427,438]},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"sankey"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Distribution of United Airlines Passengers at SFO During 2020","hovermode":"closest","showlegend":false},"source":"A","config":{"showSendToCloud":false},"data":[{"orientation":"h","valueformat":".0f","node":{"label":["United Airlines","Domestic","International","US","Asia","Australia / Oceania","Canada","Europe","Mexico","Middle East","Deplaned","Enplaned","Thru / Transit"],"pad":15,"thickness":30,"line":{"color":"black","width":0.5}},"link":{"source":[0,0,1,2,2,2,2,2,2,4,4,5,5,6,6,6,7,7,8,8,9,9,3,3,3],"target":[1,2,3,4,5,6,7,8,9,10,11,10,11,10,11,12,10,11,10,11,10,11,10,11,12],"value":[5010091,1170132,5010091,453316,157935,95575,206963,209267,47076,236491,216825,84838,73097,45891,49681,3,106049,100914,104872,104395,25468,21608,2499226,2510427,438]},"type":"sankey","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/sankey_ly.html">sankey_ly</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">d1</span>, 
+          cat_cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"geo_summary"</span>, <span class="st">"geo_region"</span><span class="op">)</span>, 
+          num_col <span class="op">=</span> <span class="st">"total"</span>, 
+          title <span class="op">=</span> <span class="st">"Distribution of Passengers by Geo Type and Region"</span><span class="op">)</span></code></pre></div>
+<div id="htmlwidget-380c072f17883c1cfa63" style="width:768px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-380c072f17883c1cfa63">{"x":{"visdat":{"20af2978f6da":["function () ","plotlyVisDat"]},"cur_data":"20af2978f6da","attrs":{"20af2978f6da":{"orientation":"h","valueformat":".0f","node":{"label":["Domestic","International","US","Asia","Australia / Oceania","Canada","Central America","Europe","Mexico","Middle East"],"pad":15,"thickness":30,"line":{"color":"black","width":0.5}},"link":{"source":[0,1,1,1,1,1,1,1],"target":[2,3,4,5,6,7,8,9],"value":[26236690,2544206,547110,669002,188328,1568216,842602,241272]},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"sankey"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Distribution of Passengers by Geo Type and Region","hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"orientation":"h","valueformat":".0f","node":{"label":["Domestic","International","US","Asia","Australia / Oceania","Canada","Central America","Europe","Mexico","Middle East"],"pad":15,"thickness":30,"line":{"color":"black","width":0.5}},"link":{"source":[0,1,1,1,1,1,1,1],"target":[2,3,4,5,6,7,8,9],"value":[26236690,2544206,547110,669002,188328,1568216,842602,241272]},"type":"sankey","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script><p>In a similar manner we can add additional variables.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">d</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">operating_airline</span> <span class="op">==</span> <span class="st">"United Airlines"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">operating_airline</span>,<span class="va">activity_type_code</span>, <span class="va">geo_summary</span>, <span class="va">geo_region</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span>total <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">passenger_count</span><span class="op">)</span>, .groups <span class="op">=</span> <span class="st">"drop"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="../reference/sankey_ly.html">sankey_ly</a></span><span class="op">(</span>cat_cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"operating_airline"</span>, <span class="st">"geo_summary"</span>, <span class="st">"geo_region"</span>, <span class="st">"activity_type_code"</span><span class="op">)</span>, 
+            num_col <span class="op">=</span> <span class="st">"total"</span>,
+            title <span class="op">=</span> <span class="st">"Distribution of United Airlines Passengers at SFO During 2020"</span><span class="op">)</span></code></pre></div>
+<div id="htmlwidget-f83d213ff0194bb6e1d4" style="width:768px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f83d213ff0194bb6e1d4">{"x":{"visdat":{"20af727e4f6a":["function () ","plotlyVisDat"]},"cur_data":"20af727e4f6a","attrs":{"20af727e4f6a":{"orientation":"h","valueformat":".0f","node":{"label":["United Airlines","Domestic","International","US","Asia","Australia / Oceania","Canada","Europe","Mexico","Middle East","Deplaned","Enplaned","Thru / Transit"],"pad":15,"thickness":30,"line":{"color":"black","width":0.5}},"link":{"source":[0,0,1,2,2,2,2,2,2,4,4,5,5,6,6,6,7,7,8,8,9,9,3,3,3],"target":[1,2,3,4,5,6,7,8,9,10,11,10,11,10,11,12,10,11,10,11,10,11,10,11,12],"value":[10020182,2340264,10020182,906632,315870,191150,413926,418534,94152,472982,433650,169676,146194,91782,99362,6,212098,201828,209744,208790,50936,43216,4998452,5020854,876]},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"sankey"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Distribution of United Airlines Passengers at SFO During 2020","hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"orientation":"h","valueformat":".0f","node":{"label":["United Airlines","Domestic","International","US","Asia","Australia / Oceania","Canada","Europe","Mexico","Middle East","Deplaned","Enplaned","Thru / Transit"],"pad":15,"thickness":30,"line":{"color":"black","width":0.5}},"link":{"source":[0,0,1,2,2,2,2,2,2,4,4,5,5,6,6,6,7,7,8,8,9,9,3,3,3],"target":[1,2,3,4,5,6,7,8,9,10,11,10,11,10,11,12,10,11,10,11,10,11,10,11,12],"value":[10020182,2340264,10020182,906632,315870,191150,413926,418534,94152,472982,433650,169676,146194,91782,99362,6,212098,201828,209744,208790,50936,43216,4998452,5020854,876]},"type":"sankey","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
-<div id="failure" class="section level3">
-<h3 class="hasAnchor">
-<a href="#failure" class="anchor"></a>Failure!</h3>
+<div class="section level3">
+<h3 id="failure">Failure!<a class="anchor" aria-label="anchor" href="#failure"></a>
+</h3>
 <p>Here is some pitful you should be aware of, the function is sensitive for the categorical variables name. It will fail to map the different categories correctly if two variables share the same unique label. The following example, where both the <code>geo_summary</code> and <code>terminal</code> variables share the label <code>international</code>, demonstrates this issue:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit">
-<span class="kw">d</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="kw">operating_airline</span> <span class="op">==</span> <span class="st">"United Airlines"</span>) <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(<span class="kw">operating_airline</span>,<span class="kw">activity_type_code</span>, <span class="kw">geo_summary</span>, <span class="kw">geo_region</span>,  <span class="kw">terminal</span>) <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span>(total = <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="kw">passenger_count</span>), .groups = <span class="st">"drop"</span>) <span class="op">%&gt;%</span>
-  <span class="fu"><a href="../reference/sankey_ly.html">sankey_ly</a></span>(cat_cols = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"operating_airline"</span>, <span class="st">"geo_summary"</span>, <span class="st">"geo_region"</span>, <span class="st">"activity_type_code"</span>, <span class="st">"terminal"</span>), 
-            num_col = <span class="st">"total"</span>,
-            title = <span class="st">"Distribution of United Airlines Passengers at SFO During 2020"</span>)
-</pre></div>
-<div id="htmlwidget-0059c8c2c8420cb2930b" style="width:768px;height:480px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-0059c8c2c8420cb2930b">{"x":{"visdat":{"38f416c8806a":["function () ","plotlyVisDat"]},"cur_data":"38f416c8806a","attrs":{"38f416c8806a":{"orientation":"h","valueformat":".0f","node":{"label":["United Airlines","Domestic","International","US","Asia","Australia / Oceania","Canada","Europe","Mexico","Middle East","Deplaned","Enplaned","Thru / Transit","International","Terminal 3"],"pad":15,"thickness":30,"line":{"color":"black","width":0.5}},"link":{"source":[0,0,0,1,2,13,2,13,2,13,2,13,2,13,2,13,4,4,5,5,6,6,6,7,7,8,8,9,9,3,3,3,10,10,10,11,11,11,12,12,12],"target":[1,2,13,3,4,4,5,5,6,6,7,7,8,8,9,9,10,11,10,11,10,11,12,10,11,10,11,10,11,10,11,12,2,13,14,2,13,14,2,13,14],"value":[5010091,1170132,1170132,5010091,453316,453316,157935,157935,95575,95575,206963,206963,209267,209267,47076,47076,236491,216825,84838,73097,45891,49681,3,106049,100914,104872,104395,25468,21608,2499226,2510427,438,659920,659920,2442915,560993,560993,2515954,3,3,438]},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"sankey"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Distribution of United Airlines Passengers at SFO During 2020","hovermode":"closest","showlegend":false},"source":"A","config":{"showSendToCloud":false},"data":[{"orientation":"h","valueformat":".0f","node":{"label":["United Airlines","Domestic","International","US","Asia","Australia / Oceania","Canada","Europe","Mexico","Middle East","Deplaned","Enplaned","Thru / Transit","International","Terminal 3"],"pad":15,"thickness":30,"line":{"color":"black","width":0.5}},"link":{"source":[0,0,0,1,2,13,2,13,2,13,2,13,2,13,2,13,4,4,5,5,6,6,6,7,7,8,8,9,9,3,3,3,10,10,10,11,11,11,12,12,12],"target":[1,2,13,3,4,4,5,5,6,6,7,7,8,8,9,9,10,11,10,11,10,11,12,10,11,10,11,10,11,10,11,12,2,13,14,2,13,14,2,13,14],"value":[5010091,1170132,1170132,5010091,453316,453316,157935,157935,95575,95575,206963,206963,209267,209267,47076,47076,236491,216825,84838,73097,45891,49681,3,106049,100914,104872,104395,25468,21608,2499226,2510427,438,659920,659920,2442915,560993,560993,2515954,3,3,438]},"type":"sankey","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script><p>To overcome this issue, you will have to make sure that there is no overlapping between the variables label. Let’s modify the cases where <code>terminal</code> variable is set as <code>International</code> to <code>international</code> (<code>I</code> -&gt; <code>i</code>):</p>
-<div class="sourceCode" id="cb7"><pre class="downlit">
-<span class="kw">d</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="kw">operating_airline</span> <span class="op">==</span> <span class="st">"United Airlines"</span>) <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(terminal = <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span>(<span class="kw">terminal</span> <span class="op">==</span> <span class="st">"International"</span>, <span class="st">"international"</span>, <span class="kw">terminal</span>)) <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(<span class="kw">operating_airline</span>,<span class="kw">activity_type_code</span>, <span class="kw">geo_summary</span>, <span class="kw">geo_region</span>,  <span class="kw">terminal</span>) <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span>(total = <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="kw">passenger_count</span>), .groups = <span class="st">"drop"</span>) <span class="op">%&gt;%</span>
-  <span class="fu"><a href="../reference/sankey_ly.html">sankey_ly</a></span>(cat_cols = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"operating_airline"</span>, <span class="st">"terminal"</span>,<span class="st">"geo_summary"</span>, <span class="st">"geo_region"</span>, <span class="st">"activity_type_code"</span>), 
-            num_col = <span class="st">"total"</span>,
-            title = <span class="st">"Distribution of United Airlines Passengers at SFO During 2020"</span>)
-</pre></div>
-<div id="htmlwidget-31d820975bdfa9f90f04" style="width:768px;height:480px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-31d820975bdfa9f90f04">{"x":{"visdat":{"38f45b74198b":["function () ","plotlyVisDat"]},"cur_data":"38f45b74198b","attrs":{"38f45b74198b":{"orientation":"h","valueformat":".0f","node":{"label":["United Airlines","international","Terminal 3","Domestic","International","US","Asia","Australia / Oceania","Canada","Europe","Mexico","Middle East","Deplaned","Enplaned","Thru / Transit"],"pad":15,"thickness":30,"line":{"color":"black","width":0.5}},"link":{"source":[0,0,1,1,2,2,3,4,4,4,4,4,4,6,6,7,7,8,8,8,9,9,10,10,11,11,5,5,5],"target":[1,2,3,4,3,4,5,6,7,8,9,10,11,12,13,12,13,12,13,14,12,13,12,13,12,13,12,13,14],"value":[1220916,4959307,240798,980118,4769293,190014,5010091,453316,157935,95575,206963,209267,47076,236491,216825,84838,73097,45891,49681,3,106049,100914,104872,104395,25468,21608,2499226,2510427,438]},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"sankey"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Distribution of United Airlines Passengers at SFO During 2020","hovermode":"closest","showlegend":false},"source":"A","config":{"showSendToCloud":false},"data":[{"orientation":"h","valueformat":".0f","node":{"label":["United Airlines","international","Terminal 3","Domestic","International","US","Asia","Australia / Oceania","Canada","Europe","Mexico","Middle East","Deplaned","Enplaned","Thru / Transit"],"pad":15,"thickness":30,"line":{"color":"black","width":0.5}},"link":{"source":[0,0,1,1,2,2,3,4,4,4,4,4,4,6,6,7,7,8,8,8,9,9,10,10,11,11,5,5,5],"target":[1,2,3,4,3,4,5,6,7,8,9,10,11,12,13,12,13,12,13,14,12,13,12,13,12,13,12,13,14],"value":[1220916,4959307,240798,980118,4769293,190014,5010091,453316,157935,95575,206963,209267,47076,236491,216825,84838,73097,45891,49681,3,106049,100914,104872,104395,25468,21608,2499226,2510427,438]},"type":"sankey","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">d</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">operating_airline</span> <span class="op">==</span> <span class="st">"United Airlines"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">operating_airline</span>,<span class="va">activity_type_code</span>, <span class="va">geo_summary</span>, <span class="va">geo_region</span>,  <span class="va">terminal</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span>total <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">passenger_count</span><span class="op">)</span>, .groups <span class="op">=</span> <span class="st">"drop"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="../reference/sankey_ly.html">sankey_ly</a></span><span class="op">(</span>cat_cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"operating_airline"</span>, <span class="st">"geo_summary"</span>, <span class="st">"geo_region"</span>, <span class="st">"activity_type_code"</span>, <span class="st">"terminal"</span><span class="op">)</span>, 
+            num_col <span class="op">=</span> <span class="st">"total"</span>,
+            title <span class="op">=</span> <span class="st">"Distribution of United Airlines Passengers at SFO During 2020"</span><span class="op">)</span></code></pre></div>
+<div id="htmlwidget-ca8b5853930fe2ed05cf" style="width:768px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ca8b5853930fe2ed05cf">{"x":{"visdat":{"20af7892309c":["function () ","plotlyVisDat"]},"cur_data":"20af7892309c","attrs":{"20af7892309c":{"orientation":"h","valueformat":".0f","node":{"label":["United Airlines","Domestic","International","US","Asia","Australia / Oceania","Canada","Europe","Mexico","Middle East","Deplaned","Enplaned","Thru / Transit","International","Terminal 3"],"pad":15,"thickness":30,"line":{"color":"black","width":0.5}},"link":{"source":[0,0,0,1,2,13,2,13,2,13,2,13,2,13,2,13,4,4,5,5,6,6,6,7,7,8,8,9,9,3,3,3,10,10,10,11,11,11,12,12,12],"target":[1,2,13,3,4,4,5,5,6,6,7,7,8,8,9,9,10,11,10,11,10,11,12,10,11,10,11,10,11,10,11,12,2,13,14,2,13,14,2,13,14],"value":[10020182,2340264,2340264,10020182,906632,906632,315870,315870,191150,191150,413926,413926,418534,418534,94152,94152,472982,433650,169676,146194,91782,99362,6,212098,201828,209744,208790,50936,43216,4998452,5020854,876,1319840,1319840,4885830,1121986,1121986,5031908,6,6,876]},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"sankey"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Distribution of United Airlines Passengers at SFO During 2020","hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"orientation":"h","valueformat":".0f","node":{"label":["United Airlines","Domestic","International","US","Asia","Australia / Oceania","Canada","Europe","Mexico","Middle East","Deplaned","Enplaned","Thru / Transit","International","Terminal 3"],"pad":15,"thickness":30,"line":{"color":"black","width":0.5}},"link":{"source":[0,0,0,1,2,13,2,13,2,13,2,13,2,13,2,13,4,4,5,5,6,6,6,7,7,8,8,9,9,3,3,3,10,10,10,11,11,11,12,12,12],"target":[1,2,13,3,4,4,5,5,6,6,7,7,8,8,9,9,10,11,10,11,10,11,12,10,11,10,11,10,11,10,11,12,2,13,14,2,13,14,2,13,14],"value":[10020182,2340264,2340264,10020182,906632,906632,315870,315870,191150,191150,413926,413926,418534,418534,94152,94152,472982,433650,169676,146194,91782,99362,6,212098,201828,209744,208790,50936,43216,4998452,5020854,876,1319840,1319840,4885830,1121986,1121986,5031908,6,6,876]},"type":"sankey","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script><p>To overcome this issue, you will have to make sure that there is no overlapping between the variables label. Let’s modify the cases where <code>terminal</code> variable is set as <code>International</code> to <code>international</code> (<code>I</code> -&gt; <code>i</code>):</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">d</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">operating_airline</span> <span class="op">==</span> <span class="st">"United Airlines"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>terminal <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">terminal</span> <span class="op">==</span> <span class="st">"International"</span>, <span class="st">"international"</span>, <span class="va">terminal</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">operating_airline</span>,<span class="va">activity_type_code</span>, <span class="va">geo_summary</span>, <span class="va">geo_region</span>,  <span class="va">terminal</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span>total <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">passenger_count</span><span class="op">)</span>, .groups <span class="op">=</span> <span class="st">"drop"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="../reference/sankey_ly.html">sankey_ly</a></span><span class="op">(</span>cat_cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"operating_airline"</span>, <span class="st">"terminal"</span>,<span class="st">"geo_summary"</span>, <span class="st">"geo_region"</span>, <span class="st">"activity_type_code"</span><span class="op">)</span>, 
+            num_col <span class="op">=</span> <span class="st">"total"</span>,
+            title <span class="op">=</span> <span class="st">"Distribution of United Airlines Passengers at SFO During 2020"</span><span class="op">)</span></code></pre></div>
+<div id="htmlwidget-feae7756d2612b850f73" style="width:768px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-feae7756d2612b850f73">{"x":{"visdat":{"20af12e72cde":["function () ","plotlyVisDat"]},"cur_data":"20af12e72cde","attrs":{"20af12e72cde":{"orientation":"h","valueformat":".0f","node":{"label":["United Airlines","international","Terminal 3","Domestic","International","US","Asia","Australia / Oceania","Canada","Europe","Mexico","Middle East","Deplaned","Enplaned","Thru / Transit"],"pad":15,"thickness":30,"line":{"color":"black","width":0.5}},"link":{"source":[0,0,1,1,2,2,3,4,4,4,4,4,4,6,6,7,7,8,8,8,9,9,10,10,11,11,5,5,5],"target":[1,2,3,4,3,4,5,6,7,8,9,10,11,12,13,12,13,12,13,14,12,13,12,13,12,13,12,13,14],"value":[2441832,9918614,481596,1960236,9538586,380028,10020182,906632,315870,191150,413926,418534,94152,472982,433650,169676,146194,91782,99362,6,212098,201828,209744,208790,50936,43216,4998452,5020854,876]},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"sankey"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Distribution of United Airlines Passengers at SFO During 2020","hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"orientation":"h","valueformat":".0f","node":{"label":["United Airlines","international","Terminal 3","Domestic","International","US","Asia","Australia / Oceania","Canada","Europe","Mexico","Middle East","Deplaned","Enplaned","Thru / Transit"],"pad":15,"thickness":30,"line":{"color":"black","width":0.5}},"link":{"source":[0,0,1,1,2,2,3,4,4,4,4,4,4,6,6,7,7,8,8,8,9,9,10,10,11,11,5,5,5],"target":[1,2,3,4,3,4,5,6,7,8,9,10,11,12,13,12,13,12,13,14,12,13,12,13,12,13,12,13,14],"value":[2441832,9918614,481596,1960236,9538586,380028,10020182,906632,315870,191150,413926,418534,94152,472982,433650,169676,146194,91782,99362,6,212098,201828,209744,208790,50936,43216,4998452,5020854,876]},"type":"sankey","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
   </div>
 
@@ -215,11 +203,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Rami Krispin.</p>
+  <p></p>
+<p>Developed by Rami Krispin.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
 </div>
 
       </footer>
@@ -227,6 +217,8 @@
 
   
 
+
+  
 
   </body>
 </html>

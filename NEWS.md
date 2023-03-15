@@ -1,3 +1,7 @@
+# sfo 0.1.2
+
+* Updated the passengers data - up to Dec ### TODO ###
+
 # sfo 0.1.1
 
 * Updated the passengers data - up to Dec 2020 (including)

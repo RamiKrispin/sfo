@@ -1,7 +1,7 @@
 Package: sfo
 Type: Package
 Title: San Francisco International Airport Monthly Air Passengers
-Version: 0.1.1
+Version: 0.1.2
 Authors@R: person(given = "Rami", 
                     family ="Krispin", 
                     email = "rami.krispin@gmail.com",
@@ -21,5 +21,5 @@ Suggests:
     knitr,
     rmarkdown,
     tidyr (>= 1.0.0)
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 VignetteBuilder: knitr

@@ -17,18 +17,18 @@ knitr::opts_chunk$set(
 ```
 
 
-A Sankey diagram is a common method for visualizing a numeric variable's distribution across multiple categorical variables. The `sankey_ly` function is a wrapper for the [plotly Sankey](https://plotly.com/r/sankey-diagram/) functionality, enables fast plotting with no need for any data transformation.
+A Sankey diagram is a common method for visualizing a numeric variable's distribution across multiple categorical variables. The `sankey_ly` function is a wrapper for the [plotly Sankey](https://plotly.com/r/sankey-diagram/) functionality. It enables a fast creation of a Sankey diagram without the need for data transformation and node mapping.
 
 The function has the following arguments:
 
-* `x` - an aggregate data.frame object, must have at least two categorical variables and one numeric variable
+* `x` - aggregate data.frame object must have at least two categorical variables and one numeric variable
 * `cat_cols` - a  vector of at least two categorical columns names
 * `num_col` - a single numeric column name
-* `title` - optiona, enables to set title for the plot
+* `title` - optional, enables to set title for the plot
 
 ### Usage
 
-Let's see some use case of the function with the `sfo_passengers` dataset:
+Let's see some use cases of the function with the `sfo_passengers` dataset:
 
 ```{r setup}
 library(sfo)
@@ -38,12 +38,12 @@ data("sfo_passengers")
 str(sfo_passengers)
 ```
 
-In the case of the `sfo_passengers` dataset, ignoring the date indicator, we have one numeric variable - `passenger_count` and 10 categorical variables. For the following examples we will focus on total number of passengers during 2020, last full year in the dataset:
+In the case of the `sfo_passengers` dataset, ignoring the date indicator, we have one numeric variable - `passenger_count` and ten categorical variables. For the following examples, we will focus on the total number of passengers during 2022, the last full year in the dataset:
 
 ```{r}
 library(dplyr)
 
-d <- sfo_passengers %>% filter(activity_period >= 202001 & activity_period < 202101)
+d <- sfo_passengers %>% filter(activity_period >= 202201 & activity_period < 202301)
 ```
 
 Now, we can start explore the distribution of the passengers by different categorical variables combination. Let's start with a simplistic example, plotting the distribution of passengers by `geo_sumary` and `geo_region`. The `sunkey_ly` function required that the data will be aggregated by the categorical variables:
@@ -61,10 +61,11 @@ Now, as the data is ready, we visualize the data:
 sankey_ly(x = d1, 
           cat_cols = c("geo_summary", "geo_region"), 
           num_col = "total", 
-          title = "Distribution of Passengers by Geo Type and Region")
+          title = "Distribution of Passengers by Geo Type and Region During 2022")
 ```
 
-In a similar manner we can add additional variables.
+Similarly, we can add additional variables:
+
 ```{r}
 d %>% 
   filter(operating_airline == "United Airlines") %>%
@@ -72,13 +73,13 @@ d %>%
   summarise(total = sum(passenger_count), .groups = "drop") %>%
   sankey_ly(cat_cols = c("operating_airline", "geo_summary", "geo_region", "activity_type_code"), 
             num_col = "total",
-            title = "Distribution of United Airlines Passengers at SFO During 2020")
+            title = "Distribution of United Airlines Passengers at SFO During 2022")
 ```
 
 
 ### Failure!
 
-Here is some pitful you should be aware of, the function is sensitive for the categorical variables name. It will fail to map the different categories correctly if two variables share the same unique label. The following example, where both the `geo_summary` and `terminal` variables share the label `international`, demonstrates this issue:
+Here is some pitful you should be aware of, the function is sensitive to the categorical variables' names. If two variables share the same unique label, it will fail to map the different categories correctly. The following example, where both the `geo_summary` and `terminal` variables share the label `international`, demonstrates this issue:
 
 ```{r}
 d %>% 
@@ -87,10 +88,10 @@ d %>%
   summarise(total = sum(passenger_count), .groups = "drop") %>%
   sankey_ly(cat_cols = c("operating_airline", "geo_summary", "geo_region", "activity_type_code", "terminal"), 
             num_col = "total",
-            title = "Distribution of United Airlines Passengers at SFO During 2020")
+            title = "Distribution of United Airlines Passengers at SFO During 2022")
 ``` 
 
-To overcome this issue, you will have to make sure that there is no overlapping between the variables label. Let's modify the cases where `terminal` variable is set as `International` to `international` (`I` -> `i`):
+To overcome this issue, you will have to ensure no overlapping between the variables' labels. Let's modify the cases where the terminal variable is set as `International` to `international` (`I` -> `i`):
 
 ```{r}
 d %>% 
@@ -100,5 +101,5 @@ d %>%
   summarise(total = sum(passenger_count), .groups = "drop") %>%
   sankey_ly(cat_cols = c("operating_airline", "terminal","geo_summary", "geo_region", "activity_type_code"), 
             num_col = "total",
-            title = "Distribution of United Airlines Passengers at SFO During 2020")
+            title = "Distribution of United Airlines Passengers at SFO During 2022")
 ``` 

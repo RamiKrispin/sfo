@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-The `sfo_passengers` dataset provides monthly statistics about the air traffic passengers in San Francisco International Airport between July 2005 and December 2020. The focus of this vignette is on an exploratory analysis approaches for this dataset.
+The `sfo_passengers` dataset provides monthly statistics about the air traffic passengers at San Francisco International Airport (SFO) between July 2005 and December 2022. This vignette focuses on exploratory analysis approaches for this dataset.
 
 ### Data prep
 
@@ -28,7 +28,7 @@ library(sfo)
 data("sfo_passengers")
 ```
 
-For simplicity, let's use a shorter name , `d`, for the dataset:
+For simplicity, let's use a shorter name, `d`, for the dataset:
 
 ```{r}
 
@@ -46,7 +46,7 @@ str(d)
 
 ```
 
-The `activity_period` variable provides the year-month of the observation using integer format. That is convenient if we want to filter by year and month, but less convenient if we want to plot the data as time series. Therefore, we will reformat the variable from YYYYMM to YYYYMMDD, setting the month's day as 1st with the `as.Date` function:
+The `activity_period` variable provides the year-month of the observation using integer format. That is convenient if we filter by year and month, but less convenient if we want to plot the data as time series. Therefore, we will reformat the variable from YYYYMM to YYYYMMDD, setting the month's day as 1st with the `as.Date` function:
 
 ```{r}
 d$date <- as.Date(paste(substr(d$activity_period, 1,4), substr(d$activity_period, 5,6), "01", sep ="/"))
@@ -60,11 +60,11 @@ max(d$date)
 
 ### Exploratory analysis
 
-After we reviewed and reformat the data, we can start explore the data and answer some questions such as:
+After we reviewed and reformatted the data, we can start exploring the data and answer some questions such as:
 
 -   The monthly number of passengers at SFO
 
--   The airlines distribution
+-   The airlines' distribution
 
 -   The geographic distribution of the passengers
 
@@ -94,7 +94,7 @@ plot_ly(data = d_total,
 
 ```
 
-The covid19 pandemic effect can be seen in the series above, as the number of passengers had a sharp drop in March 2020.
+The COVID-19 pandemic effect can be seen in the series above, as the number of passengers sharply dropped in March 2020.
 
 Likewise, we can aggregate the data by the activity type (arrival, departure, transit):
 
@@ -153,17 +153,17 @@ plot_ly(data = d_geo,
 
 ```
 
-As expected, the distribution of passengers by geo type changed since the start of the covid19 pandemic, increasing domestic flights' proportion.
+As expected, the distribution of passengers by geo type has changed since the start of the COVID-19 pandemic, increasing domestic flights' proportion.
 
 #### Airlines Analysis
 
 The dataset provides two indicators about the airline company:
 
--   `operating_airline` filed describes the aircraft operator name, and
+-   `operating_airline` field describes the aircraft operator's name, and
 
 -   `published_airline` filed describes the name of the airline that issues the ticket and books revenue
 
-In most of the cases it is the same company, in other cases, such as code-sharing operator it may two different companies. Let’s review the characteristics of those variables:
+In most cases, it is the same company. In other cases, such as code-sharing operators, it could be two different companies. Let's review the characteristics of those variables:
 
 ```{r}
 
@@ -178,11 +178,11 @@ sort(unique(d$operating_airline))
 
 ```
 
-The main thing that immediately pops out of this list that United Airlines, the main carrier at SFO, listed twice as `United Airlines` and `United Airlines - Pre 07/01/2013`. I could not find any reference that explains the second label. If analyzing data before July 2013, I would relabel those cases as `United Airlines`. For this analysis we will focus on 2019, the most recent full year. Let's start by filtering the data for 2019 flights:
+The main thing that immediately pops out of this list is that United Airlines, the main carrier at SFO, is listed twice as `United Airlines` and `United Airlines - Pre 07/01/2013`. I could not find any reference that explains the second label. If analyzing data before July 2013, I would relabel those cases as `United Airlines`. For this analysis, we will focus on 2022, the most recent full year. Let's start by filtering the data for 2022 flights:
 
 ```{r}
 
-d19 <- d %>% filter(activity_period >= 201901 & activity_period < 202001) %>%
+d22 <- d %>% filter(activity_period >= 202201 & activity_period < 202301) %>%
   group_by(published_airline, geo_summary) %>%
   summarise(total = sum(passenger_count), .groups = "drop")
 
@@ -192,17 +192,17 @@ Before we summarize the data by airlines, let's see the distribution of flights 
 
 ```{r}
 
-d19 %>% group_by(geo_summary) %>%
+d22 %>% group_by(geo_summary) %>%
   summarise(total_geo = sum(total)) %>%
   plot_ly(labels = ~ geo_summary,
           values = ~ total_geo) %>%
   add_pie(hole = 0.6)
 ```
 
-Close 75% of the air passenger traffic in SFO during 2019 were domestic. That is 42M passengers out of 57.4M passengers. Let’s use a treemap plot to see the distribution of passengers by airline and geo:
+More than 75% of the air passenger traffic in SFO during 2022 were domestic. That is close to 47M passengers out of 60.8M passengers. Let’s use a treemap plot to see the distribution of passengers by airline and geo:
 
 ```{r}
-  plot_ly(data = d19 %>% filter(geo_summary == "Domestic"),
+  plot_ly(data = d22 %>% filter(geo_summary == "Domestic"),
           labels = ~ published_airline, 
           values = ~ total,
           type = "treemap",
@@ -210,7 +210,7 @@ Close 75% of the air passenger traffic in SFO during 2019 were domestic. That is
           domain = list(row=0),
           name = "Domestic",
           textinfo="label+value+percent parent") %>%
-    add_trace(data = d19 %>% filter(geo_summary == "International"),
+    add_trace(data = d22 %>% filter(geo_summary == "International"),
             labels = ~ published_airline, 
             values = ~ total,
             type = "treemap",
@@ -218,17 +218,17 @@ Close 75% of the air passenger traffic in SFO during 2019 were domestic. That is
             domain = list(row=1),
             name = "International",
             textinfo="label+value+percent parent") %>%
-    layout(title = "Passengers Distribution During 2019 by Geo",
+    layout(title = "Passengers Distribution During 2022 by Geo",
       grid=list(columns=1, rows=2))
 ```
 
 ### Air Traffic Summary
 
-Last but not least, it would be interesting to leverage the different categorical variables to create a summary plot with Sankey. We will use the `sankey_ly` function, a **plotly** wrapper that automatically creates the data transformation and a Sankey plot with **plotly**. We will rank the top 20 airlines during 2019 and plot the passengers' distribution by the airline, travel type (domestic or international), travel geo, activity type (deplaned, enplaned, and transit), and fare type (low or other):
+Last but not least, it would be interesting to leverage the different categorical variables to create a summary plot with Sankey. We will use the `sankey_ly` function, a **plotly** wrapper that automatically creates the data transformation and a Sankey plot with **plotly**. We will rank the top 20 airlines during 2022 and plot the passengers' distribution by the airline, travel type (domestic or international), travel geo, activity type (deplaned, enplaned, and transit), and fare type (low or other):
 
 ```{r}
 rank <- sfo_passengers %>%
-  filter(activity_period >= 201901 & activity_period <= 201912) %>%
+  filter(activity_period >= 202201 & activity_period <= 202212) %>%
   group_by(operating_airline) %>%
   summarise(total = sum(passenger_count), .groups = "drop") %>%
   arrange(-total) %>%
@@ -237,7 +237,7 @@ rank <- sfo_passengers %>%
 
 
 sfo_passengers %>%
-  filter(activity_period >= 201901 & activity_period <= 201912, operating_airline %in% rank$operating_airline) %>%
+  filter(activity_period >= 202201 & activity_period <= 202212, operating_airline %in% rank$operating_airline) %>%
   group_by(operating_airline, geo_summary, geo_region, activity_type_code, 
            price_category_code, terminal) %>%
   summarise(total = sum(passenger_count), .groups = "drop") %>%
@@ -245,6 +245,6 @@ sfo_passengers %>%
                       "geo_region", "activity_type_code",
                       "price_category_code"),
           num_col = "total",
-          title = "SFO Air Traffic Passenger Dist. During 2019")
+          title = "SFO Air Traffic Passengers Dist. During 2022")
 ```
 

@@ -31,7 +31,7 @@ The `sfo_passengers` dataset focuses on monthly air passengers statistics, and i
 -   `geo_summary` -The flights' classification by `domestic` for flights that arrived from or departed to a destination within the United States and `international` for destinations outside the United States
 -   `geo_region` - The flight origin/destination geographic region details
 -   `activity_type_code` -A description of the physical action a passenger took in relation to a flight, which includes boarding a flight ("enplanements"), getting off a flight ("deplanements") and transiting to another location ("intransit")
--   `price_category_code` -A categorization of whether a Published Airline is a low-cost carrier or not a low-cost carrier}
+-   `price_category_code` -A categorization of whether a Published Airline is a low-cost carrier or not a low-cost carrier
 -   `terminal` -The airport's terminal designations at SFO where passenger activity took place
 -   `boarding_area` -The airport's boarding area designations at SFO where passenger activity took place
 -   `passenger_count` -The number of monthly passengers associated with the above attribute fields

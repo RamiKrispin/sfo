@@ -36,7 +36,8 @@ d \%>\%
   mutate(terminal = ifelse(terminal == "International", "international", terminal)) \%>\%
   group_by(operating_airline,activity_type_code, geo_summary, geo_region,  terminal) \%>\%
   summarise(total = sum(passenger_count), .groups = "drop") \%>\%
-  sankey_ly(cat_cols = c("operating_airline", "terminal","geo_summary", "geo_region", "activity_type_code"),
+  sankey_ly(cat_cols = c("operating_airline", "terminal","geo_summary",
+                         "geo_region", "activity_type_code"),
             num_col = "total",
             title = "Distribution of United Airlines Passengers at SFO During 2022")
 }

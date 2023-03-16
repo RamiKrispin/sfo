@@ -8,16 +8,16 @@
 A data frame with 12 variables.
 \describe{
   \item{activity_period}{Activity year and month in YYYYMM format}
-  \item{operating_airline}{Airline name for the operator of aircraft}
+  \item{operating_airline}{Airline name for the aircraft operator}
   \item{operating_airline_iata_code}{The International Air Transport Association (IATA) two-letter designation for the Operating Airline}
   \item{published_airline}{Airline name that issues the ticket and books revenue for passenger activity}
   \item{published_airline_iata_code}{The International Air Transport Association (IATA) two-letter designation for the Published Airline}
-  \item{geo_summary}{Designates whether the passenger activity in relation to SFO arrived from or departed to a location within the United States (“domestic”), or outside the United States (“international”) without stops}
-  \item{geo_region}{Provides a more detailed breakdown of the GEO Summary field to designate the region in the world where activity in relation to SFO arrived from or departed to without stops}
+  \item{geo_summary}{The flights’ classification by domestic for flights that arrived from or departed to a destination within the United States and international for destinations outside the United States}
+  \item{geo_region}{The flight origin/destination geographic region details}
   \item{activity_type_code}{A description of the physical action a passenger took in relation to a flight, which includes boarding a flight (“enplanements”), getting off a flight (“deplanements”) and transiting to another location (“intransit”)}
   \item{price_category_code}{A categorization of whether a Published Airline is a low-cost carrier or not a low-cost carrier}
-  \item{terminal}{The airport terminal designations at SFO where passenger activity took place}
-  \item{boarding_area}{The airport boarding area designations at SFO where passenger activity took place}
+  \item{terminal}{The airport’s terminal designations at SFO where passenger activity took place}
+  \item{boarding_area}{The airport’s boarding area designations at SFO where passenger activity took place}
   \item{passenger_count}{The number of monthly passengers associated with the above attribute fields}
 
   }

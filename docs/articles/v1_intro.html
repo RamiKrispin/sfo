@@ -90,7 +90,7 @@
 
     
     
-<p>The <strong>sfo</strong> package provides a monthly statistics of San Francisco International (SFO) airport air traffic between July 2005 and December 2020. That includes the following two datasets:</p>
+<p>The <strong>sfo</strong> package provides monthly statistics of San Francisco International (SFO) airport air traffic between July 2005 and December 2022. That includes the following two datasets:</p>
 <ul>
 <li>
 <code>sfo_passengers</code> - air traffic passengers statistics</li>
@@ -100,12 +100,12 @@
 <div class="section level3">
 <h3 id="sfo_passengers">sfo_passengers<a class="anchor" aria-label="anchor" href="#sfo_passengers"></a>
 </h3>
-<p>The <code>sfo_passengers</code> dataset focusing on monthly air passengers statistics, and it contains the following fields:</p>
+<p>The <code>sfo_passengers</code> dataset focuses on monthly air passengers statistics, and it contains the following fields:</p>
 <ul>
 <li>
 <code>activity_period</code> - Activity year and month in YYYYMM format</li>
 <li>
-<code>operating_airline</code> -Airline name for the operator of aircraft</li>
+<code>operating_airline</code> -Airline name for the aircraft operator</li>
 <li>
 <code>operating_airline_iata_code</code> -The International Air Transport Association (IATA) two-letter designation for the Operating Airline</li>
 <li>
@@ -113,17 +113,17 @@
 <li>
 <code>published_airline_iata_code</code> -The International Air Transport Association (IATA) two-letter designation for the Published Airline</li>
 <li>
-<code>geo_summary</code> -Designates whether the passenger activity in relation to SFO arrived from or departed to a location within the United States (“domestic”), or outside the United States (“international”) without stops</li>
+<code>geo_summary</code> -The flights’ classification by <code>domestic</code> for flights that arrived from or departed to a destination within the United States and <code>international</code> for destinations outside the United States</li>
 <li>
-<code>geo_region</code> -Provides a more detailed breakdown of the GEO Summary field to designate the region in the world where activity in relation to SFO arrived from or departed to without stops</li>
+<code>geo_region</code> - The flight origin/destination geographic region details</li>
 <li>
 <code>activity_type_code</code> -A description of the physical action a passenger took in relation to a flight, which includes boarding a flight (“enplanements”), getting off a flight (“deplanements”) and transiting to another location (“intransit”)</li>
 <li>
 <code>price_category_code</code> -A categorization of whether a Published Airline is a low-cost carrier or not a low-cost carrier}</li>
 <li>
-<code>terminal</code> -The airport terminal designations at SFO where passenger activity took place</li>
+<code>terminal</code> -The airport’s terminal designations at SFO where passenger activity took place</li>
 <li>
-<code>boarding_area</code> -The airport boarding area designations at SFO where passenger activity took place</li>
+<code>boarding_area</code> -The airport’s boarding area designations at SFO where passenger activity took place</li>
 <li>
 <code>passenger_count</code> -The number of monthly passengers associated with the above attribute fields</li>
 </ul>
@@ -134,59 +134,59 @@
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"sfo_passengers"</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">sfo_passengers</span><span class="op">)</span>
-<span class="co">#&gt; 'data.frame':    45738 obs. of  12 variables:</span>
-<span class="co">#&gt;  $ activity_period            : int  202012 202012 202012 202012 202012 202012 202012 202012 202012 202012 ...</span>
-<span class="co">#&gt;  $ operating_airline          : chr  "Air Canada" "Air Canada" "Air France" "Air France" ...</span>
-<span class="co">#&gt;  $ operating_airline_iata_code: chr  "AC" "AC" "AF" "AF" ...</span>
-<span class="co">#&gt;  $ published_airline          : chr  "Air Canada" "Air Canada" "Air France" "Air France" ...</span>
-<span class="co">#&gt;  $ published_airline_iata_code: chr  "AC" "AC" "AF" "AF" ...</span>
+<span class="co">#&gt; 'data.frame':    50730 obs. of  12 variables:</span>
+<span class="co">#&gt;  $ activity_period            : int  202212 202212 202212 202212 202212 202212 202212 202212 202212 202212 ...</span>
+<span class="co">#&gt;  $ operating_airline          : chr  "EVA Airways" "EVA Airways" "Emirates" "Emirates" ...</span>
+<span class="co">#&gt;  $ operating_airline_iata_code: chr  "BR" "BR" "EK" "EK" ...</span>
+<span class="co">#&gt;  $ published_airline          : chr  "EVA Airways" "EVA Airways" "Emirates" "Emirates" ...</span>
+<span class="co">#&gt;  $ published_airline_iata_code: chr  "BR" "BR" "EK" "EK" ...</span>
 <span class="co">#&gt;  $ geo_summary                : chr  "International" "International" "International" "International" ...</span>
-<span class="co">#&gt;  $ geo_region                 : chr  "Canada" "Canada" "Europe" "Europe" ...</span>
+<span class="co">#&gt;  $ geo_region                 : chr  "Asia" "Asia" "Middle East" "Middle East" ...</span>
 <span class="co">#&gt;  $ activity_type_code         : chr  "Deplaned" "Enplaned" "Deplaned" "Enplaned" ...</span>
 <span class="co">#&gt;  $ price_category_code        : chr  "Other" "Other" "Other" "Other" ...</span>
 <span class="co">#&gt;  $ terminal                   : chr  "International" "International" "International" "International" ...</span>
 <span class="co">#&gt;  $ boarding_area              : chr  "G" "G" "A" "A" ...</span>
-<span class="co">#&gt;  $ passenger_count            : int  2602 2099 759 1214 4544 4830 10830 11896 4157 4993 ...</span>
+<span class="co">#&gt;  $ passenger_count            : int  12405 15151 13131 14985 2543 2883 1772 1370 2817 1987 ...</span>
 
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">sfo_passengers</span><span class="op">)</span>
-<span class="co">#&gt;   activity_period operating_airline operating_airline_iata_code</span>
-<span class="co">#&gt; 1          202012        Air Canada                          AC</span>
-<span class="co">#&gt; 2          202012        Air Canada                          AC</span>
-<span class="co">#&gt; 3          202012        Air France                          AF</span>
-<span class="co">#&gt; 4          202012        Air France                          AF</span>
-<span class="co">#&gt; 5          202012 Air India Limited                          AI</span>
-<span class="co">#&gt; 6          202012 Air India Limited                          AI</span>
-<span class="co">#&gt;   published_airline published_airline_iata_code   geo_summary geo_region</span>
-<span class="co">#&gt; 1        Air Canada                          AC International     Canada</span>
-<span class="co">#&gt; 2        Air Canada                          AC International     Canada</span>
-<span class="co">#&gt; 3        Air France                          AF International     Europe</span>
-<span class="co">#&gt; 4        Air France                          AF International     Europe</span>
-<span class="co">#&gt; 5 Air India Limited                          AI International       Asia</span>
-<span class="co">#&gt; 6 Air India Limited                          AI International       Asia</span>
+<span class="co">#&gt;   activity_period    operating_airline operating_airline_iata_code</span>
+<span class="co">#&gt; 1          202212          EVA Airways                          BR</span>
+<span class="co">#&gt; 2          202212          EVA Airways                          BR</span>
+<span class="co">#&gt; 3          202212             Emirates                          EK</span>
+<span class="co">#&gt; 4          202212             Emirates                          EK</span>
+<span class="co">#&gt; 5          202212 Flair Airlines, Ltd.                          F8</span>
+<span class="co">#&gt; 6          202212 Flair Airlines, Ltd.                          F8</span>
+<span class="co">#&gt;      published_airline published_airline_iata_code   geo_summary  geo_region</span>
+<span class="co">#&gt; 1          EVA Airways                          BR International        Asia</span>
+<span class="co">#&gt; 2          EVA Airways                          BR International        Asia</span>
+<span class="co">#&gt; 3             Emirates                          EK International Middle East</span>
+<span class="co">#&gt; 4             Emirates                          EK International Middle East</span>
+<span class="co">#&gt; 5 Flair Airlines, Ltd.                          F8 International      Canada</span>
+<span class="co">#&gt; 6 Flair Airlines, Ltd.                          F8 International      Canada</span>
 <span class="co">#&gt;   activity_type_code price_category_code      terminal boarding_area</span>
 <span class="co">#&gt; 1           Deplaned               Other International             G</span>
 <span class="co">#&gt; 2           Enplaned               Other International             G</span>
 <span class="co">#&gt; 3           Deplaned               Other International             A</span>
 <span class="co">#&gt; 4           Enplaned               Other International             A</span>
-<span class="co">#&gt; 5           Deplaned               Other International             G</span>
-<span class="co">#&gt; 6           Enplaned               Other International             G</span>
+<span class="co">#&gt; 5           Deplaned            Low Fare International             A</span>
+<span class="co">#&gt; 6           Enplaned            Low Fare International             A</span>
 <span class="co">#&gt;   passenger_count</span>
-<span class="co">#&gt; 1            2602</span>
-<span class="co">#&gt; 2            2099</span>
-<span class="co">#&gt; 3             759</span>
-<span class="co">#&gt; 4            1214</span>
-<span class="co">#&gt; 5            4544</span>
-<span class="co">#&gt; 6            4830</span></code></pre></div>
+<span class="co">#&gt; 1           12405</span>
+<span class="co">#&gt; 2           15151</span>
+<span class="co">#&gt; 3           13131</span>
+<span class="co">#&gt; 4           14985</span>
+<span class="co">#&gt; 5            2543</span>
+<span class="co">#&gt; 6            2883</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="sfo_stats">sfo_stats<a class="anchor" aria-label="anchor" href="#sfo_stats"></a>
 </h3>
-<p>The <code>sfo_stats</code> dataset focusing on monthly landing statistics, and it contains the following fields:</p>
+<p>The <code>sfo_stats</code> dataset focuses on monthly landing statistics, and it contains the following fields:</p>
 <ul>
 <li>
 <code>activity_period</code> - Activity year and month in YYYYMM format</li>
 <li>
-<code>operating_airline</code> -Airline name for the operator of aircraft</li>
+<code>operating_airline</code> -Airline name for the aircraft operator</li>
 <li>
 <code>operating_airline_iata_code</code> -The International Air Transport Association (IATA) two-letter designation for the Operating Airline</li>
 <li>
@@ -194,13 +194,13 @@
 <li>
 <code>published_airline_iata_code</code> -The International Air Transport Association (IATA) two-letter designation for the Published Airline</li>
 <li>
-<code>geo_summary</code> -Designates whether the passenger activity in relation to SFO arrived from or departed to a location within the United States (“domestic”), or outside the United States (“international”) without stops</li>
+<code>geo_summary</code> -The flights’ classification by <code>domestic</code> for flights that arrived from or departed to a destination within the United States and <code>international</code> for destinations outside the United States</li>
 <li>
-<code>geo_region</code> -Provides a more detailed breakdown of the GEO Summary field to designate the region in the world where activity in relation to SFO arrived from or departed to without stops</li>
+<code>geo_region</code> - The flight origin/destination geographic region details</li>
 <li>
-<code>landing_aircraft_type</code> - A designation for three types of aircraft that landed at SFO, which includes passenger aircraft, cargo only aircraft (“freighters”) or combination aircraft (“combi”)</li>
+<code>landing_aircraft_type</code> - A designation for three types of aircraft that landed at SFO, which includes passenger aircraft, cargo-only aircraft (“freighters”), or combination aircraft (“combi”)</li>
 <li>
-<code>aircraft_body_type</code> - A designation that is independent from Landing Aircraft Type, which determines whether commercial aircraft landed at SFO is a wide body jet, narrow body jet, regional jet or a propeller operated aircraft</li>
+<code>aircraft_body_type</code> - A designation that is independent from Landing Aircraft Type, which determines whether commercial aircraft landed at SFO is a wide body-jet, narrow-body jet, regional-jet or a propeller operated aircraft</li>
 <li>
 <code>aircraft_manufacturer</code> - Manufacturer name for the aircraft that landed at SFO</li>
 <li>
@@ -219,51 +219,51 @@
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"sfo_stats"</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">sfo_stats</span><span class="op">)</span>
-<span class="co">#&gt; 'data.frame':    51530 obs. of  14 variables:</span>
-<span class="co">#&gt;  $ activity_period            : int  202012 202012 202012 202012 202012 202012 202012 202012 202012 202012 ...</span>
-<span class="co">#&gt;  $ operating_airline          : chr  "SkyWest Airlines" "SkyWest Airlines" "SkyWest Airlines" "SkyWest Airlines" ...</span>
-<span class="co">#&gt;  $ operating_airline_iata_code: chr  "OO" "OO" "OO" "OO" ...</span>
-<span class="co">#&gt;  $ published_airline          : chr  "Alaska Airlines" "United Airlines" "United Airlines" "Delta Air Lines" ...</span>
-<span class="co">#&gt;  $ published_airline_iata_code: chr  "AS" "UA" "UA" "DL" ...</span>
-<span class="co">#&gt;  $ geo_summary                : chr  "Domestic" "International" "Domestic" "Domestic" ...</span>
-<span class="co">#&gt;  $ geo_region                 : chr  "US" "Canada" "US" "US" ...</span>
+<span class="co">#&gt; 'data.frame':    57381 obs. of  14 variables:</span>
+<span class="co">#&gt;  $ activity_period            : int  202212 202212 202212 202212 202212 202212 202212 202212 202212 202212 ...</span>
+<span class="co">#&gt;  $ operating_airline          : chr  "Air Canada" "Delta Air Lines" "Delta Air Lines" "WestJet Airlines" ...</span>
+<span class="co">#&gt;  $ operating_airline_iata_code: chr  "AC" "DL" "DL" "WS" ...</span>
+<span class="co">#&gt;  $ published_airline          : chr  "Air Canada" "Delta Air Lines" "Delta Air Lines" "WestJet Airlines" ...</span>
+<span class="co">#&gt;  $ published_airline_iata_code: chr  "AC" "DL" "DL" "WS" ...</span>
+<span class="co">#&gt;  $ geo_summary                : chr  "International" "Domestic" "Domestic" "International" ...</span>
+<span class="co">#&gt;  $ geo_region                 : chr  "Canada" "US" "US" "Canada" ...</span>
 <span class="co">#&gt;  $ landing_aircraft_type      : chr  "Passenger" "Passenger" "Passenger" "Passenger" ...</span>
-<span class="co">#&gt;  $ aircraft_body_type         : chr  "Regional Jet" "Regional Jet" "Regional Jet" "Regional Jet" ...</span>
-<span class="co">#&gt;  $ aircraft_manufacturer      : chr  "Embraer" "Bombardier" "Bombardier" "Bombardier" ...</span>
-<span class="co">#&gt;  $ aircraft_model             : chr  "E175" "CRJ7" "CRJ7" "CRJ7" ...</span>
+<span class="co">#&gt;  $ aircraft_body_type         : chr  "Wide Body" "Narrow Body" "Narrow Body" "Narrow Body" ...</span>
+<span class="co">#&gt;  $ aircraft_manufacturer      : chr  "Boeing" "Airbus" "Airbus" "Boeing" ...</span>
+<span class="co">#&gt;  $ aircraft_model             : chr  "B773" "A319" "A320" "B38M" ...</span>
 <span class="co">#&gt;  $ aircraft_version           : chr  "-" "-" "-" "-" ...</span>
-<span class="co">#&gt;  $ landing_count              : int  898 1 151 1 61 486 22 8 11 10 ...</span>
-<span class="co">#&gt;  $ total_landed_weight        : int  67311386 67000 10117000 67000 4087000 22842000 1034000 3615576 4495223 4563570 ...</span>
+<span class="co">#&gt;  $ landing_count              : int  1 163 43 5 5 3 22 33 19 269 ...</span>
+<span class="co">#&gt;  $ total_landed_weight        : int  554000 22459444 6114514 764000 646000 438900 8360000 5660127 2779700 42313700 ...</span>
 
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">sfo_stats</span><span class="op">)</span>
 <span class="co">#&gt;   activity_period operating_airline operating_airline_iata_code</span>
-<span class="co">#&gt; 1          202012  SkyWest Airlines                          OO</span>
-<span class="co">#&gt; 2          202012  SkyWest Airlines                          OO</span>
-<span class="co">#&gt; 3          202012  SkyWest Airlines                          OO</span>
-<span class="co">#&gt; 4          202012  SkyWest Airlines                          OO</span>
-<span class="co">#&gt; 5          202012  SkyWest Airlines                          OO</span>
-<span class="co">#&gt; 6          202012  SkyWest Airlines                          OO</span>
+<span class="co">#&gt; 1          202212        Air Canada                          AC</span>
+<span class="co">#&gt; 2          202212   Delta Air Lines                          DL</span>
+<span class="co">#&gt; 3          202212   Delta Air Lines                          DL</span>
+<span class="co">#&gt; 4          202212  WestJet Airlines                          WS</span>
+<span class="co">#&gt; 5          202212  WestJet Airlines                          WS</span>
+<span class="co">#&gt; 6          202212  WestJet Airlines                          WS</span>
 <span class="co">#&gt;   published_airline published_airline_iata_code   geo_summary geo_region</span>
-<span class="co">#&gt; 1   Alaska Airlines                          AS      Domestic         US</span>
-<span class="co">#&gt; 2   United Airlines                          UA International     Canada</span>
-<span class="co">#&gt; 3   United Airlines                          UA      Domestic         US</span>
-<span class="co">#&gt; 4   Delta Air Lines                          DL      Domestic         US</span>
-<span class="co">#&gt; 5 American Airlines                          AA      Domestic         US</span>
-<span class="co">#&gt; 6   United Airlines                          UA      Domestic         US</span>
+<span class="co">#&gt; 1        Air Canada                          AC International     Canada</span>
+<span class="co">#&gt; 2   Delta Air Lines                          DL      Domestic         US</span>
+<span class="co">#&gt; 3   Delta Air Lines                          DL      Domestic         US</span>
+<span class="co">#&gt; 4  WestJet Airlines                          WS International     Canada</span>
+<span class="co">#&gt; 5  WestJet Airlines                          WS International     Canada</span>
+<span class="co">#&gt; 6  WestJet Airlines                          WS International     Canada</span>
 <span class="co">#&gt;   landing_aircraft_type aircraft_body_type aircraft_manufacturer aircraft_model</span>
-<span class="co">#&gt; 1             Passenger       Regional Jet               Embraer           E175</span>
-<span class="co">#&gt; 2             Passenger       Regional Jet            Bombardier           CRJ7</span>
-<span class="co">#&gt; 3             Passenger       Regional Jet            Bombardier           CRJ7</span>
-<span class="co">#&gt; 4             Passenger       Regional Jet            Bombardier           CRJ7</span>
-<span class="co">#&gt; 5             Passenger       Regional Jet            Bombardier           CRJ7</span>
-<span class="co">#&gt; 6             Passenger       Regional Jet            Bombardier           CRJ2</span>
+<span class="co">#&gt; 1             Passenger          Wide Body                Boeing           B773</span>
+<span class="co">#&gt; 2             Passenger        Narrow Body                Airbus           A319</span>
+<span class="co">#&gt; 3             Passenger        Narrow Body                Airbus           A320</span>
+<span class="co">#&gt; 4             Passenger        Narrow Body                Boeing           B38M</span>
+<span class="co">#&gt; 5             Passenger        Narrow Body                Boeing           B737</span>
+<span class="co">#&gt; 6             Passenger        Narrow Body                Boeing           B738</span>
 <span class="co">#&gt;   aircraft_version landing_count total_landed_weight</span>
-<span class="co">#&gt; 1                -           898            67311386</span>
-<span class="co">#&gt; 2                -             1               67000</span>
-<span class="co">#&gt; 3                -           151            10117000</span>
-<span class="co">#&gt; 4                -             1               67000</span>
-<span class="co">#&gt; 5                -            61             4087000</span>
-<span class="co">#&gt; 6                -           486            22842000</span></code></pre></div>
+<span class="co">#&gt; 1                -             1              554000</span>
+<span class="co">#&gt; 2                -           163            22459444</span>
+<span class="co">#&gt; 3                -            43             6114514</span>
+<span class="co">#&gt; 4                -             5              764000</span>
+<span class="co">#&gt; 5                -             5              646000</span>
+<span class="co">#&gt; 6                -             3              438900</span></code></pre></div>
 </div>
   </div>
 

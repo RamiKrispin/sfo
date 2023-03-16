@@ -5,20 +5,18 @@
 
 <!-- badges: start -->
 
-[![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/sfo)](https://cran.r-project.org/package=sfo)
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/sfo)](https://cran.r-project.org/package=sfo)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![License:
-MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/license/mit/)
 [![GitHub
 commit](https://img.shields.io/github/last-commit/RamiKrispin/sfo)](https://github.com/RamiKrispin/sfo/commit/main)
 
 <!-- badges: end -->
 
-The **sfo** package provides summary statistics of the monthly
-passengers and landing in San Francisco International Airport (SFO)
-between 2005 and 2020.
-
-Data source: San Francisco data portal - [DataSF
+The **sfo** package summarizes the monthly air passengers and landings
+at San Francisco International Airport (SFO) between 2005 and 2022. Data
+source: San Francisco data portal - [DataSF
 API](https://datasf.org/opendata/)
 
 <img src="man/figures/total.svg" width="90%"/>
@@ -43,14 +41,14 @@ devtools::install_github("RamiKrispin/sfo", ref = "main")
 The **sfo** package provides the following two datasets:
 
 -   `sfo_passengers` - air traffic passengers statistics
--   `sfo_stats` - air traffic landing statistics
+-   `sfo_stats` - air traffic landings statistics
 
-More information about the datasets available on the following
+More information about the datasets is available in the following
 [vignette](https://ramikrispin.github.io/sfo/articles/v1_intro.html).
 
 ### Examples
 
-The `sfo_passengers` dataset provides a monthly summary of the number of
+The `sfo_passengers` dataset provides monthly summary of the number of
 passengers in SFO airport by different categories (such as terminal,
 geo, type, etc.):
 
@@ -60,43 +58,71 @@ library(sfo)
 data("sfo_passengers")
 
 head(sfo_passengers)
-#>   activity_period operating_airline operating_airline_iata_code published_airline published_airline_iata_code   geo_summary          geo_region activity_type_code price_category_code      terminal
-#> 1          202012   United Airlines                          UA   United Airlines                          UA      Domestic                  US           Enplaned               Other    Terminal 3
-#> 2          202012   United Airlines                          UA   United Airlines                          UA      Domestic                  US     Thru / Transit               Other    Terminal 3
-#> 3          202012   United Airlines                          UA   United Airlines                          UA International                Asia           Deplaned               Other International
-#> 4          202012   United Airlines                          UA   United Airlines                          UA International                Asia           Enplaned               Other International
-#> 5          202012   United Airlines                          UA   United Airlines                          UA International Australia / Oceania           Deplaned               Other International
-#> 6          202012   United Airlines                          UA   United Airlines                          UA International Australia / Oceania           Enplaned               Other International
-#>   boarding_area passenger_count
-#> 1             F          117260
-#> 2             F              61
-#> 3             G           12763
-#> 4             G           16050
-#> 5             G            2733
-#> 6             G            2878
+#>   activity_period    operating_airline operating_airline_iata_code
+#> 1          202212          EVA Airways                          BR
+#> 2          202212          EVA Airways                          BR
+#> 3          202212             Emirates                          EK
+#> 4          202212             Emirates                          EK
+#> 5          202212 Flair Airlines, Ltd.                          F8
+#> 6          202212 Flair Airlines, Ltd.                          F8
+#>      published_airline published_airline_iata_code   geo_summary  geo_region
+#> 1          EVA Airways                          BR International        Asia
+#> 2          EVA Airways                          BR International        Asia
+#> 3             Emirates                          EK International Middle East
+#> 4             Emirates                          EK International Middle East
+#> 5 Flair Airlines, Ltd.                          F8 International      Canada
+#> 6 Flair Airlines, Ltd.                          F8 International      Canada
+#>   activity_type_code price_category_code      terminal boarding_area
+#> 1           Deplaned               Other International             G
+#> 2           Enplaned               Other International             G
+#> 3           Deplaned               Other International             A
+#> 4           Enplaned               Other International             A
+#> 5           Deplaned            Low Fare International             A
+#> 6           Enplaned            Low Fare International             A
+#>   passenger_count
+#> 1           12405
+#> 2           15151
+#> 3           13131
+#> 4           14985
+#> 5            2543
+#> 6            2883
 ```
 
-The `sfo_stats` dataset provides a monthly statistics on the air traffic
+The `sfo_stats` dataset provides monthly statistics on the air traffic
 landing at SFO airport:
 
 ``` r
 data("sfo_stats")
 
 head(sfo_stats)
-#>   activity_period operating_airline operating_airline_iata_code published_airline published_airline_iata_code   geo_summary geo_region landing_aircraft_type aircraft_body_type aircraft_manufacturer
-#> 1          202012   United Airlines                          UA   United Airlines                          UA      Domestic         US             Passenger        Narrow Body                Boeing
-#> 2          202012   United Airlines                          UA   United Airlines                          UA      Domestic         US             Passenger          Wide Body                Boeing
-#> 3          202012   United Airlines                          UA   United Airlines                          UA      Domestic         US             Passenger          Wide Body                Boeing
-#> 4          202012   United Airlines                          UA   United Airlines                          UA International       Asia             Passenger          Wide Body                Boeing
-#> 5          202012   United Airlines                          UA   United Airlines                          UA International         US             Passenger          Wide Body                Boeing
-#> 6          202012   United Airlines                          UA   United Airlines                          UA      Domestic         US             Passenger          Wide Body                Boeing
-#>   aircraft_model aircraft_version landing_count total_landed_weight
-#> 1           B753                -            78            17472000
-#> 2           B763                -            19             6080000
-#> 3           B772                -            96            43500000
-#> 4           B772                -             1              460000
-#> 5           B772                -             8             3680000
-#> 6           B773                -            35            19390000
+#>   activity_period operating_airline operating_airline_iata_code
+#> 1          202212        Air Canada                          AC
+#> 2          202212   Delta Air Lines                          DL
+#> 3          202212   Delta Air Lines                          DL
+#> 4          202212  WestJet Airlines                          WS
+#> 5          202212  WestJet Airlines                          WS
+#> 6          202212  WestJet Airlines                          WS
+#>   published_airline published_airline_iata_code   geo_summary geo_region
+#> 1        Air Canada                          AC International     Canada
+#> 2   Delta Air Lines                          DL      Domestic         US
+#> 3   Delta Air Lines                          DL      Domestic         US
+#> 4  WestJet Airlines                          WS International     Canada
+#> 5  WestJet Airlines                          WS International     Canada
+#> 6  WestJet Airlines                          WS International     Canada
+#>   landing_aircraft_type aircraft_body_type aircraft_manufacturer aircraft_model
+#> 1             Passenger          Wide Body                Boeing           B773
+#> 2             Passenger        Narrow Body                Airbus           A319
+#> 3             Passenger        Narrow Body                Airbus           A320
+#> 4             Passenger        Narrow Body                Boeing           B38M
+#> 5             Passenger        Narrow Body                Boeing           B737
+#> 6             Passenger        Narrow Body                Boeing           B738
+#>   aircraft_version landing_count total_landed_weight
+#> 1                -             1              554000
+#> 2                -           163            22459444
+#> 3                -            43             6114514
+#> 4                -             5              764000
+#> 5                -             5              646000
+#> 6                -             3              438900
 ```
 
 #### Total number of passngers
@@ -111,33 +137,35 @@ sfo_passengers %>%
   filter(activity_period == max(activity_period)) %>%
   group_by(activity_type_code, geo_region) %>%
   summarise(total = sum(passenger_count), .groups = "drop")
-#> # A tibble: 17 x 3
-#>    activity_type_code geo_region           total
-#>  * <chr>              <chr>                <int>
-#>  1 Deplaned           Asia                 24631
-#>  2 Deplaned           Australia / Oceania   2733
-#>  3 Deplaned           Canada                4688
-#>  4 Deplaned           Central America       4240
-#>  5 Deplaned           Europe               12385
-#>  6 Deplaned           Mexico               20789
-#>  7 Deplaned           Middle East           2179
-#>  8 Deplaned           US                  364571
-#>  9 Enplaned           Asia                 30418
-#> 10 Enplaned           Australia / Oceania   2878
-#> 11 Enplaned           Canada                4257
-#> 12 Enplaned           Central America       3684
-#> 13 Enplaned           Europe               13661
-#> 14 Enplaned           Mexico               29537
-#> 15 Enplaned           Middle East           2463
-#> 16 Enplaned           US                  395548
-#> 17 Thru / Transit     US                      61
+#> # A tibble: 19 × 3
+#>    activity_type_code geo_region            total
+#>    <chr>              <chr>                 <int>
+#>  1 Deplaned           Asia                 147461
+#>  2 Deplaned           Australia / Oceania   45950
+#>  3 Deplaned           Canada                53237
+#>  4 Deplaned           Central America       12749
+#>  5 Deplaned           Europe               124301
+#>  6 Deplaned           Mexico                64121
+#>  7 Deplaned           Middle East           28921
+#>  8 Deplaned           US                  1353634
+#>  9 Enplaned           Asia                 166684
+#> 10 Enplaned           Australia / Oceania   44286
+#> 11 Enplaned           Canada                57280
+#> 12 Enplaned           Central America       15475
+#> 13 Enplaned           Europe               135635
+#> 14 Enplaned           Mexico                73971
+#> 15 Enplaned           Middle East           31446
+#> 16 Enplaned           US                  1382565
+#> 17 Thru / Transit     Australia / Oceania    2817
+#> 18 Thru / Transit     Europe                 2496
+#> 19 Thru / Transit     US                     3129
 ```
 
 The `sankey_ly` function enables us to plot the distribution of a
 numeric variable by multiple categorical variables. The following
 example shows the distribution of the total United Airlines passengers
-during 2019 by terminal, travel type (domestic and international), geo,
-and travel direction (deplaned, enplaned, and transit):
+during 2019 by a terminal, travel type (domestic and international),
+geo, and travel direction (deplaned, enplaned, and transit):
 
 ``` r
 sfo_passengers %>% 
@@ -155,12 +183,12 @@ sfo_passengers %>%
 
 #### Total number of landing
 
-The total number of landing in most recent month by `activity_type_code`
-and `aircraft_manufacturer`:
+The total number of landings during the most recent month by
+`activity_type_code` and `aircraft_manufacturer`:
 
 ``` r
 sfo_stats %>% 
-  filter(activity_period == max(activity_period),
+  filter(activity_period == 202212,
          aircraft_manufacturer != "") %>%
   group_by(aircraft_manufacturer) %>%
   summarise(total_landing = sum(landing_count),
@@ -169,18 +197,18 @@ sfo_stats %>%
   plot_ly(labels = ~ aircraft_manufacturer,
           values = ~ total_landing) %>%
   add_pie(hole = 0.6) %>%
-  layout(title = "Landing Distribution by Aircraft Manufacturer during Sep 2020")
+  layout(title = "Landing Distribution by Aircraft Manufacturer during Dec 2022")
 ```
 
 <img src="man/figures/manufacturer.svg" width="100%"/>
 
-The following Sankey plot demonstrate the distribution of number of
+The following Sankey plot demonstrates the distribution of the number of
 landing in SFO by region and aircraft type, manufacturer, and body type
-during Sep 2020:
+during Dec 2022:
 
 ``` r
 sfo_stats %>%
-  filter(activity_period == max(activity_period)) %>%
+  filter(activity_period == 202212) %>%
   group_by(geo_summary, geo_region, landing_aircraft_type, aircraft_manufacturer, aircraft_body_type) %>%
   summarise(total_landing = sum(landing_count),
   groups = "drop") %>%
@@ -189,7 +217,7 @@ sfo_stats %>%
                          "aircraft_manufacturer",
                          "aircraft_body_type"),
             num_col = "total_landing",
-            title = "Landing Summary by Geo Region and Aircraft Type During Sep 2020")
+            title = "Landing Summary by Geo Region and Aircraft Type During Dec 2022")
 ```
 
 <img src="man/figures/landing_sankey.svg" width="100%"/>

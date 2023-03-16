@@ -8,17 +8,17 @@
 A data frame with 14 variables.
 \describe{
   \item{activity_period}{Activity year and month in YYYYMM format}
-  \item{operating_airline}{Airline name for the operator of aircraft}
+  \item{operating_airline}{Airline name for the aircraft operator}
   \item{operating_airline_iata_code}{The International Air Transport Association (IATA) two-letter designation for the Operating Airline}
   \item{published_airline}{Airline name that issues the ticket and books revenue for passenger activity}
   \item{published_airline_iata_code}{The International Air Transport Association (IATA) two-letter designation for the Published Airline}
-  \item{geo_summary}{Designates whether the passenger activity in relation to SFO arrived from or departed to a location within the United States (“domestic”), or outside the United States (“international”) without stops}
-  \item{geo_region}{Provides a more detailed breakdown of the GEO Summary field to designate the region in the world where activity in relation to SFO arrived from or departed to without stops}
-  \item{landing_aircraft_type}{A designation for three types of aircraft that landed at SFO, which includes passenger aircraft, cargo only aircraft (“freighters”) or combination aircraft (“combi”)}
-  \item{aircraft_body_type}{A designation that is independent from Landing Aircraft Type, which determines whether commercial aircraft landed at SFO is a wide body jet, narrow body jet, regional jet or a propeller operated aircraft}
+  \item{geo_summary}{The flights’ classification by domestic for flights that arrived from or departed to a destination within the United States and international for destinations outside the United States}
+  \item{geo_region}{ The flight origin/destination geographic region details}
+  \item{landing_aircraft_type}{A designation for three types of aircraft that landed at SFO, which includes passenger aircraft, cargo-only aircraft (“freighters”), or combination aircraft (“combi”)}
+  \item{aircraft_body_type}{A designation that is independent from Landing Aircraft Type, which determines whether commercial aircraft landed at SFO is a wide body-jet, narrow-body jet, regional-jet or a propeller operated aircraft}
   \item{aircraft_manufacturer}{Manufacturer name for the aircraft that landed at SFO}
   \item{aircraft_model}{Model designation of aircraft by the manufacturer}
-  \item{aircraft_version}{Variations of the Aircraft Model, also known as the “dash number”, designated by the manufacturer to segregate unique versions of the same model}
+  \item{aircraft_version}{ Variations of the Aircraft Model, also known as the “dash number”, designated by the manufacturer to segregate unique versions of the same model}
   \item{landing_count}{The number of aircraft landings associated with General and Landings Statistics attribute fields}
   \item{total_landed_weight}{The aircraft landed weight (in pounds) associated with General and Landings Statistics attribute fields}
 

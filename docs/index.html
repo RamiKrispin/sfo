@@ -20,6 +20,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -32,18 +34,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">sfo</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.2</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="reference/index.html">Reference</a>
 </li>
@@ -84,163 +80,184 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="sfo-" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#sfo-" class="anchor"></a>sfo <a href="https://ramikrispin.github.io/sfo/"><img src="reference/figures/sfo.png" align="right" width="150" height="150"></a>
+<div class="section level1">
+<div class="page-header"><h1 id="sfo-">sfo <a href="https://ramikrispin.github.io/sfo/" class="external-link"><img src="reference/figures/sfo.png" align="right" width="150" height="150"></a>
+<a class="anchor" aria-label="anchor" href="#sfo-"></a>
 </h1></div>
 <!-- badges: start -->
 
 <!-- badges: end -->
-<p>The <strong>sfo</strong> package provides summary statistics of the monthly passengers and landing in San Francisco International Airport (SFO) between 2005 and 2020.</p>
-<p>Data source: San Francisco data portal - <a href="https://datasf.org/opendata/">DataSF API</a></p>
+<p>The <strong>sfo</strong> package summarizes the monthly air passengers and landings at San Francisco International Airport (SFO) between 2005 and 2022. Data source: San Francisco data portal - <a href="https://datasf.org/opendata/" class="external-link">DataSF API</a></p>
 <p><img src="reference/figures/total.svg" width="90%"></p>
-<div id="installation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h2>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
 <p>Install the stable version from CRAN:</p>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"sfo"</span>)
-</pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"sfo"</span><span class="op">)</span></code></pre></div>
 <p>or install the development version from Github:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="co"># install.packages("devtools")</span>
-<span class="kw">devtools</span>::<span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"RamiKrispin/sfo"</span>, ref = <span class="st">"main"</span>)
-</pre></div>
-<div id="datasets" class="section level3">
-<h3 class="hasAnchor">
-<a href="#datasets" class="anchor"></a>Datasets</h3>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"RamiKrispin/sfo"</span>, ref <span class="op">=</span> <span class="st">"main"</span><span class="op">)</span></code></pre></div>
+<div class="section level3">
+<h3 id="datasets">Datasets<a class="anchor" aria-label="anchor" href="#datasets"></a>
+</h3>
 <p>The <strong>sfo</strong> package provides the following two datasets:</p>
 <ul>
 <li>
 <code>sfo_passengers</code> - air traffic passengers statistics</li>
 <li>
-<code>sfo_stats</code> - air traffic landing statistics</li>
+<code>sfo_stats</code> - air traffic landings statistics</li>
 </ul>
-<p>More information about the datasets available on the following <a href="https://ramikrispin.github.io/sfo/articles/v1_intro.html">vignette</a>.</p>
+<p>More information about the datasets is available in the following <a href="https://ramikrispin.github.io/sfo/articles/v1_intro.html" class="external-link">vignette</a>.</p>
 </div>
-<div id="examples" class="section level3">
-<h3 class="hasAnchor">
-<a href="#examples" class="anchor"></a>Examples</h3>
-<p>The <code>sfo_passengers</code> dataset provides a monthly summary of the number of passengers in SFO airport by different categories (such as terminal, geo, type, etc.):</p>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw">sfo</span>)
+<div class="section level3">
+<h3 id="examples">Examples<a class="anchor" aria-label="anchor" href="#examples"></a>
+</h3>
+<p>The <code>sfo_passengers</code> dataset provides monthly summary of the number of passengers in SFO airport by different categories (such as terminal, geo, type, etc.):</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">sfo</span><span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"sfo_passengers"</span>)
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"sfo_passengers"</span><span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="kw">sfo_passengers</span>)
-<span class="co">#&gt;   activity_period operating_airline operating_airline_iata_code published_airline published_airline_iata_code   geo_summary          geo_region activity_type_code price_category_code      terminal</span>
-<span class="co">#&gt; 1          202012   United Airlines                          UA   United Airlines                          UA      Domestic                  US           Enplaned               Other    Terminal 3</span>
-<span class="co">#&gt; 2          202012   United Airlines                          UA   United Airlines                          UA      Domestic                  US     Thru / Transit               Other    Terminal 3</span>
-<span class="co">#&gt; 3          202012   United Airlines                          UA   United Airlines                          UA International                Asia           Deplaned               Other International</span>
-<span class="co">#&gt; 4          202012   United Airlines                          UA   United Airlines                          UA International                Asia           Enplaned               Other International</span>
-<span class="co">#&gt; 5          202012   United Airlines                          UA   United Airlines                          UA International Australia / Oceania           Deplaned               Other International</span>
-<span class="co">#&gt; 6          202012   United Airlines                          UA   United Airlines                          UA International Australia / Oceania           Enplaned               Other International</span>
-<span class="co">#&gt;   boarding_area passenger_count</span>
-<span class="co">#&gt; 1             F          117260</span>
-<span class="co">#&gt; 2             F              61</span>
-<span class="co">#&gt; 3             G           12763</span>
-<span class="co">#&gt; 4             G           16050</span>
-<span class="co">#&gt; 5             G            2733</span>
-<span class="co">#&gt; 6             G            2878</span>
-</pre></div>
-<p>The <code>sfo_stats</code> dataset provides a monthly statistics on the air traffic landing at SFO airport:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"sfo_stats"</span>)
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">sfo_passengers</span><span class="op">)</span>
+<span class="co">#&gt;   activity_period    operating_airline operating_airline_iata_code</span>
+<span class="co">#&gt; 1          202212          EVA Airways                          BR</span>
+<span class="co">#&gt; 2          202212          EVA Airways                          BR</span>
+<span class="co">#&gt; 3          202212             Emirates                          EK</span>
+<span class="co">#&gt; 4          202212             Emirates                          EK</span>
+<span class="co">#&gt; 5          202212 Flair Airlines, Ltd.                          F8</span>
+<span class="co">#&gt; 6          202212 Flair Airlines, Ltd.                          F8</span>
+<span class="co">#&gt;      published_airline published_airline_iata_code   geo_summary  geo_region</span>
+<span class="co">#&gt; 1          EVA Airways                          BR International        Asia</span>
+<span class="co">#&gt; 2          EVA Airways                          BR International        Asia</span>
+<span class="co">#&gt; 3             Emirates                          EK International Middle East</span>
+<span class="co">#&gt; 4             Emirates                          EK International Middle East</span>
+<span class="co">#&gt; 5 Flair Airlines, Ltd.                          F8 International      Canada</span>
+<span class="co">#&gt; 6 Flair Airlines, Ltd.                          F8 International      Canada</span>
+<span class="co">#&gt;   activity_type_code price_category_code      terminal boarding_area</span>
+<span class="co">#&gt; 1           Deplaned               Other International             G</span>
+<span class="co">#&gt; 2           Enplaned               Other International             G</span>
+<span class="co">#&gt; 3           Deplaned               Other International             A</span>
+<span class="co">#&gt; 4           Enplaned               Other International             A</span>
+<span class="co">#&gt; 5           Deplaned            Low Fare International             A</span>
+<span class="co">#&gt; 6           Enplaned            Low Fare International             A</span>
+<span class="co">#&gt;   passenger_count</span>
+<span class="co">#&gt; 1           12405</span>
+<span class="co">#&gt; 2           15151</span>
+<span class="co">#&gt; 3           13131</span>
+<span class="co">#&gt; 4           14985</span>
+<span class="co">#&gt; 5            2543</span>
+<span class="co">#&gt; 6            2883</span></code></pre></div>
+<p>The <code>sfo_stats</code> dataset provides monthly statistics on the air traffic landing at SFO airport:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"sfo_stats"</span><span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="kw">sfo_stats</span>)
-<span class="co">#&gt;   activity_period operating_airline operating_airline_iata_code published_airline published_airline_iata_code   geo_summary geo_region landing_aircraft_type aircraft_body_type aircraft_manufacturer</span>
-<span class="co">#&gt; 1          202012   United Airlines                          UA   United Airlines                          UA      Domestic         US             Passenger        Narrow Body                Boeing</span>
-<span class="co">#&gt; 2          202012   United Airlines                          UA   United Airlines                          UA      Domestic         US             Passenger          Wide Body                Boeing</span>
-<span class="co">#&gt; 3          202012   United Airlines                          UA   United Airlines                          UA      Domestic         US             Passenger          Wide Body                Boeing</span>
-<span class="co">#&gt; 4          202012   United Airlines                          UA   United Airlines                          UA International       Asia             Passenger          Wide Body                Boeing</span>
-<span class="co">#&gt; 5          202012   United Airlines                          UA   United Airlines                          UA International         US             Passenger          Wide Body                Boeing</span>
-<span class="co">#&gt; 6          202012   United Airlines                          UA   United Airlines                          UA      Domestic         US             Passenger          Wide Body                Boeing</span>
-<span class="co">#&gt;   aircraft_model aircraft_version landing_count total_landed_weight</span>
-<span class="co">#&gt; 1           B753                -            78            17472000</span>
-<span class="co">#&gt; 2           B763                -            19             6080000</span>
-<span class="co">#&gt; 3           B772                -            96            43500000</span>
-<span class="co">#&gt; 4           B772                -             1              460000</span>
-<span class="co">#&gt; 5           B772                -             8             3680000</span>
-<span class="co">#&gt; 6           B773                -            35            19390000</span>
-</pre></div>
-<div id="total-number-of-passngers" class="section level4">
-<h4 class="hasAnchor">
-<a href="#total-number-of-passngers" class="anchor"></a>Total number of passngers</h4>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">sfo_stats</span><span class="op">)</span>
+<span class="co">#&gt;   activity_period operating_airline operating_airline_iata_code</span>
+<span class="co">#&gt; 1          202212        Air Canada                          AC</span>
+<span class="co">#&gt; 2          202212   Delta Air Lines                          DL</span>
+<span class="co">#&gt; 3          202212   Delta Air Lines                          DL</span>
+<span class="co">#&gt; 4          202212  WestJet Airlines                          WS</span>
+<span class="co">#&gt; 5          202212  WestJet Airlines                          WS</span>
+<span class="co">#&gt; 6          202212  WestJet Airlines                          WS</span>
+<span class="co">#&gt;   published_airline published_airline_iata_code   geo_summary geo_region</span>
+<span class="co">#&gt; 1        Air Canada                          AC International     Canada</span>
+<span class="co">#&gt; 2   Delta Air Lines                          DL      Domestic         US</span>
+<span class="co">#&gt; 3   Delta Air Lines                          DL      Domestic         US</span>
+<span class="co">#&gt; 4  WestJet Airlines                          WS International     Canada</span>
+<span class="co">#&gt; 5  WestJet Airlines                          WS International     Canada</span>
+<span class="co">#&gt; 6  WestJet Airlines                          WS International     Canada</span>
+<span class="co">#&gt;   landing_aircraft_type aircraft_body_type aircraft_manufacturer aircraft_model</span>
+<span class="co">#&gt; 1             Passenger          Wide Body                Boeing           B773</span>
+<span class="co">#&gt; 2             Passenger        Narrow Body                Airbus           A319</span>
+<span class="co">#&gt; 3             Passenger        Narrow Body                Airbus           A320</span>
+<span class="co">#&gt; 4             Passenger        Narrow Body                Boeing           B38M</span>
+<span class="co">#&gt; 5             Passenger        Narrow Body                Boeing           B737</span>
+<span class="co">#&gt; 6             Passenger        Narrow Body                Boeing           B738</span>
+<span class="co">#&gt;   aircraft_version landing_count total_landed_weight</span>
+<span class="co">#&gt; 1                -             1              554000</span>
+<span class="co">#&gt; 2                -           163            22459444</span>
+<span class="co">#&gt; 3                -            43             6114514</span>
+<span class="co">#&gt; 4                -             5              764000</span>
+<span class="co">#&gt; 5                -             5              646000</span>
+<span class="co">#&gt; 6                -             3              438900</span></code></pre></div>
+<div class="section level4">
+<h4 id="total-number-of-passngers">Total number of passngers<a class="anchor" aria-label="anchor" href="#total-number-of-passngers"></a>
+</h4>
 <p>The total number of passengers in most recent month by <code>activity_type_code</code> and <code>geo_region</code>:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://dplyr.tidyverse.org">dplyr</a></span>)
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span>
 
-<span class="kw">sfo_passengers</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="kw">activity_period</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span>(<span class="kw">activity_period</span>)) <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(<span class="kw">activity_type_code</span>, <span class="kw">geo_region</span>) <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span>(total = <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="kw">passenger_count</span>), .groups = <span class="st">"drop"</span>)
-<span class="co">#&gt; # A tibble: 17 x 3</span>
-<span class="co">#&gt;    activity_type_code geo_region           total</span>
-<span class="co">#&gt;  * &lt;chr&gt;              &lt;chr&gt;                &lt;int&gt;</span>
-<span class="co">#&gt;  1 Deplaned           Asia                 24631</span>
-<span class="co">#&gt;  2 Deplaned           Australia / Oceania   2733</span>
-<span class="co">#&gt;  3 Deplaned           Canada                4688</span>
-<span class="co">#&gt;  4 Deplaned           Central America       4240</span>
-<span class="co">#&gt;  5 Deplaned           Europe               12385</span>
-<span class="co">#&gt;  6 Deplaned           Mexico               20789</span>
-<span class="co">#&gt;  7 Deplaned           Middle East           2179</span>
-<span class="co">#&gt;  8 Deplaned           US                  364571</span>
-<span class="co">#&gt;  9 Enplaned           Asia                 30418</span>
-<span class="co">#&gt; 10 Enplaned           Australia / Oceania   2878</span>
-<span class="co">#&gt; 11 Enplaned           Canada                4257</span>
-<span class="co">#&gt; 12 Enplaned           Central America       3684</span>
-<span class="co">#&gt; 13 Enplaned           Europe               13661</span>
-<span class="co">#&gt; 14 Enplaned           Mexico               29537</span>
-<span class="co">#&gt; 15 Enplaned           Middle East           2463</span>
-<span class="co">#&gt; 16 Enplaned           US                  395548</span>
-<span class="co">#&gt; 17 Thru / Transit     US                      61</span>
-</pre></div>
-<p>The <code>sankey_ly</code> function enables us to plot the distribution of a numeric variable by multiple categorical variables. The following example shows the distribution of the total United Airlines passengers during 2019 by terminal, travel type (domestic and international), geo, and travel direction (deplaned, enplaned, and transit):</p>
-<div class="sourceCode" id="cb6"><pre class="downlit">
-<span class="kw">sfo_passengers</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="kw">operating_airline</span> <span class="op">==</span> <span class="st">"United Airlines"</span>,
-         <span class="kw">activity_period</span> <span class="op">&gt;=</span> <span class="fl">201901</span> <span class="op">&amp;</span> <span class="kw">activity_period</span> <span class="op">&lt;</span> <span class="fl">202001</span>) <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(terminal = <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span>(<span class="kw">terminal</span> <span class="op">==</span> <span class="st">"International"</span>, <span class="st">"international"</span>, <span class="kw">terminal</span>)) <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(<span class="kw">operating_airline</span>,<span class="kw">activity_type_code</span>, <span class="kw">geo_summary</span>, <span class="kw">geo_region</span>,  <span class="kw">terminal</span>) <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span>(total = <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="kw">passenger_count</span>), .groups = <span class="st">"drop"</span>) <span class="op">%&gt;%</span>
-  <span class="fu"><a href="reference/sankey_ly.html">sankey_ly</a></span>(cat_cols = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"operating_airline"</span>, <span class="st">"terminal"</span>,<span class="st">"geo_summary"</span>, <span class="st">"geo_region"</span>, <span class="st">"activity_type_code"</span>), 
-            num_col = <span class="st">"total"</span>,
-            title = <span class="st">"Dist. of United Airlines Passengers at SFO During 2019"</span>)
-</pre></div>
+<span class="va">sfo_passengers</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">activity_period</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">activity_period</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">activity_type_code</span>, <span class="va">geo_region</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span>total <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">passenger_count</span><span class="op">)</span>, .groups <span class="op">=</span> <span class="st">"drop"</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 19 × 3</span>
+<span class="co">#&gt;    activity_type_code geo_region            total</span>
+<span class="co">#&gt;    &lt;chr&gt;              &lt;chr&gt;                 &lt;int&gt;</span>
+<span class="co">#&gt;  1 Deplaned           Asia                 147461</span>
+<span class="co">#&gt;  2 Deplaned           Australia / Oceania   45950</span>
+<span class="co">#&gt;  3 Deplaned           Canada                53237</span>
+<span class="co">#&gt;  4 Deplaned           Central America       12749</span>
+<span class="co">#&gt;  5 Deplaned           Europe               124301</span>
+<span class="co">#&gt;  6 Deplaned           Mexico                64121</span>
+<span class="co">#&gt;  7 Deplaned           Middle East           28921</span>
+<span class="co">#&gt;  8 Deplaned           US                  1353634</span>
+<span class="co">#&gt;  9 Enplaned           Asia                 166684</span>
+<span class="co">#&gt; 10 Enplaned           Australia / Oceania   44286</span>
+<span class="co">#&gt; 11 Enplaned           Canada                57280</span>
+<span class="co">#&gt; 12 Enplaned           Central America       15475</span>
+<span class="co">#&gt; 13 Enplaned           Europe               135635</span>
+<span class="co">#&gt; 14 Enplaned           Mexico                73971</span>
+<span class="co">#&gt; 15 Enplaned           Middle East           31446</span>
+<span class="co">#&gt; 16 Enplaned           US                  1382565</span>
+<span class="co">#&gt; 17 Thru / Transit     Australia / Oceania    2817</span>
+<span class="co">#&gt; 18 Thru / Transit     Europe                 2496</span>
+<span class="co">#&gt; 19 Thru / Transit     US                     3129</span></code></pre></div>
+<p>The <code>sankey_ly</code> function enables us to plot the distribution of a numeric variable by multiple categorical variables. The following example shows the distribution of the total United Airlines passengers during 2019 by a terminal, travel type (domestic and international), geo, and travel direction (deplaned, enplaned, and transit):</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">sfo_passengers</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">operating_airline</span> <span class="op">==</span> <span class="st">"United Airlines"</span>,
+         <span class="va">activity_period</span> <span class="op">&gt;=</span> <span class="fl">201901</span> <span class="op">&amp;</span> <span class="va">activity_period</span> <span class="op">&lt;</span> <span class="fl">202001</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>terminal <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">terminal</span> <span class="op">==</span> <span class="st">"International"</span>, <span class="st">"international"</span>, <span class="va">terminal</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">operating_airline</span>,<span class="va">activity_type_code</span>, <span class="va">geo_summary</span>, <span class="va">geo_region</span>,  <span class="va">terminal</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span>total <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">passenger_count</span><span class="op">)</span>, .groups <span class="op">=</span> <span class="st">"drop"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="reference/sankey_ly.html">sankey_ly</a></span><span class="op">(</span>cat_cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"operating_airline"</span>, <span class="st">"terminal"</span>,<span class="st">"geo_summary"</span>, <span class="st">"geo_region"</span>, <span class="st">"activity_type_code"</span><span class="op">)</span>, 
+            num_col <span class="op">=</span> <span class="st">"total"</span>,
+            title <span class="op">=</span> <span class="st">"Dist. of United Airlines Passengers at SFO During 2019"</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/sankey.svg" width="100%"></p>
 </div>
-<div id="total-number-of-landing" class="section level4">
-<h4 class="hasAnchor">
-<a href="#total-number-of-landing" class="anchor"></a>Total number of landing</h4>
-<p>The total number of landing in most recent month by <code>activity_type_code</code> and <code>aircraft_manufacturer</code>:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit">
-<span class="kw">sfo_stats</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="kw">activity_period</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span>(<span class="kw">activity_period</span>),
-         <span class="kw">aircraft_manufacturer</span> != <span class="st">""</span>) <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(<span class="kw">aircraft_manufacturer</span>) <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span>(total_landing = <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="kw">landing_count</span>),
-            `.groups` = <span class="st">"drop"</span>) <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span>(<span class="op">-</span><span class="kw">total_landing</span>) <span class="op">%&gt;%</span>
-  <span class="fu">plot_ly</span>(labels = <span class="op">~</span> <span class="kw">aircraft_manufacturer</span>,
-          values = <span class="op">~</span> <span class="kw">total_landing</span>) <span class="op">%&gt;%</span>
-  <span class="fu">add_pie</span>(hole = <span class="fl">0.6</span>) <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/r/graphics/layout.html">layout</a></span>(title = <span class="st">"Landing Distribution by Aircraft Manufacturer during Sep 2020"</span>)
-</pre></div>
+<div class="section level4">
+<h4 id="total-number-of-landing">Total number of landing<a class="anchor" aria-label="anchor" href="#total-number-of-landing"></a>
+</h4>
+<p>The total number of landings during the most recent month by <code>activity_type_code</code> and <code>aircraft_manufacturer</code>:</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">sfo_stats</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">activity_period</span> <span class="op">==</span> <span class="fl">202212</span>,
+         <span class="va">aircraft_manufacturer</span> <span class="op">!=</span> <span class="st">""</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">aircraft_manufacturer</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span>total_landing <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">landing_count</span><span class="op">)</span>,
+            `.groups` <span class="op">=</span> <span class="st">"drop"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="op">-</span><span class="va">total_landing</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu">plot_ly</span><span class="op">(</span>labels <span class="op">=</span> <span class="op">~</span> <span class="va">aircraft_manufacturer</span>,
+          values <span class="op">=</span> <span class="op">~</span> <span class="va">total_landing</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu">add_pie</span><span class="op">(</span>hole <span class="op">=</span> <span class="fl">0.6</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://rdrr.io/r/graphics/layout.html" class="external-link">layout</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Landing Distribution by Aircraft Manufacturer during Dec 2022"</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/manufacturer.svg" width="100%"></p>
-<p>The following Sankey plot demonstrate the distribution of number of landing in SFO by region and aircraft type, manufacturer, and body type during Sep 2020:</p>
-<div class="sourceCode" id="cb8"><pre class="downlit">
-<span class="kw">sfo_stats</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="kw">activity_period</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span>(<span class="kw">activity_period</span>)) <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(<span class="kw">geo_summary</span>, <span class="kw">geo_region</span>, <span class="kw">landing_aircraft_type</span>, <span class="kw">aircraft_manufacturer</span>, <span class="kw">aircraft_body_type</span>) <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span>(total_landing = <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="kw">landing_count</span>),
-  groups = <span class="st">"drop"</span>) <span class="op">%&gt;%</span>
-  <span class="fu"><a href="reference/sankey_ly.html">sankey_ly</a></span>(cat_cols = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"geo_summary"</span>, <span class="st">"geo_region"</span>, 
+<p>The following Sankey plot demonstrates the distribution of the number of landing in SFO by region and aircraft type, manufacturer, and body type during Dec 2022:</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">sfo_stats</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">activity_period</span> <span class="op">==</span> <span class="fl">202212</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">geo_summary</span>, <span class="va">geo_region</span>, <span class="va">landing_aircraft_type</span>, <span class="va">aircraft_manufacturer</span>, <span class="va">aircraft_body_type</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span>total_landing <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">landing_count</span><span class="op">)</span>,
+  groups <span class="op">=</span> <span class="st">"drop"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="reference/sankey_ly.html">sankey_ly</a></span><span class="op">(</span>cat_cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"geo_summary"</span>, <span class="st">"geo_region"</span>, 
                          <span class="st">"landing_aircraft_type"</span>, 
                          <span class="st">"aircraft_manufacturer"</span>,
-                         <span class="st">"aircraft_body_type"</span>),
-            num_col = <span class="st">"total_landing"</span>,
-            title = <span class="st">"Landing Summary by Geo Region and Aircraft Type During Sep 2020"</span>)
-</pre></div>
+                         <span class="st">"aircraft_body_type"</span><span class="op">)</span>,
+            num_col <span class="op">=</span> <span class="st">"total_landing"</span>,
+            title <span class="op">=</span> <span class="st">"Landing Summary by Geo Region and Aircraft Type During Dec 2022"</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/landing_sankey.svg" width="100%"></p>
 </div>
 </div>
@@ -250,45 +267,57 @@
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2>Links</h2>
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=sfo">https://​cloud.r-project.org/​package=sfo</a>
-</li>
+<li><a href="https://cloud.r-project.org/package=sfo" class="external-link">View on CRAN</a></li>
 </ul>
 </div>
+
 <div class="license">
-<h2>License</h2>
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
 <li><a href="LICENSE.html">Full license</a></li>
-<li><small><a href="https://opensource.org/licenses/mit-license.php">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a></small></li>
+<li><small><a href="https://opensource.org/licenses/mit-license.php" class="external-link">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a></small></li>
 </ul>
 </div>
+
+
+<div class="citation">
+<h2 data-toc-skip>Citation</h2>
+<ul class="list-unstyled">
+<li><a href="authors.html#citation">Citing sfo</a></li>
+</ul>
+</div>
+
 <div class="developers">
-<h2>Developers</h2>
+<h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
 <li>Rami Krispin <br><small class="roles"> Author, maintainer </small>  </li>
 </ul>
 </div>
 
-  <div class="dev-status">
-<h2>Dev status</h2>
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://cran.r-project.org/package=sfo"><img src="https://www.r-pkg.org/badges/version/sfo" alt="CRAN_Status_Badge"></a></li>
-<li><a href="https://lifecycle.r-lib.org/articles/stages.html#stable"><img src="https://img.shields.io/badge/lifecycle-stable-green.svg" alt="lifecycle"></a></li>
-<li><a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIT"></a></li>
-<li><a href="https://github.com/RamiKrispin/sfo/commit/main"><img src="https://img.shields.io/github/last-commit/RamiKrispin/sfo" alt="GitHub commit"></a></li>
+<li><a href="https://cran.r-project.org/package=sfo" class="external-link"><img src="https://www.r-pkg.org/badges/version/sfo" alt="CRAN_Status_Badge"></a></li>
+<li><a href="https://lifecycle.r-lib.org/articles/stages.html#stable" class="external-link"><img src="https://img.shields.io/badge/lifecycle-stable-green.svg" alt="lifecycle"></a></li>
+<li><a href="https://opensource.org/license/mit/" class="external-link"><img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIT"></a></li>
+<li><a href="https://github.com/RamiKrispin/sfo/commit/main" class="external-link"><img src="https://img.shields.io/github/last-commit/RamiKrispin/sfo" alt="GitHub commit"></a></li>
 </ul>
 </div>
-</div>
+
+  </div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Rami Krispin.</p>
+  <p></p>
+<p>Developed by Rami Krispin.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
 </div>
 
       </footer>
@@ -296,6 +325,8 @@
 
   
 
+
+  
 
   </body>
 </html>

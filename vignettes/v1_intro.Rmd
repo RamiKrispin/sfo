@@ -14,26 +14,26 @@ knitr::opts_chunk$set(
 )
 ```
 
-The **sfo** package provides a monthly statistics of San Francisco International (SFO) airport air traffic between July 2005 and December 2020. That includes the following two datasets:
+The **sfo** package provides monthly statistics of San Francisco International (SFO) airport air traffic between July 2005 and December 2022. That includes the following two datasets:
 
 * `sfo_passengers` - air traffic passengers statistics
 * `sfo_stats` - air traffic landing statistics
 
 ### sfo_passengers
 
-The `sfo_passengers` dataset focusing on monthly air passengers statistics, and it contains the following fields:
+The `sfo_passengers` dataset focuses on monthly air passengers statistics, and it contains the following fields:
 
 -   `activity_period` - Activity year and month in YYYYMM format
--   `operating_airline` -Airline name for the operator of aircraft
+-   `operating_airline` -Airline name for the aircraft operator
 -   `operating_airline_iata_code` -The International Air Transport Association (IATA) two-letter designation for the Operating Airline
 -   `published_airline` -Airline name that issues the ticket and books revenue for passenger activity
 -   `published_airline_iata_code` -The International Air Transport Association (IATA) two-letter designation for the Published Airline
--   `geo_summary` -Designates whether the passenger activity in relation to SFO arrived from or departed to a location within the United States ("domestic"), or outside the United States ("international") without stops
--   `geo_region` -Provides a more detailed breakdown of the GEO Summary field to designate the region in the world where activity in relation to SFO arrived from or departed to without stops
+-   `geo_summary` -The flights' classification by `domestic` for flights that arrived from or departed to a destination within the United States and `international` for destinations outside the United States
+-   `geo_region` - The flight origin/destination geographic region details
 -   `activity_type_code` -A description of the physical action a passenger took in relation to a flight, which includes boarding a flight ("enplanements"), getting off a flight ("deplanements") and transiting to another location ("intransit")
--   `price_category_code` -A categorization of whether a Published Airline is a low-cost carrier or not a low-cost carrier}
--   `terminal` -The airport terminal designations at SFO where passenger activity took place
--   `boarding_area` -The airport boarding area designations at SFO where passenger activity took place
+-   `price_category_code` -A categorization of whether a Published Airline is a low-cost carrier or not a low-cost carrier
+-   `terminal` -The airport's terminal designations at SFO where passenger activity took place
+-   `boarding_area` -The airport's boarding area designations at SFO where passenger activity took place
 -   `passenger_count` -The number of monthly passengers associated with the above attribute fields
 
 Data source: San Francisco data portal (DataSF) [API](https://data.sfgov.org/Transportation/Air-Traffic-Passenger-Statistics/rkru-6vcg)
@@ -52,17 +52,17 @@ head(sfo_passengers)
 
 ### sfo_stats
 
-The `sfo_stats` dataset focusing on monthly landing statistics, and it contains the following fields:
+The `sfo_stats` dataset focuses on monthly landing statistics, and it contains the following fields:
 
 -   `activity_period` - Activity year and month in YYYYMM format
--   `operating_airline` -Airline name for the operator of aircraft
+-   `operating_airline` -Airline name for the aircraft operator
 -   `operating_airline_iata_code` -The International Air Transport Association (IATA) two-letter designation for the Operating Airline
 -   `published_airline` -Airline name that issues the ticket and books revenue for passenger activity
 -   `published_airline_iata_code` -The International Air Transport Association (IATA) two-letter designation for the Published Airline
--   `geo_summary` -Designates whether the passenger activity in relation to SFO arrived from or departed to a location within the United States ("domestic"), or outside the United States ("international") without stops
--   `geo_region` -Provides a more detailed breakdown of the GEO Summary field to designate the region in the world where activity in relation to SFO arrived from or departed to without stops
-- `landing_aircraft_type` - A designation for three types of aircraft that landed at SFO, which includes passenger aircraft, cargo only aircraft (“freighters”) or combination aircraft (“combi”)
-- `aircraft_body_type` - A designation that is independent from Landing Aircraft Type, which determines whether commercial aircraft landed at SFO is a wide body jet, narrow body jet, regional jet or a propeller operated aircraft
+-   `geo_summary` -The flights' classification by `domestic` for flights that arrived from or departed to a destination within the United States and `international` for destinations outside the United States
+-   `geo_region` - The flight origin/destination geographic region details
+- `landing_aircraft_type` - A designation for three types of aircraft that landed at SFO, which includes passenger aircraft, cargo-only aircraft (“freighters”), or combination aircraft (“combi”)
+- `aircraft_body_type` - A designation that is independent from Landing Aircraft Type, which determines whether commercial aircraft landed at SFO is a wide body-jet, narrow-body jet, regional-jet or a propeller operated aircraft
 - `aircraft_manufacturer` - Manufacturer name for the aircraft that landed at SFO
 - `aircraft_model` - Model designation of aircraft by the manufacturer
 - `aircraft_version` - Variations of the Aircraft Model, also known as the “dash number”, designated by the manufacturer to segregate unique versions of the same model

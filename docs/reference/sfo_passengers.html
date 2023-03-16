@@ -75,7 +75,7 @@
 <dd><p>Activity year and month in YYYYMM format</p></dd>
 
   <dt>operating_airline</dt>
-<dd><p>Airline name for the operator of aircraft</p></dd>
+<dd><p>Airline name for the aircraft operator</p></dd>
 
   <dt>operating_airline_iata_code</dt>
 <dd><p>The International Air Transport Association (IATA) two-letter designation for the Operating Airline</p></dd>
@@ -87,10 +87,10 @@
 <dd><p>The International Air Transport Association (IATA) two-letter designation for the Published Airline</p></dd>
 
   <dt>geo_summary</dt>
-<dd><p>Designates whether the passenger activity in relation to SFO arrived from or departed to a location within the United States (“domestic”), or outside the United States (“international”) without stops</p></dd>
+<dd><p>The flights’ classification by domestic for flights that arrived from or departed to a destination within the United States and international for destinations outside the United States</p></dd>
 
   <dt>geo_region</dt>
-<dd><p>Provides a more detailed breakdown of the GEO Summary field to designate the region in the world where activity in relation to SFO arrived from or departed to without stops</p></dd>
+<dd><p>The flight origin/destination geographic region details</p></dd>
 
   <dt>activity_type_code</dt>
 <dd><p>A description of the physical action a passenger took in relation to a flight, which includes boarding a flight (“enplanements”), getting off a flight (“deplanements”) and transiting to another location (“intransit”)</p></dd>
@@ -99,10 +99,10 @@
 <dd><p>A categorization of whether a Published Airline is a low-cost carrier or not a low-cost carrier</p></dd>
 
   <dt>terminal</dt>
-<dd><p>The airport terminal designations at SFO where passenger activity took place</p></dd>
+<dd><p>The airport’s terminal designations at SFO where passenger activity took place</p></dd>
 
   <dt>boarding_area</dt>
-<dd><p>The airport boarding area designations at SFO where passenger activity took place</p></dd>
+<dd><p>The airport’s boarding area designations at SFO where passenger activity took place</p></dd>
 
   <dt>passenger_count</dt>
 <dd><p>The number of monthly passengers associated with the above attribute fields</p></dd>
@@ -124,15 +124,6 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">sfo_passengers</span><span class="op">)</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Loading required package: dplyr</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Attaching package: ‘dplyr’</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> The following objects are masked from ‘package:stats’:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     filter, lag</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> The following objects are masked from ‘package:base’:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     intersect, setdiff, setequal, union</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># Get summary of total number of passengers by activity type</span></span>
 <span class="r-in"><span class="co"># in most recent month</span></span>
